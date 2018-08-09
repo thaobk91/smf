@@ -1,0 +1,30 @@
+
+GW->wifi, 3g, 2g
+- Ban tin data
+DATA,SMF_SENSN,12345678,PH:5,EC:0.4,TempG:25,HumiG:87,Time:2009-06-15T13:45:30!
+DATA,SMF_CTRLN,00001111,CtrlStat:1001,Time:2018-07-15T12:45:08!
+DATA,SMF_SENSN,12345678,D_State:OK,Time:2018-06-11T09:45:08!
+
+- Ban tin conf
+CONF,SMF_GW,IDGW:123!
+
+- Ban tin reqs
+REQS,SMF_GW,RTC!
+
+
+Cloud->wifi, 3g, 2g
+- {"TypePacket":"CONF","TypeDevice":"SMF_GW","DeviceIDEp":"","DeviceIDGw":"4E4543801003001E","Data":{"RTC":"10/45/30/14/07/18"}}
+- {"TypePacket":"CONF","TypeDevice":"SMF_SENSN","DeviceIDEp":"12345678","DeviceIDGw":"4E4543801003001E","Data":{"EC":"3/1.2"}}
+- {"TypePacket":"CONF","TypeDevice":"SMF_CTRLN","DeviceIDEp":"00001111","DeviceIDGw":"4E4543801003001E","Data":{"OutVAC_2":"7/30/9/45"}}
+- {"TypePacket":"CONF","TypeDevice":"SMF_SENSN","DeviceIDEp":"12345678","DeviceIDGw":"4E4543801003001E","Data":{"DataUT":"400"}}
+- {"TypePacket":"CONF","TypeDevice":"SMF_GW","DeviceIDEp":"","DeviceIDGw":"4E4543801003001E","Data":{"MQTT":"thingxyz.net/1883//"}}
+- {"TypePacket":"REQS","TypeDevice":"SMF_SENSN","DeviceIDEp":"12345678","DeviceIDGw":"4E4543801003001E","Data":{"ALL":""}}
+- {"TypePacket":"CTRL","TypeDevice":"SMF_CTRLN","DeviceIDEp":"00001111","DeviceIDGw":"4E4543801003001E","Data":{"OutVAC":"1101"}}
+
+
+
+
+
+CONF,SMF_SENSN,12345678,PH:12/3!	//nguong canh bao
+CONF,SMF_CTRLN,00001111,OutVAC_1:8/45/10/15!
+CONF,SMF_SENSN,12345678,DataUT:500!

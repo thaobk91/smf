@@ -1,0 +1,8 @@
+1. chinh lai luc khoi chay cac task (truoc while moi task)
+2. Loi treo IC khi chay.
+3. Dua phan kiem tra trang thai cac task trong ProcessTask sang ham ngat macroLPTMR_COUNTER_HANDLER (thiet lap gia tri kiem tra trang thai lon hon thoi gian 1 task chay tu dau den cuoi va nho hon thoi gian nano timer
+4. Khong cho reset all mach -> chi reset zigbee khi k co phan hoi ( xem WhoAmITask)
+5. define sensor
+6. Sua lai ham get ID
+7. Thay doi 30s doc cam bien 1 lan
+8. Loi sau khi gui xong co phan hoi RESP OK nhung vdk khong dung check co gui (loi trong ham vPacketHandle_HandleMessageResponse-> strcmp(xPacketIO->Data[0].cName, macroRESPONSE_OK))
