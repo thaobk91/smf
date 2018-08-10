@@ -5,42 +5,42 @@
 #include "fsl_uart.h"
 
 
-#define macroUART_MAX_LENGHT						512
+#define macroUART_RX_BUFFER_LENGHT							512
 
-/* UART4 to Zigbee */
-#define macroUART_ZIGB_BAUDRATE          	        		38400
-#define macroUART_ZIGB_BASE               					UART4
-#define macroUART_ZIGB_CLKSRC             					UART4_CLK_SRC
-#define macroUART_ZIGB_IRQn               					UART4_RX_TX_IRQn
-#define macroUART_ZIGB_IRQHandler         					UART4_RX_TX_IRQHandler
+/* UART4 for Connectivity */
+#define macroUART_CONN_BAUDRATE          	        		38400
+#define macroUART_CONN_BASE               					UART4
+#define macroUART_CONN_CLKSRC             					UART4_CLK_SRC
+#define macroUART_CONN_IRQn               					UART4_RX_TX_IRQn
+#define macroUART_CONN_IRQHandler         					UART4_RX_TX_IRQHandler
 
 /////* UART0 to EC2 sensor */
-#define macroUART_EC2_SENSOR_BAUDRATE          	        		9600
-#define macroUART_EC2_SENSOR_BASE               				UART0
-#define macroUART_EC2_SENSOR_CLKSRC             				UART0_CLK_SRC
-#define macroUART_EC2_SENSOR_IRQn               				UART0_RX_TX_IRQn
-#define macroUART_EC2_SENSOR_IRQHandler         				UART0_RX_TX_IRQHandler
+#define macroUART_EC2_SENSOR_BAUDRATE          	        	9600
+#define macroUART_EC2_SENSOR_BASE               			UART0
+#define macroUART_EC2_SENSOR_CLKSRC             			UART0_CLK_SRC
+#define macroUART_EC2_SENSOR_IRQn               			UART0_RX_TX_IRQn
+#define macroUART_EC2_SENSOR_IRQHandler         			UART0_RX_TX_IRQHandler
 
 ///* UART3 to EC sensor */
-#define macroUART_EC_SENSOR_BAUDRATE          	        		9600
-#define macroUART_EC_SENSOR_BASE               					UART3
-#define macroUART_EC_SENSOR_CLKSRC             					UART3_CLK_SRC
-#define macroUART_EC_SENSOR_IRQn               					UART3_RX_TX_IRQn
-#define macroUART_EC_SENSOR_IRQHandler         					UART3_RX_TX_IRQHandler
+#define macroUART_EC_SENSOR_BAUDRATE          	        	9600
+#define macroUART_EC_SENSOR_BASE               				UART3
+#define macroUART_EC_SENSOR_CLKSRC             				UART3_CLK_SRC
+#define macroUART_EC_SENSOR_IRQn               				UART3_RX_TX_IRQn
+#define macroUART_EC_SENSOR_IRQHandler         				UART3_RX_TX_IRQHandler
 
 /* UART1 to pH sensor */
-#define macroUART_PH_SENSOR_BAUDRATE          	        		9600
-#define macroUART_PH_SENSOR_BASE               					UART1
-#define macroUART_PH_SENSOR_CLKSRC             					UART1_CLK_SRC
-#define macroUART_PH_SENSOR_IRQn               					UART1_RX_TX_IRQn
-#define macroUART_PH_SENSOR_IRQHandler         					UART1_RX_TX_IRQHandler
+#define macroUART_PH_SENSOR_BAUDRATE          	        	9600
+#define macroUART_PH_SENSOR_BASE               				UART1
+#define macroUART_PH_SENSOR_CLKSRC             				UART1_CLK_SRC
+#define macroUART_PH_SENSOR_IRQn               				UART1_RX_TX_IRQn
+#define macroUART_PH_SENSOR_IRQHandler         				UART1_RX_TX_IRQHandler
 
 /* UART2 to pH 2 sensor */
-#define macroUART_PH2_SENSOR_BAUDRATE          	        		9600
-#define macroUART_PH2_SENSOR_BASE               				UART2
-#define macroUART_PH2_SENSOR_CLKSRC             				UART2_CLK_SRC
-#define macroUART_PH2_SENSOR_IRQn               				UART2_RX_TX_IRQn
-#define macroUART_PH2_SENSOR_IRQHandler         				UART2_RX_TX_IRQHandler
+#define macroUART_PH2_SENSOR_BAUDRATE          	        	9600
+#define macroUART_PH2_SENSOR_BASE               			UART2
+#define macroUART_PH2_SENSOR_CLKSRC             			UART2_CLK_SRC
+#define macroUART_PH2_SENSOR_IRQn               			UART2_RX_TX_IRQn
+#define macroUART_PH2_SENSOR_IRQHandler         			UART2_RX_TX_IRQHandler
 
 
 

@@ -62,11 +62,9 @@ void vPacketHandle_SendMessage( PacketIO *xPacketIO )
 	uBuffer[uiCnt++] = macroPACKET_STRING_ENDCHAR;
 
     //for destination
-	if(xPacketIO->eOutput == eZigB)
-	{
-		APP_DEBUG("--- PacketHandle: Send data: \"%s\" to ZigBee\r\n", uBuffer);
-		vUART_Write( macroUART_ZIGB_BASE, (char *)uBuffer, uiCnt );
-	}
+	APP_DEBUG("--- PacketHandle: Send data: \"%s\" to ZigBee\r\n", uBuffer);
+	vUART_Write( macroUART_CONN_BASE, (char *)uBuffer, uiCnt );
+	
 	return;
 }
 
@@ -178,6 +176,7 @@ void vPacketHandle_HandleMessage( char *pcMessage )
     //nhan va tach cac truong cua ban tin
 		
 	xPacketIO = xPacketHandle_RecvMessage( pcMessage );
+	memset((void *)pcMessage, 0, strlen((char *)pcMessage));
 	
     //Ban tin WhoAmI
 	if(strcmp(xPacketIO.cTypePacket, macroTYPEPACKET_WAMI) == 0)
@@ -288,9 +287,9 @@ void vPacketHandle_HandleMessageData( PacketIO *xPacketIO )
 *******************************************************************************/
 void vPacketHandle_HandleMessageConfig( PacketIO *xPacketIO )
 {
-    
-  char cHighThresh[20]={0};
-  char cLowThresh[20]={0};
+	char cHighThresh[20] = {0};
+	char cLowThresh[20] = {0};
+	
 	for(uint8_t ui = 0; ui < xPacketIO->uDataNumber; ui++)
 	{
         if(strcmp(xPacketIO->Data[ui].cName, macroCFG_DataUT) == 0)
@@ -549,66 +548,9 @@ void vPacketHandle_HandleMessageRequest( PacketIO *xPacketIO )
 		//Yeu cau du lieu cua tat ca Sensor
 		if(strcmp(xPacketIO->Data[ui].cName, macroREQUEST_ALL) == 0)
 		{
-			xFlags.eReadSensor = eALL;
-            xFlags.bSendReqs = true;
+			vMain_setEvent( EVENT_SYS_SEND_DATA );
 			break;
 		}
-//#ifdef PH_SENSOR
-//		//Yeu cau du lieu cua pH
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_PH) == 0)
-//		{
-//			xFlags.eReadSensor = ePH;
-//			break;
-//		}
-//#endif
-//
-//#ifdef EC_SENSOR
-//		//Yeu cau du lieu cua EC Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_EC) == 0)
-//		{
-//			xFlags.eReadSensor = eEC;
-//			break;
-//		}
-//#endif
-//
-//#ifdef SHTG_SENSOR
-//		//Yeu cau du lieu cua Pressure Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_TEMPG) == 0)
-//		{
-//			xFlags.eReadSensor = eTempG;
-//			break;
-//		}
-//		//Yeu cau du lieu cua CO Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_HUMIG) == 0)
-//		{
-//			xFlags.eReadSensor = eHumiG;
-//			break;
-//		}
-//#endif
-//		
-//#ifdef SHTA_SENSOR
-//		//Yeu cau du lieu cua NO Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_TEMPA) == 0)
-//		{
-//			xFlags.eReadSensor = eTempA;
-//			break;
-//		}
-//		//Yeu cau du lieu cua NO2 Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_HUMIA) == 0)
-//		{
-//			xFlags.eReadSensor = eHumiA;
-//			break;
-//		}
-//#endif
-//		
-//#ifdef LIGHT_SENSOR
-//		//Yeu cau du lieu cua SO2 Sensor
-//		else if(strcmp(xPacketIO->Data[ui].cName, macroSENSOR_LIGHT) == 0)
-//		{
-//			xFlags.eReadSensor = eLight;
-//			break;
-//		}
-//#endif
 		else 
 		{
 			APP_DEBUG("--- PacketHandle: Request \"%s\" not found\r\n", xPacketIO->Data[ui].cName);
@@ -639,14 +581,13 @@ void vPacketHandle_HandleMessageRequest( PacketIO *xPacketIO )
 void vPacketHandle_HandleMessageResponse( PacketIO *xPacketIO )
 {
 	/*ban tin response co 3 truong: type packet, type device: GW, ID endevice: OK/NOK*/
-	if( ( strcmp(xPacketIO->cTypeDevice, macroTYPEDEVICE_GW) == 0 )&&
-		( strcmp(xPacketIO->cID, macroRESPONSE_OK) == 0))
+	if( ( strcmp(xPacketIO->cTypeDevice, macroTYPEDEVICE_GW) == 0 ) && ( strcmp(xPacketIO->cID, macroRESPONSE_OK) == 0))
 	{
 		APP_DEBUG("--- PacketHandle: Response is \"%s\"\r\n", xPacketIO->cID);
-		xFlags.eSentIsOK = eSend_OK;
+		xFlags.bSentIsOK = true;
 	}
 	else
-		xFlags.eSentIsOK = eSend_NOK;
+		xFlags.bSentIsOK = false;
 	
 	free(xPacketIO);
 }
@@ -664,12 +605,12 @@ void vPacketHandle_HandleMessageWhoAmI( PacketIO *xPacketIO )
 {
 	if( strcmp(xPacketIO->cTypeDevice, macroCONNECTIVITY_SSB) == 0 )
 	{
-		xFlags.bZigbIsConnected = true;
+		xFlags.bConnectivityIsConnected = true;
 	}
 	else
 	{
 		APP_DEBUG("--- PacketHandle: ZigB is disconnected\r\n");
-		xFlags.bZigbIsConnected = false;
+		xFlags.bConnectivityIsConnected = false;
 	}
 		
 	
@@ -687,7 +628,7 @@ void vPacketHandle_SendWhoAmI(void)
 {
 	uint8_t uBuffer[6] = "WAMI!";
 	APP_DEBUG("--- PacketHandle: Send data: \"%s\" to ZigBee\r\n", uBuffer);
-	vUART_Write( macroUART_ZIGB_BASE, (char *)uBuffer, strlen((char*)uBuffer) );
+	vUART_Write( macroUART_CONN_BASE, (char *)uBuffer, strlen((char*)uBuffer) );
 }
 
 
@@ -705,14 +646,14 @@ void vPacketHandle_HandleMessageCheck( PacketIO *xPacketIO )
 
 
 /******************************************************************************
- * Function		: void vPacketHandle_SendResponse( char *cResponse, Enum_Output eOutput )
+ * Function		: void vPacketHandle_SendResponse( char *cResponse )
  * Description	: Ham gui ban tin Response
  * Param		: 
  *				+ cResponse - loai response - OK or NOK
  *				+ eOutput - toi main board hoac dust sensor
  * Return		: none
 *******************************************************************************/
-void vPacketHandle_SendResponse( char *cResponse, Enum_Output eOutput )
+void vPacketHandle_SendResponse( char *cResponse )
 {
 //	PacketIO xPacketIO;
 //	

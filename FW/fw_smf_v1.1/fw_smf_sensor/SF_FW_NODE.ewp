@@ -194,7 +194,6 @@
           <state>SHTG_SENSOR</state>
           <state>xLIGHT_SENSOR</state>
           <state>macroUSE_SDCARD</state>
-          <state>macroUSER_SDCARD</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -646,7 +645,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>SF_FW_NODE.hex</state>
+          <state>fw_smf_sensor.hex</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -701,7 +700,7 @@
         </option>
         <option>
           <name>IlinkOutputFile</name>
-          <state>SF_FW_NODE.out</state>
+          <state>fw_smf_sensor.out</state>
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
@@ -1035,12 +1034,6 @@
       </file>
       <file>
         <name>$PROJ_DIR$\Source\Interface\I2C.h</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Source\Interface\SPI.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Source\Interface\SPI.h</name>
       </file>
       <file>
         <name>$PROJ_DIR$\Source\Interface\UART.c</name>

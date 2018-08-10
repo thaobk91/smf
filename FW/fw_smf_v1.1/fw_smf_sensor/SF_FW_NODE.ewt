@@ -1190,12 +1190,6 @@
         <name>$PROJ_DIR$\Source\Interface\I2C.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Interface\SPI.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Source\Interface\SPI.h</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$\Source\Interface\UART.c</name>
       </file>
       <file>

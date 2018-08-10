@@ -14,7 +14,7 @@ define for sensor user
 
 #define macroTIME_READ_SENSOR							11				//2mins
 #define macroTIME_SEND_WAMI								7				//7s
-#define macroTIME_SEND_INTERVAL							30				//2mins
+#define macroTIME_SEND_INTERVAL							300				//2mins
 
 //Dinh nghia do dai cua ban tin String
 #define macroPACKET_STRING_MAX_FIELD					15
@@ -115,38 +115,6 @@ define for sensor user
 
 typedef enum
 {
-	eNone		= 0xff,
-	eALL		= 0x30,
-	eTempG		= 0x31,
-	eHumiG		= 0x32,
-	eTempA		= 0x33,
-	eHumiA		= 0x34,
-	ePH			= 0x35,
-	eEC		    = 0x36,
-	eLight		= 0x37,
-}Enum_IDSensor;
-
-typedef enum
-{
-	eToNone = 0x00,
-	eToZigB = 0x01,
-}Enum_WhoAmI;
-
-typedef enum
-{
-	eSend_None = 0x00,
-	eSend_OK,
-	eSend_NOK,
-}Enum_SendIsOK;
-
-typedef enum
-{
-	eZigB = 1
-}Enum_Output;
-
-
-typedef enum
-{
 	eUART_None,
 	eUART_ZigB,
 	eUART_EC,
@@ -156,7 +124,7 @@ typedef enum
 
 typedef enum
 {
-	eSDCard_None=0x00,
+	eSDCard_None = 0x00,
 	eSDCard_True,
 	eSDCard_False
 }Enum_SDCard;
@@ -164,27 +132,15 @@ typedef enum
 
 typedef struct
 {
-	Enum_UART_IO	eData_Recv;						//Co bao nhan duoc du lieu
+	bool			bSentIsOK;
 	
-	bool			bData_Send;						//Co gui du lieu
-	
-	Enum_SendIsOK	eSentIsOK;
-	
-	Enum_IDSensor	eReadSensor;					//Co doc cam bien
-	
-	bool 			bWAMItoZigB;
-	
-	bool			bSendReady;
-	
-	bool 			bZigbIsConnected;
+	bool 			bConnectivityIsConnected;
 	
 	Enum_SDCard 	eSDCard_Read;
 	
 	Enum_SDCard		eSDCard_Write;
 	
 	bool 			bTimeSend;
-    
-    bool            bSendReqs;
 }Flags;
 
 
@@ -192,6 +148,7 @@ typedef struct
 //store data after read sensor
 typedef struct
 {
+	bool	noSensor;
 #ifdef PH_SENSOR
 	float fpH;
 #endif

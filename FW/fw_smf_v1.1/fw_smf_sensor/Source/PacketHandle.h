@@ -14,8 +14,6 @@ typedef struct
     char		cID[macroPACKET_STRING_MAX_FIELD_LENGHT];
 
 	uint8_t		uDataNumber;
-	
-	Enum_Output eOutput;
 
 	struct
 	{
@@ -126,14 +124,14 @@ void vPacketHandle_HandleMessageCheck( PacketIO *xPacketIO );
 
 
 /******************************************************************************
- * Function		: void vPacketHandle_SendResponse( char *cResponse, Enum_Output eOutput )
+ * Function		: void vPacketHandle_SendResponse( char *cResponse )
  * Description	: Ham gui ban tin Response
  * Param		: 
  *				+ cResponse - loai response - OK or NOK
  *				+ eOutput - toi main board hoac dust sensor
  * Return		: none
 *******************************************************************************/
-void vPacketHandle_SendResponse( char *cResponse, Enum_Output eOutput );
+void vPacketHandle_SendResponse( char *cResponse );
 
 
 

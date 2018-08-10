@@ -69,8 +69,8 @@ void BOARD_InitPins(void)
 	PORT_SetPinMux( macroEC_POWER_PORT, macroEC_POWER_PIN, kPORT_MuxAsGpio );
     GPIO_PinInit( macroEC_POWER_GPIO, macroEC_POWER_PIN, &xGPIO_ConfigOutput );
 	
-	PORT_SetPinMux( macroZIGB_POWER_PORT, macroZIGB_POWER_PIN, kPORT_MuxAsGpio );
-    GPIO_PinInit( macroZIGB_POWER_GPIO, macroZIGB_POWER_PIN, &xGPIO_ConfigOutput );
+	PORT_SetPinMux( macroCONN_POWER_PORT, macroCONN_POWER_PIN, kPORT_MuxAsGpio );
+    GPIO_PinInit( macroCONN_POWER_GPIO, macroCONN_POWER_PIN, &xGPIO_ConfigOutput );
 	
 	PORT_SetPinMux( macroPH2_POWER_PORT, macroPH2_POWER_PIN, kPORT_MuxAsGpio );
     GPIO_PinInit( macroPH2_POWER_GPIO, macroPH2_POWER_PIN, &xGPIO_ConfigOutput );

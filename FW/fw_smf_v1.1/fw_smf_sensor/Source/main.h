@@ -24,13 +24,6 @@ extern "C"
 /*********************************************************************
 * CONSTANTS
 */
-//#define DEBUG
-#ifdef DEBUG
-	#define MYTRACE 				DbgConsole_Printf
-#else
-	#define MYTRACE(...)
-#endif
-
 #define MAIN_DEBUG
 #ifdef MAIN_DEBUG
 	#define APP_DEBUG 				DbgConsole_Printf
@@ -65,21 +58,14 @@ extern "C"
 #define macroGPIO_ACTIVE_LOW( GPIO, PIN )  			GPIO_WritePinOutput( GPIO, PIN, 0 )
 #define macroGPIO_TOGGLE( GPIO, PIN )				GPIO_TogglePinsOutput( GPIO, 1u << PIN )
 #define macroGPIO_READ_STATE( GPIO, PIN )			GPIO_ReadPinInput( GPIO, PIN )
-
-
-//Nano timer Done
-//#define macroNANO_TIMER_DONE()					macroGPIO_ACTIVE_LOW( macroNANO_TIMER_DONE_GPIO, macroNANO_TIMER_DONE_PIN );\
-//												macroTASK_DELAY_MS(10);\
-//												macroGPIO_ACTIVE_HIGH( macroNANO_TIMER_DONE_GPIO, macroNANO_TIMER_DONE_PIN );\
-//												macroTASK_DELAY_MS(30);\
-//												macroGPIO_ACTIVE_LOW( macroNANO_TIMER_DONE_GPIO, macroNANO_TIMER_DONE_PIN )
 		
-#define macroNANO_TIMER_DONE()                  macroGPIO_TOGGLE(macroNANO_TIMER_DONE_GPIO,macroNANO_TIMER_DONE_PIN);
+#define macroNANO_TIMER_DONE()                  	macroGPIO_TOGGLE(macroNANO_TIMER_DONE_GPIO,macroNANO_TIMER_DONE_PIN);
 
-#define macroPOWER_ON(GPIO,PIN)					macroGPIO_ACTIVE_LOW( GPIO,PIN)
-
-#define macroPOWER_OFF(GPIO,PIN)				macroGPIO_ACTIVE_HIGH( GPIO,PIN)
+//power for connectivity
+#define macroPOWER_ON(GPIO,PIN)						macroGPIO_ACTIVE_LOW( GPIO,PIN)
+#define macroPOWER_OFF(GPIO,PIN)					macroGPIO_ACTIVE_HIGH( GPIO,PIN)
 	
+
 //For Task
 /* Task priorities. */
 #define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 0)
@@ -93,9 +79,9 @@ typedef struct
 	TaskHandle_t 	xTaskHandle_Process;
 	TaskHandle_t 	xTaskHandle_Sensor;
 	TaskHandle_t 	xTaskHandle_WhoAmI;
-	#ifdef macroUSE_SDCARD
+#ifdef macroUSE_SDCARD
 	TaskHandle_t 	xTaskHandle_SDCard;
-	#endif
+#endif
 	
 	uint16_t		uiSensorTask_Finish;
 	uint16_t		uiWhoAmITask_Finish;
@@ -103,12 +89,6 @@ typedef struct
 }taskHandle_t;
 
 
-
-typedef enum
-{
-	eFAILURE = 0,
-	eSUCCESS = 1,
-}Enum_Result;
 
 typedef struct 
 {
@@ -130,7 +110,6 @@ typedef struct
 
 #ifdef SHTA_SENSOR
     Thresh_t        xTempA;
-    
     Thresh_t        xHumiA;
 #endif
 
@@ -144,6 +123,25 @@ typedef struct
     Thresh_t        xLight;
 #endif
 }DataLocal;
+
+
+
+//event
+#define EVENT_SYS_IDLE							0x0000	
+#define EVENT_SYS_CONN_RECV						0x0001
+
+#ifdef PH_SENSOR
+	#define EVENT_SYS_PH_SS_RECV				0x0002
+#endif
+
+#ifdef EC_SENSOR
+	#define EVENT_SYS_EC_SS_RECV				0x0004
+#endif
+#define EVENT_SYS_SEND_READY					0x0008
+#define EVENT_SYS_WAMI							0x0010
+#define EVENT_SYS_READ_SENSOR					0x0020
+#define EVENT_SYS_SEND_DATA						0x0040
+#define EVENT_SYS_RESPONSE						0x0080
 
 
 
@@ -178,6 +176,16 @@ void vMain_Peripheral_DeInit( void );
  * Return		: none
 *******************************************************************************/
 void vMain_RefreshWDT( void );
+
+
+
+/******************************************************************************
+ * Function		: void vMain_setEvent( uint16_t Event )
+ * Description	: set event
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+void vMain_setEvent( uint16_t Event );
 
 
 

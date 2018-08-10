@@ -6,9 +6,6 @@
 #include "main.h"
 
 
-uint8_t uWhoAmI = eToNone;
-
-
 //Task
 extern taskHandle_t xTask;
 
@@ -31,6 +28,7 @@ void vWhoAmITask_Task( void *pvParameters)
 	
     while( 1 )
     {
+		xTask.uiWhoAmITask_Finish = 1;
 		uint8_t uCnt = 0;
 		uint8_t uResend = 0;
 		
@@ -44,7 +42,7 @@ void vWhoAmITask_Task( void *pvParameters)
 			{
 				macroTASK_DELAY_MS( 1000 );
 				
-				if(xFlags.bZigbIsConnected == true)
+				if(xFlags.bConnectivityIsConnected == true)
 				{
 					goto EndWhoAmI;
 				}
@@ -58,19 +56,18 @@ void vWhoAmITask_Task( void *pvParameters)
 
 		EndWhoAmI:;
 	
-		if(xFlags.bZigbIsConnected == false)
+		if(xFlags.bConnectivityIsConnected == false)
 		{
 			APP_DEBUG("--- WhoAmITask: ZigB is not Response --> Reset ZigB.\r\n");
 			macroTASK_DELAY_MS( 200 );
 			//reset Zigb
-			macroPOWER_OFF(macroZIGB_POWER_GPIO,macroZIGB_POWER_PIN);
+			macroPOWER_OFF(macroCONN_POWER_GPIO, macroCONN_POWER_PIN);
 			macroTASK_DELAY_MS( 1000 );
-			macroPOWER_ON(macroZIGB_POWER_GPIO,macroZIGB_POWER_PIN);
+			macroPOWER_ON(macroCONN_POWER_GPIO, macroCONN_POWER_PIN);
 		}
 		else
 		{
 			APP_DEBUG("--- WhoAmITask: ZigB is connected....\r\n");
-			xFlags.bSendReady = true;
 		}
 		
 		//Task finish

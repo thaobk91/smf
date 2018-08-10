@@ -62,9 +62,9 @@ extern "C" {
 #define macroEC2_POWER_GPIO							GPIOB
 #define macroEC2_POWER_PIN							18U
 //
-#define macroZIGB_POWER_PORT						PORTC
-#define macroZIGB_POWER_GPIO						GPIOC
-#define macroZIGB_POWER_PIN							13U
+#define macroCONN_POWER_PORT						PORTC
+#define macroCONN_POWER_GPIO						GPIOC
+#define macroCONN_POWER_PIN							13U
 //
 	
 /**********************for i2C sw for Temp&Humi Air****************************/
