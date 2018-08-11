@@ -184,7 +184,6 @@ void vSDCardTask_Run( void *pvParameters )
 				APP_DEBUG("\r\n--- SDCardTask: eCARD_EVENT_READ\r\n");
 				if(bUserFile_ReadAll(&xDataLocal) == false)
 				{	
-					
 					uError_Counter++;
 					APP_DEBUG("--- SDCardTask: Read Config\r\n");
 				}
@@ -210,9 +209,10 @@ void vSDCardTask_Run( void *pvParameters )
 				break;
 		}
 //
-		if(uError_Counter >= 10)
+		if(uError_Counter >= 60)
 		{
 			uError_Counter = 0;
+			NVIC_SystemReset();
 			Enum_CARD_EVENT = eCARD_EVENT_DEINIT;
 		}
 		xTask.uiSDCardTask_Finish = 0;
@@ -261,28 +261,28 @@ static bool bSDCardTask_MMC_Access( void )
 	}
 #endif
 	
-	DIR directory;
-	FILINFO fileInformation;
-	APP_DEBUG("\r\n--- SDCardTask: List the file in that directory......\r\n");
-    if (f_opendir(&directory, "/"))
-    {
-    	APP_DEBUG("--- SDCardTask: Open directory failed.\r\n");
-        return false;
-    }
-	for (;;)
-    {
-        FRESULT error = f_readdir(&directory, &fileInformation);
-
-        /* To the end. */
-        if ((error != FR_OK) || (fileInformation.fname[0U] == 0U))
-            break;
-        if (fileInformation.fname[0] == '.')
-            continue;
-        if (fileInformation.fattrib & AM_DIR)
-        	APP_DEBUG("--- SDCardTask: Directory file : %s.\r\n", fileInformation.fname);
-        else
-        	APP_DEBUG("--- SDCardTask: General file : %s.\r\n", fileInformation.fname);
-    }
+//	DIR directory;
+//	FILINFO fileInformation;
+//	APP_DEBUG("\r\n--- SDCardTask: List the file in that directory......\r\n");
+//    if (f_opendir(&directory, "/"))
+//    {
+//    	APP_DEBUG("--- SDCardTask: Open directory failed.\r\n");
+//        return false;
+//    }
+//	for (;;)
+//    {
+//        FRESULT error = f_readdir(&directory, &fileInformation);
+//
+//        /* To the end. */
+//        if ((error != FR_OK) || (fileInformation.fname[0U] == 0U))
+//            break;
+//        if (fileInformation.fname[0] == '.')
+//            continue;
+//        if (fileInformation.fattrib & AM_DIR)
+//        	APP_DEBUG("--- SDCardTask: Directory file : %s.\r\n", fileInformation.fname);
+//        else
+//        	APP_DEBUG("--- SDCardTask: General file : %s.\r\n", fileInformation.fname);
+//    }
 	
 	return true;
 }

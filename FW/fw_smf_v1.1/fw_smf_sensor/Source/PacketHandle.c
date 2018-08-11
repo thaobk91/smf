@@ -373,7 +373,7 @@ void vPacketHandle_HandleMessageConfig( PacketIO *xPacketIO )
 		}
 #endif
 		
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
         else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPG) == 0)
 		{
 			bool bLow = false;
@@ -432,7 +432,7 @@ void vPacketHandle_HandleMessageConfig( PacketIO *xPacketIO )
 		}
 #endif
 		
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
         else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPA) == 0)
 		{
 			bool bLow = false;

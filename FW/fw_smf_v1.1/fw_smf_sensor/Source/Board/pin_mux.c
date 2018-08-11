@@ -116,11 +116,11 @@ void BOARD_InitPins(void)
     PORT_SetPinMux(PORTE, 25U, kPORT_MuxAlt5);
 	
 	/************************for i2c sw****************************************/
-	PORT_SetPinMux( macroSHT_SDA_PORT, macroSHT_SDA_PIN, kPORT_MuxAsGpio );
-	PORT_SetPinMux( macroSHT_SCL_PORT, macroSHT_SCL_PIN, kPORT_MuxAsGpio );
+	PORT_SetPinMux( macroSHT_AIR_SDA_PORT, macroSHT_AIR_SDA_PIN, kPORT_MuxAsGpio );
+	PORT_SetPinMux( macroSHT_AIR_SCL_PORT, macroSHT_AIR_SCL_PIN, kPORT_MuxAsGpio );
     
-    PORT_SetPinMux( macroSHTG_SDA_PORT, macroSHTG_SDA_PIN, kPORT_MuxAsGpio );
-	PORT_SetPinMux( macroSHTG_SCL_PORT, macroSHTG_SCL_PIN, kPORT_MuxAsGpio );
+    PORT_SetPinMux( macroSHT_SOIL_SDA_PORT, macroSHT_SOIL_SDA_PIN, kPORT_MuxAsGpio );
+	PORT_SetPinMux( macroSHT_SOIL_SCL_PORT, macroSHT_SOIL_SCL_PIN, kPORT_MuxAsGpio );
 	
 	/******************************* Nano timer *******************************/
 	/* Done */

@@ -12,9 +12,9 @@ define for sensor user
 
 
 
-#define macroTIME_READ_SENSOR							11				//2mins
-#define macroTIME_SEND_WAMI								7				//7s
-#define macroTIME_SEND_INTERVAL							300				//2mins
+#define macroTIME_READ_SENSOR							30				//30s
+#define macroTIME_SEND_WAMI								10				//10s
+#define macroTIME_SEND_INTERVAL							300				//5mins
 
 //Dinh nghia do dai cua ban tin String
 #define macroPACKET_STRING_MAX_FIELD					15
@@ -56,51 +56,51 @@ define for sensor user
 
 
 //ID name Config
-#define macroCFG_SENSOR_PH								 	"PH"
-#define macroCFG_SENSOR_EC								 	"EC"
-#define macroCFG_SENSOR_TEMPG								"TempG"
-#define macroCFG_SENSOR_HUMIG								"HumiG"
-#define macroCFG_SENSOR_TEMPA								"TempA"
-#define macroCFG_SENSOR_HUMIA								"HumiA"
-#define macroCFG_SENSOR_LIGHT								"Light"
-#define macroCFG_DataUT                                     "DataUT"
+#define macroCFG_SENSOR_PH								"PH"
+#define macroCFG_SENSOR_EC								"EC"
+#define macroCFG_SENSOR_TEMPG							"TempG"
+#define macroCFG_SENSOR_HUMIG							"HumiG"
+#define macroCFG_SENSOR_TEMPA							"TempA"
+#define macroCFG_SENSOR_HUMIA							"HumiA"
+#define macroCFG_SENSOR_LIGHT							"Light"
+#define macroCFG_DataUT                                 "DataUT"
 
-#define macroCFG_TIMESEND                                   300
+#define macroCFG_TIMESEND 								300
 
 
 //define for Thresh
 #ifdef PH_SENSOR
-	#define macroPH_THRESH_HIGH                                 14
-	#define macroPH_THRESH_LOW                                  1
+	#define macroPH_THRESH_HIGH							14
+	#define macroPH_THRESH_LOW							1
 #endif
 
 #ifdef EC_SENSOR
-	#define macroEC_THRESH_HIGH                                 2
-	#define macroEC_THRESH_LOW                                  1
+	#define macroEC_THRESH_HIGH 					 	2
+	#define macroEC_THRESH_LOW							1
 #endif
 
-#ifdef SHTA_SENSOR
-	#define macroTEMPA_THRESH_HIGH                              50
-	#define macroTEMPA_THRESH_LOW                               0
+#ifdef TEMP_HUMI_AIR_SENSOR
+	#define macroTEMPA_THRESH_HIGH						50
+	#define macroTEMPA_THRESH_LOW						0
 
-	#define macroHUMIA_THRESH_HIGH                              100
-	#define macroHUMIA_THRESH_LOW                               5
+	#define macroHUMIA_THRESH_HIGH						100
+	#define macroHUMIA_THRESH_LOW						5
 #endif
 
-#ifdef SHTG_SENSOR
-	#define macroTEMPG_THRESH_HIGH                              50
-	#define macroTEMPG_THRESH_LOW                               0
+#ifdef TEMP_HUMI_SOIL_SENSOR
+	#define macroTEMPG_THRESH_HIGH						50
+	#define macroTEMPG_THRESH_LOW						0
 
-	#define macroHUMIG_THRESH_HIGH                              100
-	#define macroHUMIG_THRESH_LOW                               0
+	#define macroHUMIG_THRESH_HIGH						100
+	#define macroHUMIG_THRESH_LOW						0
 #endif
 
 #ifdef LIGHT_SENSOR
-	#define macroLIGHT_THRESH_HIGH                              65000
-	#define macroLIGHT_THRESH_LOW                               0
+	#define macroLIGHT_THRESH_HIGH						65000
+	#define macroLIGHT_THRESH_LOW						0
 #endif
 
-#define macroCFG_NO_CHANGE_THRESH                           "x"
+#define macroCFG_NO_CHANGE_THRESH						"x"
 
 //Response
 #define macroRESPONSE_OK								"OK"
@@ -112,7 +112,6 @@ define for sensor user
 #define macroCONNECTIVITY_SSB					        "Zigb"
 /******************************************************************************/
 
-
 typedef enum
 {
 	eUART_None,
@@ -122,25 +121,11 @@ typedef enum
 }Enum_UART_IO;
 
 
-typedef enum
-{
-	eSDCard_None = 0x00,
-	eSDCard_True,
-	eSDCard_False
-}Enum_SDCard;
-
-
 typedef struct
 {
 	bool			bSentIsOK;
 	
 	bool 			bConnectivityIsConnected;
-	
-	Enum_SDCard 	eSDCard_Read;
-	
-	Enum_SDCard		eSDCard_Write;
-	
-	bool 			bTimeSend;
 }Flags;
 
 
@@ -155,11 +140,11 @@ typedef struct
 #ifdef EC_SENSOR
 	float fEC;
 #endif
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
 	float fTempG;
 	float fHumiG;
 #endif
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
 	float fTempA;
 	float fHumiA;
 #endif

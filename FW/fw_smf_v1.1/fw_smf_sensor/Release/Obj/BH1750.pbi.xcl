@@ -1,4 +1,4 @@
-"D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Sensor\BH1750.c"
+"D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Sensor\Device\BH1750.c"
 -std=c99
 -ferror-limit=100
 -I
@@ -7,6 +7,8 @@ D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/Source
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/Source/Board
 -I
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/Source/Sensor
+-I
+D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/Source/Sensor/Device
 -I
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/Source/Task
 -I
@@ -68,6 +70,8 @@ D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Board
 -I
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Sensor
 -I
+D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Sensor\Device
+-I
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Task
 -I
 D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\Flash
@@ -126,9 +130,9 @@ D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\SDCard\sdmmc\src
 -DPRINTF_ADVANCED_ENABLE=1
 -DPH_SENSOR=1
 -DEC_SENSOR=1
--DxSHTA_SENSOR=1
--DSHTG_SENSOR=1
--DxLIGHT_SENSOR=1
+-DxTEMP_HUMI_AIR_SENSOR=1
+-DTEMP_HUMI_SOIL_SENSOR=1
+-DLIGHT_SENSOR=1
 -DmacroUSE_SDCARD=1
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff

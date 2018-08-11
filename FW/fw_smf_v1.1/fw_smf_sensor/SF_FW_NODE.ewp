@@ -190,8 +190,8 @@
           <state>PRINTF_ADVANCED_ENABLE</state>
           <state>PH_SENSOR</state>
           <state>EC_SENSOR</state>
-          <state>xSHTA_SENSOR</state>
-          <state>SHTG_SENSOR</state>
+          <state>xTEMP_HUMI_AIR_SENSOR</state>
+          <state>TEMP_HUMI_SOIL_SENSOR</state>
           <state>xLIGHT_SENSOR</state>
           <state>macroUSE_SDCARD</state>
         </option>
@@ -325,6 +325,7 @@
           <state>$PROJ_DIR$/Source</state>
           <state>$PROJ_DIR$/Source/Board</state>
           <state>$PROJ_DIR$/Source/Sensor</state>
+          <state>$PROJ_DIR$/Source/Sensor/Device</state>
           <state>$PROJ_DIR$/Source/Task</state>
           <state>$PROJ_DIR$/Source/Flash</state>
           <state>$PROJ_DIR$/Source/Flash/Device</state>
@@ -1131,35 +1132,68 @@
     </group>
     <group>
       <name>Sensor</name>
+      <group>
+        <name>Device</name>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\BH1750.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\BH1750.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SHT1x.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SHT1x.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_EC_Atlas.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_EC_Atlas.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_EC_Murata.c</name>
+          <excluded>
+            <configuration>Release</configuration>
+          </excluded>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_EC_Murata.h</name>
+          <excluded>
+            <configuration>Release</configuration>
+          </excluded>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_PH_Atlas.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_PH_Atlas.h</name>
+        </file>
+      </group>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\BH1750.c</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_EC.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\BH1750.h</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_EC.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\EC_Murata.c</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_Light.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\EC_Murata.h</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_Light.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\PH_Sensor.c</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_PH.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\PH_Sensor.h</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_PH.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\SHT11.c</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_TempAndHumi.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\Source\Sensor\SHT11.h</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Source\Sensor\SHT11Soil.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Source\Sensor\SHT11Soil.h</name>
+        <name>$PROJ_DIR$\Source\Sensor\SS_TempAndHumi.h</name>
       </file>
     </group>
     <group>

@@ -11,7 +11,7 @@
 #include "FileAccess.h"
 
    
-#define macroUSER_FILE				"user_config.txt"
+#define macroUSER_FILE					"user_config.txt"
 
 #define macroUSER_FILE_PH				"PH.txt"
 #define macroUSER_FILE_EC				"EC.txt"

@@ -16,12 +16,21 @@
 #include "SensorTask.h"
 #include "DeviceControl.h"
 
-#include "PH_Sensor.h"
-#include "SHT11.h"
-#include "SHT11Soil.h"
-#include "BH1750.h"
-#include "EC_Sensor.h"
-//#include "EC_Murata.h"
+#ifdef PH_SENSOR
+	#include "SS_PH.h"
+#endif
+
+#if defined(TEMP_HUMI_AIR_SENSOR) || defined(TEMP_HUMI_SOIL_SENSOR)
+	#include "SS_TempAndHumi.h"
+#endif
+
+#ifdef LIGHT_SENSOR
+	#include "SS_Light.h"
+#endif
+
+#ifdef EC_SENSOR
+	#include "SS_EC.h"
+#endif
 
 
 PacketIO xPacketSend = {0};
@@ -42,6 +51,17 @@ extern DataLocal xDataLocal;
 
 uint32_t uReadSS_Counter = 0;
 
+bool bSensor_Feedback = false;
+
+
+/********************************* Function ***********************************/
+static void vSensorTask_Wait_SS_Feedback( void );
+/******************************************************************************/
+
+
+
+
+
 /******************************************************************************
  * Function		: void vSensorTask_Task( void *pvParameters)
  * Description	: Task xu ly doc du lieu tu sensor
@@ -52,7 +72,16 @@ void vSensorTask_Task( void *pvParameters)
 {
 	
 	APP_DEBUG("************************* SensorTask *************************\r\n");
-	macroTASK_DELAY_MS(30000);
+	macroTASK_DELAY_MS(1000);
+#ifdef PH_SENSOR
+	vSS_PH_Init();
+#endif
+	
+#ifdef EC_SENSOR
+	vSS_EC_Init();
+#endif
+	
+	macroTASK_DELAY_MS(20000);
     while( 1 )
     {
 		xTask.uiSensorTask_Finish = 1;
@@ -60,96 +89,59 @@ void vSensorTask_Task( void *pvParameters)
 		uReadSS_Counter++;
 		APP_DEBUG("--- SensorTask: Reading sensor... Counter = %d\r\n", uReadSS_Counter);
 #ifdef PH_SENSOR
-			/*pH sensor, data pH already store xss_value.fpH after this funtion*/
+		/*pH sensor, data pH already store xss_value.fpH after this funtion*/
 		APP_DEBUG("--- SensorTask: Reading pH sensor\r\n");
-		PH_Sensor_vRead();
-		macroTASK_DELAY_MS(1000);
+		vSS_PH_Read();
+		vSensorTask_Wait_SS_Feedback();
 		//check val pH vua doc dc
-		if((xSS_Value_Current.fpH >xDataLocal.xPH.ui16LowThresh)&&(xSS_Value_Current.fpH < xDataLocal.xPH.ui16HighThresh))
-		xSS_Value_Current.fpH = xSS_Value_Current.fpH;
+		if((xSS_Value_Current.fpH > xDataLocal.xPH.ui16LowThresh) && (xSS_Value_Current.fpH < xDataLocal.xPH.ui16HighThresh))
+			xSS_Value.fpH = xSS_Value_Current.fpH;
 #endif
 
 #ifdef EC_SENSOR
-			/*EC sensor, data ec already store xss_value.fEC after this funtion*/
-			EC_Sensor_vRead();
-			macroTASK_DELAY_MS(500);
-			//check val vua doc dc
-			if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh)&&(xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
-				xSS_Value.fEC = xSS_Value_Current.fEC;
+		/*EC sensor, data ec already store xss_value.fEC after this funtion*/
+		APP_DEBUG("--- SensorTask: Reading EC sensor\r\n");
+		vSS_EC_Read();
+		vSensorTask_Wait_SS_Feedback();
+		//check val vua doc dc
+		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh)&&(xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
+			xSS_Value.fEC = xSS_Value_Current.fEC;
 #endif
 
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
 		/*SHT11: TempA & HumiA*/
 		APP_DEBUG("--- SensorTask: Reading SHTA sensor\r\n");
-		SHT11(&xTemp_Val.fTempA, &xTemp_Val.fHumiA);
-		macroTASK_DELAY_MS(500);
+		vSS_TempAndHumi_Air_Index( &xSS_Value_Current.fTempA, &xSS_Value_Current.fHumiA );
+		
 		//check val vua doc dc
-		if((xTemp_Val.fTempA >xDataLocal.xTempA.ui16LowThresh)&&(xTemp_Val.fTempA < xDataLocal.xTempA.ui16HighThresh))
-		xSS_Value.fTempA = xTemp_Val.fTempA;
-		if((xTemp_Val.fHumiA >xDataLocal.xHumiA.ui16LowThresh)&&(xTemp_Val.fHumiA < xDataLocal.xHumiA.ui16HighThresh))
-		xSS_Value.fHumiA = xTemp_Val.fHumiA;
+		if((xSS_Value_Current.fTempA > xDataLocal.xTempA.ui16LowThresh) && (xSS_Value_Current.fTempA < xDataLocal.xTempA.ui16HighThresh))
+			xSS_Value.fTempA = xSS_Value_Current.fTempA;
+		if((xSS_Value_Current.fHumiA > xDataLocal.xHumiA.ui16LowThresh) && (xSS_Value_Current.fHumiA < xDataLocal.xHumiA.ui16HighThresh))
+			xSS_Value.fHumiA = xSS_Value_Current.fHumiA;
 #endif
 			
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
 			/*SHT11: TempG & HumiG*/
 		APP_DEBUG("--- SensorTask: Reading SHTG sensor\r\n");
-		SHT11Ground(&xSS_Value_Current.fTempG, &xSS_Value_Current.fHumiG);
-		macroTASK_DELAY_MS(500);
+		vSS_TempAndHumi_Soil_Index( &xSS_Value_Current.fTempG, &xSS_Value_Current.fHumiG );
+		
 		//check val vua doc dc
-		if((xSS_Value_Current.fTempG > xDataLocal.xTempG.ui16LowThresh)&&(xSS_Value_Current.fTempG < xDataLocal.xTempG.ui16HighThresh))
+		if((xSS_Value_Current.fTempG > xDataLocal.xTempG.ui16LowThresh) && (xSS_Value_Current.fTempG < xDataLocal.xTempG.ui16HighThresh))
 			xSS_Value.fTempG = xSS_Value_Current.fTempG;
-		if((xSS_Value_Current.fHumiG > xDataLocal.xHumiG.ui16LowThresh)&&(xSS_Value_Current.fHumiG < xDataLocal.xHumiG.ui16HighThresh))
+		if((xSS_Value_Current.fHumiG > xDataLocal.xHumiG.ui16LowThresh) && (xSS_Value_Current.fHumiG < xDataLocal.xHumiG.ui16HighThresh))
 			xSS_Value.fHumiG = xSS_Value_Current.fHumiG;
 #endif
 
 #ifdef LIGHT_SENSOR
 		/*Light sensor*/
 		APP_DEBUG("--- SensorTask: Reading Light sensor\r\n");
-		xTemp_Val.fLight = BH1750_vGetLux();
-		macroTASK_DELAY_MS(500);
+		vSS_Light_getLux( &xSS_Value_Current.fLight );
+
 		//check val vua doc dc
-		if((xTemp_Val.fLight > xDataLocal.xLight.ui16LowThresh)&&(xTemp_Val.fLight < xDataLocal.xLight.ui16HighThresh))
-			xSS_Value.fLight = xTemp_Val.fLight;
+		if((xSS_Value_Current.fLight > xDataLocal.xLight.ui16LowThresh) && (xSS_Value_Current.fLight < xDataLocal.xLight.ui16HighThresh))
+			xSS_Value.fLight = xSS_Value_Current.fLight;
 #endif
 
-//	#ifdef EC_SENSOR
-		//		uint8_t ui8ReadEC = 0;
-//		uint8_t ui8CountReadEC = 0;
-//		char cDataEC[7]={0};
-		
-//			/*read sensor EC murata*/
-//			/*format buffer EC and process data*/
-//			APP_DEBUG("--- SensorTask: Reading EC sensor\r\n");
-//			while((ui8ReadEC == 0)&&(ui8CountReadEC <5))
-//			{
-//				EC_Sensor_vStart();
-//				macroTASK_DELAY_MS(1000);
-//				memset(uUART_EC_Buffer, 0, macroUART_MAX_LENGHT);
-//				memset(cDataEC, 0, 7);
-//				uiUART_EC_Cnt = 0;
-//				macroTASK_DELAY_MS(500);
-//				EC_Sensor_vRead();
-//				macroTASK_DELAY_MS(1000);
-//				/*process data rev*/
-//				if(uUART_EC_Buffer[0]== macroEC_READ_CMD_MRT)
-//				{
-//					for (uint8_t ui =0; ui < 7; ui++  )
-//						cDataEC[ui]= uUART_EC_Buffer[ui];
-//					ui8ReadEC=1;
-//				}
-//				else
-//					ui8CountReadEC++;
-//				macroTASK_DELAY_MS(100);
-//				
-//				/*Process data EC*/
-//				if(ui8ReadEC==1)
-//					xTemp_Val.fEC = EC_Sensor_fCalcEC(cDataEC);
-//			}
-//
-//			//check val vua doc dc
-//			if((xTemp_Val.fEC > xDataLocal.xEC.ui16LowThresh)&&(xTemp_Val.fEC < xDataLocal.xEC.ui16HighThresh))
-//				xSS_Value.fEC = xTemp_Val.fEC;
-//	#endif
 #ifdef PH_SENSOR
 		APP_DEBUG("--- SensorTask: pH = %f\r\n",xSS_Value.fpH);
 #endif
@@ -158,11 +150,11 @@ void vSensorTask_Task( void *pvParameters)
 		APP_DEBUG("--- SensorTask: EC = %f\r\n",xSS_Value.fEC);
 #endif           
 			
-#ifdef SHTA_SENSOR           
+#ifdef TEMP_HUMI_AIR_SENSOR           
 		APP_DEBUG("--- SensorTask: TempA = %f, HumiA = %f\r\n",xSS_Value.fTempA,xSS_Value.fHumiA);
 #endif            
 			
-#ifdef SHTG_SENSOR            
+#ifdef TEMP_HUMI_SOIL_SENSOR            
 		APP_DEBUG("--- SensorTask: TempG = %f, HumiG = %f\r\n",xSS_Value.fTempG,xSS_Value.fHumiG);
 #endif            
 			
@@ -208,7 +200,7 @@ void vSensorTask_SetDataSensor( PacketIO *xPacketIO, SS_Value *xSS_Value, char *
 	uCnt++;
 #endif
 
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
 	//TempG
 	vPacketHandle_Coppy(xPacketIO->Data[uCnt].cName, macroSENSOR_TEMPG, 0);
 	sprintf(xPacketIO->Data[uCnt].cInfo, "%0.2f", xSS_Value->fTempG);
@@ -220,7 +212,7 @@ void vSensorTask_SetDataSensor( PacketIO *xPacketIO, SS_Value *xSS_Value, char *
 	uCnt++;
 #endif
 	
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
 	//TempA
 	vPacketHandle_Coppy(xPacketIO->Data[uCnt].cName, macroSENSOR_TEMPA, 0);
 	sprintf(xPacketIO->Data[uCnt].cInfo, "%0.2f", xSS_Value->fTempA);
@@ -240,7 +232,48 @@ void vSensorTask_SetDataSensor( PacketIO *xPacketIO, SS_Value *xSS_Value, char *
 #endif
 	xPacketIO->uDataNumber = uCnt;
 }
+		
+		
 
+static void vSensorTask_Wait_SS_Feedback( void )
+{
+	bSensor_Feedback = false;
+	uint8_t uTimeout = 0;
+	
+	#define macroWAIT_LOOP_TIME							200
+	#define macroSENSOR_FEEDBACK_TIMEOUT				5000	//5s
+		
+	for(;;)
+	{
+		macroTASK_DELAY_MS(macroWAIT_LOOP_TIME);
+		uTimeout++;
+		
+		if(bSensor_Feedback == true)
+			break;
+		else if(uTimeout >= (macroSENSOR_FEEDBACK_TIMEOUT / macroWAIT_LOOP_TIME))
+		{
+			APP_DEBUG("--- SensorTask: read sensor time out.\r\n");
+			break;
+		}
+	}
+}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 
 

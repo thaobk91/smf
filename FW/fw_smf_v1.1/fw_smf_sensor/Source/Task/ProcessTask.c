@@ -45,6 +45,9 @@ extern uint8_t uLedStatus;
 //event system
 extern uint16_t _EVENT_SYS;
 
+//sensor feedback
+extern bool bSensor_Feedback;
+
 uint32_t uSendData_Counter = 0;
 
 bool bData_Sending = false;
@@ -53,8 +56,7 @@ uint16_t uResend_Counter = 0;
 
 
 /********************************* Function ***********************************/
-void vProcessTask_CheckEvent( void );
-void vProcessTask_LPTMR_Init(void);
+static void vProcessTask_CheckEvent( void );
 /******************************************************************************/
 
 
@@ -122,7 +124,7 @@ void vProcessTask_Task( void *pvParameters )
  * Param		: none
  * Return		: none
 *******************************************************************************/
-void vProcessTask_CheckEvent( void )
+static void vProcessTask_CheckEvent( void )
 {
 	//Recv data from connectivity
 	if(_EVENT_SYS & EVENT_SYS_CONN_RECV)
@@ -136,6 +138,7 @@ void vProcessTask_CheckEvent( void )
 	if(_EVENT_SYS & EVENT_SYS_PH_SS_RECV)
 	{
 		xSS_Value_Current.fpH = atof((char*)uUART_PH_RX_Buffer);
+		bSensor_Feedback = true;
 		memset((void *)uUART_PH_RX_Buffer, 0, strlen((char *)uUART_PH_RX_Buffer));
 		_EVENT_SYS ^= EVENT_SYS_PH_SS_RECV;
 	}
@@ -146,6 +149,7 @@ void vProcessTask_CheckEvent( void )
 	if(_EVENT_SYS & EVENT_SYS_EC_SS_RECV)
 	{
 		xSS_Value_Current.fEC = atof((char*)uUART_EC_RX_Buffer) / 1000; //uS/m to dS/m
+		bSensor_Feedback = true;
 		memset((void *)uUART_EC_RX_Buffer, 0, strlen((char *)uUART_EC_RX_Buffer));
 		_EVENT_SYS ^= EVENT_SYS_EC_SS_RECV;
 	}
@@ -175,6 +179,7 @@ void vProcessTask_CheckEvent( void )
 			APP_DEBUG("--- SensorTask: Send data Counter = %d\r\n", uSendData_Counter);
 			bData_Sending = true;
 			xFlags.bSentIsOK = false;
+			uResend_Counter = 0;
 		}
 		else if(xFlags.bSentIsOK == true)
 		{

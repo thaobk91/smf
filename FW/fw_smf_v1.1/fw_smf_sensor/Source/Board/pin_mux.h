@@ -68,21 +68,21 @@ extern "C" {
 //
 	
 /**********************for i2C sw for Temp&Humi Air****************************/
-#define macroSHT_SDA_PORT							PORTC				
-#define macroSHT_SDA_GPIO							GPIOC
-#define macroSHT_SDA_PIN							11U
+#define macroSHT_AIR_SDA_PORT						PORTC				
+#define macroSHT_AIR_SDA_GPIO						GPIOC
+#define macroSHT_AIR_SDA_PIN						11U
 	
-#define macroSHT_SCL_PORT							PORTC
-#define macroSHT_SCL_GPIO							GPIOC
-#define macroSHT_SCL_PIN							10U
+#define macroSHT_AIR_SCL_PORT						PORTC
+#define macroSHT_AIR_SCL_GPIO						GPIOC
+#define macroSHT_AIR_SCL_PIN						10U
 /**********************for i2C sw for Temp&Humi Soil(Ground)*******************/
-#define macroSHTG_SDA_PORT							PORTA				
-#define macroSHTG_SDA_GPIO							GPIOA
-#define macroSHTG_SDA_PIN							13U
+#define macroSHT_SOIL_SDA_PORT						PORTA				
+#define macroSHT_SOIL_SDA_GPIO						GPIOA
+#define macroSHT_SOIL_SDA_PIN						13U
 	
-#define macroSHTG_SCL_PORT							PORTA
-#define macroSHTG_SCL_GPIO							GPIOA
-#define macroSHTG_SCL_PIN							12U
+#define macroSHT_SOIL_SCL_PORT						PORTA
+#define macroSHT_SOIL_SCL_GPIO						GPIOA
+#define macroSHT_SOIL_SCL_PIN						12U
 	
 /**************************Nano timer done*************************************/
 #define macroNANO_TIMER_DONE_PORT						PORTD

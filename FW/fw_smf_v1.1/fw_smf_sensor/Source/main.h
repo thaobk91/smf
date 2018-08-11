@@ -26,7 +26,7 @@ extern "C"
 */
 #define MAIN_DEBUG
 #ifdef MAIN_DEBUG
-	#define APP_DEBUG 				DbgConsole_Printf
+	#define APP_DEBUG 								DbgConsole_Printf
 #else
 	#define APP_DEBUG(...)
 #endif
@@ -42,16 +42,16 @@ extern "C"
 	
 //define for timer
 /* The Flextimer instance/channel used for board */
-#define BOARD_FTM_BASEADDR 			FTM0
+#define BOARD_FTM_BASEADDR 							FTM0
 
 /* Interrupt number and interrupt handler for the FTM instance used */
-#define BOARD_FTM_IRQ_NUM 			FTM0_IRQn
-#define BOARD_FTM_HANDLER 			FTM0_IRQHandler
+#define BOARD_FTM_IRQ_NUM 							FTM0_IRQn
+#define BOARD_FTM_HANDLER 							FTM0_IRQHandler
 
-#define macro_GPIO_IE_IRQ			PORTD_IRQn
-#define macro_GPIO_IE_IRQHandler	PORTA_IRQHandler 
+#define macro_GPIO_IE_IRQ							PORTD_IRQn
+#define macro_GPIO_IE_IRQHandler					PORTA_IRQHandler 
 /* Get source clock for FTM driver */
-#define FTM_SOURCE_CLOCK 			(CLOCK_GetFreq(kCLOCK_BusClk)/4)
+#define FTM_SOURCE_CLOCK 							(CLOCK_GetFreq(kCLOCK_BusClk)/4)
 	
 	
 #define macroGPIO_ACTIVE_HIGH( GPIO, PIN )   		GPIO_WritePinOutput( GPIO, PIN, 1 )
@@ -99,7 +99,7 @@ typedef struct
 //for some data
 typedef struct
 {
-	int16_t		uiTimeUpdate;				//Time update data
+	int16_t			uiTimeUpdate;				//Time update data
 #ifdef PH_SENSOR
     Thresh_t        xPH;
 #endif
@@ -108,12 +108,12 @@ typedef struct
     Thresh_t        xEC;
 #endif
 
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
     Thresh_t        xTempA;
     Thresh_t        xHumiA;
 #endif
 
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
     Thresh_t        xTempG;
     
     Thresh_t        xHumiG;

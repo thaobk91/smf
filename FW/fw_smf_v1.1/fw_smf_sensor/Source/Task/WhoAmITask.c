@@ -59,7 +59,7 @@ void vWhoAmITask_Task( void *pvParameters)
 		if(xFlags.bConnectivityIsConnected == false)
 		{
 			APP_DEBUG("--- WhoAmITask: ZigB is not Response --> Reset ZigB.\r\n");
-			macroTASK_DELAY_MS( 200 );
+			macroTASK_DELAY_MS( 100 );
 			//reset Zigb
 			macroPOWER_OFF(macroCONN_POWER_GPIO, macroCONN_POWER_PIN);
 			macroTASK_DELAY_MS( 1000 );

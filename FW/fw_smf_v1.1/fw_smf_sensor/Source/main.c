@@ -22,11 +22,15 @@
 
 
 #ifdef PH_SENSOR
-	#include "PH_Sensor.h"
+	#include "SS_PH.h"
 #endif
 
 #ifdef EC_SENSOR
-	#include "EC_Sensor.h"
+	#include "SS_EC.h"
+#endif
+
+#ifdef LIGHT_SENSOR
+	#include "SS_Light.h"
 #endif
 
 
@@ -65,12 +69,12 @@ DataLocal xDataLocal =
     .xEC = {macroEC_THRESH_HIGH, macroEC_THRESH_LOW},
 #endif
 	
-#ifdef SHTA_SENSOR
+#ifdef TEMP_HUMI_AIR_SENSOR
     .xTempA = {macroTEMPA_THRESH_HIGH, macroTEMPA_THRESH_LOW},
 	.xHumiA = {macroHUMIA_THRESH_HIGH, macroHUMIA_THRESH_LOW},
 #endif
 	
-#ifdef SHTG_SENSOR
+#ifdef TEMP_HUMI_SOIL_SENSOR
     .xTempG = {macroTEMPG_THRESH_HIGH, macroTEMPG_THRESH_LOW},
     .xHumiG = {macroHUMIG_THRESH_HIGH, macroHUMIG_THRESH_LOW},
 #endif
@@ -83,11 +87,8 @@ DataLocal xDataLocal =
 //Flags
 Flags xFlags =
 {
-	.bSentIsOK			= false,
+	.bSentIsOK					= false,
 	.bConnectivityIsConnected	= false,
-	.eSDCard_Read		= eSDCard_None,
-	.eSDCard_Write		= eSDCard_None,
-	.bTimeSend			= false,
 };
 
 
@@ -196,7 +197,6 @@ void vMain_Peripheral_Init( void )
 	/* pH sensor Init */
     macroPOWER_ON(macroPH_POWER_GPIO, macroPH_POWER_PIN);
 	vUART_Init(macroUART_PH_SENSOR_BASE, macroUART_PH_SENSOR_CLKSRC, macroUART_PH_SENSOR_BAUDRATE, true, macroUART_PH_SENSOR_IRQn);
-	PH_Sensor_vInit();
 #endif
 	
 #ifdef EC_SENSOR
@@ -206,8 +206,8 @@ void vMain_Peripheral_Init( void )
 #endif
 	
 #ifdef LIGHT_SENSOR	
-	/* Khoi tao I2C1 for BH1750 */
-	BH1750_vInit();
+	/* Khoi tao I2C1 for light sensor */
+	vSS_Light_Init();
 #endif
 }
 
@@ -305,7 +305,6 @@ void macroUART_CONN_IRQHandler( void )
 	void macroUART_PH_SENSOR_IRQHandler( void )
 	{
 		uint16_t uiLenght = strlen((char *)uUART_PH_RX_Buffer);
-		
 		if ((kUART_RxDataRegFullFlag | kUART_RxOverrunFlag) & UART_GetStatusFlags(macroUART_PH_SENSOR_BASE))
 		{
 			uUART_PH_RX_Buffer[uiLenght] = UART_ReadByte( macroUART_PH_SENSOR_BASE );
@@ -403,8 +402,8 @@ void BOARD_FTM_HANDLER(void)
 {
     /* Clear interrupt flag.*/
     FTM_ClearStatusFlags(BOARD_FTM_BASEADDR, kFTM_TimeOverflowFlag);
+	
 	uiTimerCounter++;
-	APP_DEBUG("here\r\n");
 	if(uiTimerCounter >= 1000)
 	{
 		uiTimerCounter = 0;
