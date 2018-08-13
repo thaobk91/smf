@@ -15,6 +15,8 @@ extern SS_Value xSS_Value;
 
 extern DataLocal xDataLocal;
 
+extern char cID_EndDevice[17];
+
 
 /******************************************************************************
  * Function		: void vPacketHandle_SendMessage( PacketIO *xPacketIO )
@@ -286,17 +288,14 @@ void vPacketHandle_HandleMessageData( PacketIO *xPacketIO )
  * Return		: none
 *******************************************************************************/
 void vPacketHandle_HandleMessageConfig( PacketIO *xPacketIO )
-{
-	char cHighThresh[20] = {0};
-	char cLowThresh[20] = {0};
-	
+{	
 	for(uint8_t ui = 0; ui < xPacketIO->uDataNumber; ui++)
 	{
         if(strcmp(xPacketIO->Data[ui].cName, macroCFG_DataUT) == 0)
 		{
 			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
             uint16_t ui16DataUT = atoi(xPacketIO->Data[ui].cInfo);
-            if(ui16DataUT >=macroCFG_TIMESEND)
+            if(ui16DataUT >= macroCFG_TIMESEND)
             {
               xDataLocal.uiTimeUpdate = ui16DataUT;
               //write sd card
@@ -310,217 +309,65 @@ void vPacketHandle_HandleMessageConfig( PacketIO *xPacketIO )
 				return;
 			}
         }
-#ifdef PH_SENSOR
+		
+	#if defined(PH_SENSOR) || defined(EC_SENSOR) || defined(TEMP_HUMI_SOIL_SENSOR) || defined(TEMP_HUMI_AIR_SENSOR) || defined(LIGHT_SENSOR)
         //cau hinh nguong cho senssor
-		else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_PH) == 0)
+		else if( 0
+		#if defined(PH_SENSOR)
+			|| (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_PH) == 0)
+		#endif
+		#if defined(EC_SENSOR)
+			|| (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_EC) == 0)
+		#endif
+		#if defined(TEMP_HUMI_SOIL_SENSOR)
+			|| (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPG) == 0) || (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_HUMIG) == 0)
+		#endif
+		#if defined(TEMP_HUMI_AIR_SENSOR)
+			|| (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPA) == 0) || (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_HUMIA) == 0)
+		#endif
+		#if defined(LIGHT_SENSOR)
+			|| (strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_LIGHT) == 0)
+		#endif
+				)
 		{
-            bool bLow = false;  //low thresh
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-			{	
-				//coding write to sd card
-				xDataLocal.xPH.ui16HighThresh = atof(cHighThresh);
-			}
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xPH.ui16LowThresh = atof(cLowThresh);
-            
-            bUserFile_WriteFile(macroUSER_FILE_PH ,xDataLocal.xPH.ui16LowThresh, xDataLocal.xPH.ui16HighThresh);
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xPH.ui16HighThresh, xDataLocal.xPH.ui16LowThresh);
-		}
-#endif
+			char cHighThresh[20] = {0};
+			char cLowThresh[20] = {0};
+			bool bLow = false;  //low thresh
+			uint8_t uj=0;
 
-#ifdef EC_SENSOR
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_EC) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
 			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-           if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xEC.ui16HighThresh = atof(cHighThresh);
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xEC.ui16LowThresh = atof(cLowThresh);
-            //write sd card
-            bUserFile_WriteFile(macroUSER_FILE_EC ,xDataLocal.xEC.ui16LowThresh, xDataLocal.xEC.ui16HighThresh);
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xEC.ui16HighThresh, xDataLocal.xEC.ui16LowThresh);
+
+			for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
+			{
+				if((xPacketIO->Data[ui].cInfo[uk]) != '/')
+				{
+					if(bLow == false)
+						cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
+					else
+						cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
+				}
+				else
+					bLow = true;
+			}
+			
+			APP_DEBUG("--- PacketHandle: H:%s - L:%s\r\n", cHighThresh, cLowThresh);
+			
+			float fLow = 0, fHigh = 0;
+			char cStr[32] = {0};
+			
+			sprintf(cStr, "%s.txt", (char *)xPacketIO->Data[ui].cName);
+			bUserFile_ReadFile(cStr, &fLow, &fHigh);	//read file
+			
+			if(strcmp(cHighThresh, macroCFG_NO_CHANGE_THRESH) !=0)
+				fHigh = atof(cHighThresh);
+			if(strcmp(cLowThresh, macroCFG_NO_CHANGE_THRESH) != 0)
+				fLow = atof(cLowThresh);
+			
+			bUserFile_WriteFile(cStr, fLow, fHigh);	//write file
+			APP_DEBUG("--- PacketHandle: Config Thresh for \"%s\": High = %f, Low = %f \r\n", xPacketIO->Data[ui].cName, fHigh, fLow);
+			bUserFile_ReadAll( &xDataLocal );
 		}
-#endif
-		
-#ifdef TEMP_HUMI_SOIL_SENSOR
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPG) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-            if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xTempG.ui16HighThresh = atof(cHighThresh);
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xTempG.ui16LowThresh = atof(cLowThresh);
-            
-            //write sd card
-            bUserFile_WriteFile(macroUSER_FILE_TEMPG ,xDataLocal.xTempG.ui16LowThresh, xDataLocal.xTempG.ui16HighThresh);
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xTempG.ui16HighThresh, xDataLocal.xTempG.ui16LowThresh);
-		}
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_HUMIG) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-          if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xHumiG.ui16HighThresh = atof(cHighThresh);
-            
-          if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xHumiG.ui16LowThresh = atof(cLowThresh);
-           //write sd card
-          bUserFile_WriteFile(macroUSER_FILE_HUMIG ,xDataLocal.xHumiG.ui16LowThresh, xDataLocal.xHumiG.ui16HighThresh);
-         
-          APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xHumiG.ui16HighThresh, xDataLocal.xHumiG.ui16LowThresh);
-		}
-#endif
-		
-#ifdef TEMP_HUMI_AIR_SENSOR
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_TEMPA) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-            if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xTempA.ui16HighThresh = atof(cHighThresh);
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xTempA.ui16LowThresh = atof(cLowThresh);
-               //write sd card
-          bUserFile_WriteFile(macroUSER_FILE_TEMPA ,xDataLocal.xTempA.ui16LowThresh, xDataLocal.xTempA.ui16HighThresh);
-          
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xTempA.ui16HighThresh, xDataLocal.xTempA.ui16LowThresh);
-		}
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_HUMIA) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-            if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xHumiA.ui16HighThresh = atof(cHighThresh);
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xHumiA.ui16LowThresh = atof(cLowThresh);
-                  //write sd card
-            bUserFile_WriteFile(macroUSER_FILE_HUMIA ,xDataLocal.xHumiA.ui16LowThresh, xDataLocal.xHumiA.ui16HighThresh);
-            
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xHumiA.ui16HighThresh, xDataLocal.xHumiA.ui16LowThresh);
-		}
-#endif
-		
-#ifdef LIGHT_SENSOR
-        else if(strcmp(xPacketIO->Data[ui].cName, macroCFG_SENSOR_LIGHT) == 0)
-		{
-			bool bLow = false;
-            uint8_t uj=0;
-			APP_DEBUG("--- PacketHandle: Config is \"%s\"\r\n", xPacketIO->Data[ui].cName);
-            for(uint8_t uk = 0; xPacketIO->Data[ui].cInfo[uk] > 0; uk++)
-            {
-              if((xPacketIO->Data[ui].cInfo[uk]) != '/')
-              {
-                if(bLow == false)
-                    cHighThresh[uk] = xPacketIO->Data[ui].cInfo[uk];
-                else
-                    cLowThresh[uj++] = xPacketIO->Data[ui].cInfo[uk];
-              }
-              else
-                bLow = true;
-            }
-            
-            if(strcmp(cHighThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xLight.ui16HighThresh = atof(cHighThresh);
-            
-            if(strcmp(cLowThresh,macroCFG_NO_CHANGE_THRESH)!=0)
-                xDataLocal.xLight.ui16LowThresh = atof(cLowThresh);
-                  //write sd card
-            bUserFile_WriteFile(macroUSER_FILE_LIGHT ,xDataLocal.xLight.ui16LowThresh, xDataLocal.xLight.ui16HighThresh);
-            
-            APP_DEBUG("--- PacketHandle: Config Thresh: High = %f, Low = %f \r\n", xDataLocal.xLight.ui16HighThresh, xDataLocal.xLight.ui16LowThresh);
-		}
-#endif
+	#endif
         else
         {
             APP_DEBUG("--- PacketHandle: Config \"%s\" not found\r\n", xPacketIO->Data[ui].cName);
@@ -549,6 +396,20 @@ void vPacketHandle_HandleMessageRequest( PacketIO *xPacketIO )
 		if(strcmp(xPacketIO->Data[ui].cName, macroREQUEST_ALL) == 0)
 		{
 			vMain_setEvent( EVENT_SYS_SEND_DATA );
+			break;
+		}
+		//Yeu cau du lieu cua tat ca Sensor
+		else if(strcmp(xPacketIO->Data[ui].cName, macroREQUSET_D_STATE) == 0)
+		{
+			PacketIO _PacketIO = {0};
+			vPacketHandle_Coppy(_PacketIO.cTypePacket, macroTYPEPACKET_DATA, 0);
+			vPacketHandle_Coppy(_PacketIO.cTypeDevice, macroTYPEDEVICE_SS, 0);
+			vPacketHandle_Coppy(_PacketIO.cID, cID_EndDevice , 0);
+
+			vPacketHandle_Coppy(_PacketIO.Data[0].cName, macroSENSOR_D_STATE, 0);
+			vPacketHandle_Coppy(_PacketIO.Data[0].cInfo, macroRESPONSE_OK, 0);
+			_PacketIO.uDataNumber = 1;
+			vPacketHandle_SendMessage( &_PacketIO );
 			break;
 		}
 		else 

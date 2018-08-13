@@ -89,6 +89,7 @@
 #define macroID_REQS_ALL								"ALL"
 #define macroID_REQS_RTC								"RTC"
 #define macroID_REQS_IDGW								"IDGW"
+#define macroID_REQS_D_STATE							"D_State"
 
 //ID Control
 #define macroCTRL_OUTPUT_VAC							"OutVAC"

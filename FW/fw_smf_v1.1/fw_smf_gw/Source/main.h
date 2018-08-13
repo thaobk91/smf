@@ -47,32 +47,32 @@ extern "C"
 #define macroGPIO_ACTIVE_LOW(GPIO, PIN)  			GPIO_WritePinOutput(GPIO, PIN, 0)
     
 //Event
-#define EVENT_IDLE								0x0000
-#define EVENT_WAMI								0x0001
-#define EVENT_SET_RTC							0x0002
-#define EVENT_UART_CONN_RECEIVED				0x0004
-#define EVENT_UART_CONN_SEND					0x0008
-#define EVENT_UART_NWK_RECEIVED					0x0010
-#define EVENT_UART_NWK_SEND						0x0020
+#define EVENT_IDLE									0x0000
+#define EVENT_WAMI									0x0001
+#define EVENT_SET_RTC								0x0002
+#define EVENT_UART_CONN_RECEIVED					0x0004
+#define EVENT_UART_CONN_SEND						0x0008
+#define EVENT_UART_NWK_RECEIVED						0x0010
+#define EVENT_UART_NWK_SEND							0x0020
 
 #ifdef macroCONNECTIVITY_ETH
-	#define EVENT_ETH_MQTT_RECEIVED				0x0040
-	#define EVENT_ETH_MQTT_SEND					0x0080
+	#define EVENT_ETH_MQTT_RECEIVED					0x0040
+	#define EVENT_ETH_MQTT_SEND						0x0080
 #endif
 	
-#define EVENT_WAIT_NWK_CONNECTED				0x0100
+#define EVENT_WAIT_NWK_CONNECTED					0x0100
 
 
 //For Task
 /* Task priorities. */
-#define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 0)
+#define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 1)
 #ifdef macroCONNECTIVITY_ETH
-	#define macroPRIORITY_TASK_ETH					(configMAX_PRIORITIES - 1)
+	#define macroPRIORITY_TASK_ETH					(configMAX_PRIORITIES - 2)
 #endif
-#define macroPRIORITY_TASK_WhoAmI					(configMAX_PRIORITIES - 2)
+#define macroPRIORITY_TASK_WhoAmI					(configMAX_PRIORITIES - 3)
 
 #ifdef macroUSE_SDCARD
-	#define macroPRIORITY_TASK_SDCard				(configMAX_PRIORITIES - 3)
+	#define macroPRIORITY_TASK_SDCard				(configMAX_PRIORITIES - 4)
 #endif
 
 

@@ -17,9 +17,9 @@
 #define macroEC_RESET_FACTORY_CMD				"Factory\r\n"
 #define macroEC_END_CMD							0x0D
 
-void EC_Sensor_vInit(void);
+void vSS_EC_Atlas_Init( void );
 
-void EC_Sensor_vRead(void);
+void vSS_EC_Atlas_Read( float fTemp );
 
 
 #endif

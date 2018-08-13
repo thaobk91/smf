@@ -1,7 +1,7 @@
 
 #include "SS_EC.h"
 #include "UART.h"
-#include "main.h"
+//#include "main.h"
 
 
 void vSS_EC_Init( void )
@@ -13,9 +13,9 @@ void vSS_EC_Init( void )
 
 
 
-void vSS_EC_Read(void)
+void vSS_EC_Read( float fTemp )
 {
 #ifdef USE_EC_ATLAS
-	vSS_EC_Atlas_Read();
+	vSS_EC_Atlas_Read( fTemp );
 #endif
 }

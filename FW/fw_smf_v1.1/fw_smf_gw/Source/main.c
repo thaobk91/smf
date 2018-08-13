@@ -36,10 +36,12 @@ extern rtc_datetime_t _RTC;
 //Uart to Connectivity
 uint8_t uUART_CONN_RX_Buffer[macroUART_RX_BUFFER_LENGHT] = {0};
 uint8_t uUART_CONN_TX_Buffer[macroUART_TX_BUFFER_LENGHT] = {0};
+uint16_t uiUART_CONN_RX_Lenght = 0;
 
 //UART to network
 uint8_t uUART_NWK_RX_Buffer[macroUART_RX_BUFFER_LENGHT] = {0};
 uint8_t uUART_NWK_TX_Buffer[macroUART_TX_BUFFER_LENGHT] = {0};
+uint16_t uiUART_NWK_RX_Lenght = 0;
 
 //Buffer MQTT (Ethernet)
 uint8_t uETH_MQTT_RX_Buffer[macroMQTT_RX_BUFFER_LENGHT] = {0};
@@ -174,15 +176,15 @@ void vMain_Peripheral_Init( void )
 	vMain_InitWatchdog();
 	
 	BOARD_InitDebugConsole();
+	
+	//Set RTC
+	vRTC_Init(&_RTC);
 
 	//network UART
 	vUART_Init(macroUART_NETWORK_BASE, macroUART_NETWORK_CLKSRC, macroUART_NETWORK_BAUDRATE, true, macroUART_NETWORK_IRQn);
 	
 	//connectivity UART
 	vUART_Init(macroUART_CONNECTIVITY_BASE, macroUART_CONNECTIVITY_CLKSRC, macroUART_CONNECTIVITY_BAUDRATE, true, macroUART_CONNECTIVITY_IRQn);
-	
-	//Set RTC
-	vRTC_Init(&_RTC);
 }
 
 
@@ -220,20 +222,20 @@ void vMain_Peripheral_DeInit( void )
 void macroUART_NETWORK_IRQHandler( void )
 {
 	if ((kUART_RxDataRegFullFlag | kUART_RxOverrunFlag) & UART_GetStatusFlags(macroUART_NETWORK_BASE))
-	//if (UART_GetStatusFlags(macroUART_NETWORK_BASE))
     {
-		uint16_t uiLenght = strlen((char *)uUART_NWK_RX_Buffer);
-		uUART_NWK_RX_Buffer[uiLenght] = UART_ReadByte( macroUART_NETWORK_BASE );
+		uUART_NWK_RX_Buffer[uiUART_NWK_RX_Lenght] = UART_ReadByte( macroUART_NETWORK_BASE );
+//		APP_DEBUG("--- Here. buf = %s\r\n", uUART_NWK_RX_Buffer);
 		
-        if(uiLenght >= macroUART_RX_BUFFER_LENGHT)
+        if(uiUART_NWK_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-            uiLenght = 0;
-			memset(uUART_NWK_RX_Buffer, 0, strlen((char *)uUART_NWK_RX_Buffer));
+            uiUART_NWK_RX_Lenght = 0;
+			memset(uUART_NWK_RX_Buffer, 0, uiUART_NWK_RX_Lenght + 1);
 		}
-        else if(uUART_NWK_RX_Buffer[uiLenght] == macroPACKET_STRING_ENDCHAR)
+        else if(uUART_NWK_RX_Buffer[uiUART_NWK_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
         {
         	vMain_setEvent(EVENT_UART_NWK_RECEIVED);
         }
+		uiUART_NWK_RX_Lenght++;
     }
 #if defined __CORTEX_M && (__CORTEX_M == 4U)
     __DSB();
@@ -253,18 +255,18 @@ void macroUART_CONNECTIVITY_IRQHandler( void )
 {
 	if ((kUART_RxDataRegFullFlag | kUART_RxOverrunFlag) & UART_GetStatusFlags(macroUART_CONNECTIVITY_BASE))
     {
-		uint16_t uiLenght = strlen((char *)uUART_CONN_RX_Buffer);
-        uUART_CONN_RX_Buffer[uiLenght] = UART_ReadByte( macroUART_CONNECTIVITY_BASE );
+        uUART_CONN_RX_Buffer[uiUART_CONN_RX_Lenght] = UART_ReadByte( macroUART_CONNECTIVITY_BASE );
 		
-        if(uiLenght >= macroUART_RX_BUFFER_LENGHT)
+        if(uiUART_CONN_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-            uiLenght = 0;
-			memset(uUART_CONN_RX_Buffer, 0, strlen((char *)uUART_CONN_RX_Buffer));
+            uiUART_CONN_RX_Lenght = 0;
+			memset(uUART_CONN_RX_Buffer, 0, uiUART_CONN_RX_Lenght + 1);
 		}
-        else if(uUART_CONN_RX_Buffer[uiLenght] == macroPACKET_STRING_ENDCHAR)
+        else if(uUART_CONN_RX_Buffer[uiUART_CONN_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
         {
         	vMain_setEvent(EVENT_UART_CONN_RECEIVED);
         }
+		uiUART_CONN_RX_Lenght++;
     }
 #if defined __CORTEX_M && (__CORTEX_M == 4U)
     __DSB();

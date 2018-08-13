@@ -12,7 +12,7 @@
 
 void vSS_PH_Init( void );
 
-void vSS_PH_Read( void );
+void vSS_PH_Read( float fTemp );
 
 
 

@@ -19,10 +19,10 @@
 
 
 
-void vSS_PH_Atlas_Init(void);
+void vSS_PH_Atlas_Init( void );
 
 
 
-void vSS_PH_Atlas_Read(void);
+void vSS_PH_Atlas_Read( float fTemp );
 
 #endif

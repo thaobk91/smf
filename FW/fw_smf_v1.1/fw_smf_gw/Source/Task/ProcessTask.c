@@ -25,7 +25,7 @@
 #include "ProcessTask.h"
 
 
-#define macroTIME_DELAY_LOOP				20
+#define macroTIME_DELAY_LOOP				10
 #define macroTIME_LED_STATUS_ON				3 //s
 
 
@@ -36,10 +36,12 @@ extern uint16_t Event_IO;
 //Uart to Connectivity
 extern uint8_t uUART_CONN_RX_Buffer[macroUART_RX_BUFFER_LENGHT];
 extern uint8_t uUART_CONN_TX_Buffer[macroUART_TX_BUFFER_LENGHT];
+extern uint16_t uiUART_CONN_RX_Lenght;
 
 //UART to network
 extern uint8_t uUART_NWK_RX_Buffer[macroUART_RX_BUFFER_LENGHT];
 extern uint8_t uUART_NWK_TX_Buffer[macroUART_TX_BUFFER_LENGHT];
+extern uint16_t uiUART_NWK_RX_Lenght;
 
 //Buffer MQTT (Ethernet)
 #ifdef macroCONNECTIVITY_ETH
@@ -59,6 +61,7 @@ extern rtc_datetime_t _RTC;
 extern bool bRTC_Sync;
 uint16_t uMinuteCounter = 0;
 uint8_t uMinuteOld = 0;
+uint8_t uHourOld = 0;
 
 uint8_t uLedStatus = 0;
 
@@ -169,6 +172,7 @@ static void vProcessTask_Event( void )
 		APP_DEBUG("\r\n--- ProcessTask: EVENT_UART_CONN_RECEIVED\r\n");
 		APP_DEBUG("--- ProcessTask: uart conn recv = \"%s\"\r\n", uUART_CONN_RX_Buffer);
 		vProcessMsg_AllMessage(uUART_CONN_RX_Buffer, true, true);
+		uiUART_CONN_RX_Lenght = 0;
 		uEvent ^= EVENT_UART_CONN_RECEIVED;
 	}
 
@@ -207,6 +211,7 @@ static void vProcessTask_Event( void )
 		APP_DEBUG("\r\n--- ProcessTask: EVENT_UART_NWK_RECEIVED\r\n");
 		APP_DEBUG("--- ProcessTask: uart nwk recv = \"%s\"\r\n", uUART_NWK_RX_Buffer);
 		vProcessMsg_AllMessage(uUART_NWK_RX_Buffer, true, false);
+		uiUART_NWK_RX_Lenght = 0;
 		uEvent ^= EVENT_UART_NWK_RECEIVED;
 	}
 

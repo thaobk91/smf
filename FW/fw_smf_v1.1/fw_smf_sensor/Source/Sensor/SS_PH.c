@@ -13,9 +13,9 @@ void vSS_PH_Init(void)
 
 
 *******************************************************************************/
-void vSS_PH_Read( void )
+void vSS_PH_Read( float fTemp )
 {
 #ifdef USE_PH_ATLAS
-	vSS_PH_Atlas_Read();
+	vSS_PH_Atlas_Read( fTemp );
 #endif
 }

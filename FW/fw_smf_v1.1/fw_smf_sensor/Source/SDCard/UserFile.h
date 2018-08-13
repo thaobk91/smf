@@ -15,11 +15,11 @@
 
 #define macroUSER_FILE_PH				"PH.txt"
 #define macroUSER_FILE_EC				"EC.txt"
-#define macroUSER_FILE_LIGHT			"LIGHT.txt"
-#define macroUSER_FILE_TEMPA		    "TEMPA.txt"
-#define macroUSER_FILE_HUMIA			"HUMIA.txt"
-#define macroUSER_FILE_TEMPG		    "TEMPG.txt"
-#define macroUSER_FILE_HUMIG			"HUMIG.txt"
+#define macroUSER_FILE_LIGHT			"Light.txt"
+#define macroUSER_FILE_TEMPA		    "TempA.txt"
+#define macroUSER_FILE_HUMIA			"HumiA.txt"
+#define macroUSER_FILE_TEMPG		    "TempG.txt"
+#define macroUSER_FILE_HUMIG			"HumiG.txt"
 #define macroUSER_FILE_TIMESEND			"TIMESEND.txt"
 
 /*****************************************************************************

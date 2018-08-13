@@ -185,6 +185,7 @@ static void vProcessTask_CheckEvent( void )
 		{
 			bData_Sending = false;
 			xFlags.bSentIsOK = false;
+			_EVENT_SYS ^= EVENT_SYS_SEND_DATA;
 		}
 		else if(bData_Sending == true)
 		{

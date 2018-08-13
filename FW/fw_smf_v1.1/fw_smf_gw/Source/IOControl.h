@@ -21,14 +21,6 @@
 #define macroNWK_POWER_ON()        				GPIO_WritePinOutput(macroNWK_POWER_GPIO, macroNWK_POWER_PIN, 1)
 #define macroNWK_POWER_OFF()          			GPIO_WritePinOutput(macroNWK_POWER_GPIO, macroNWK_POWER_PIN, 0)
 
-//For network module power
-#define macroNWK_POWER_WIFI_ON()        		GPIO_WritePinOutput(macroNWK_POWER_GPIO, macroNWK_POWER_PIN, 1)
-#define macroNWK_POWER_WIFI_OFF()      			GPIO_WritePinOutput(macroNWK_POWER_GPIO, macroNWK_POWER_PIN, 0)
-
-//reset nwk
-#define macroNWK_RESET_WIFI_ON()        		GPIO_WritePinOutput(macroNWK_RESET_WIFI_GPIO, macroNWK_RESET_WIFI_PIN, 0)
-#define macroNWK_RESET_WIFI_OFF()      			GPIO_WritePinOutput(macroNWK_RESET_WIFI_GPIO, macroNWK_RESET_WIFI_PIN, 1)
-
 //For network module power saving
 #define macroNWK_POWER_SAVING_ON()        		GPIO_WritePinOutput(macroNWK_POWER_SAVE_GPIO, macroNWK_POWER_SAVE_PIN, 1)
 #define macroNWK_POWER_SAVING_OFF()          	GPIO_WritePinOutput(macroNWK_POWER_SAVE_GPIO, macroNWK_POWER_SAVE_PIN, 0)
@@ -37,9 +29,21 @@
 #define macroGNSS_POWER_ON()     				GPIO_WritePinOutput(macroGNSS_POWER_GPIO, macroGNSS_POWER_GPIO_PIN, 1)
 #define macroGNSS_POWER_OFF()          			GPIO_WritePinOutput(macroGNSS_POWER_GPIO, macroGNSS_POWER_GPIO_PIN, 0)
 
+//For Power key power
+#define macroNWK_POWER_KEY_ON()     			GPIO_WritePinOutput(macroNWK_POWER_KEY_GPIO, macroNWK_POWER_KEY_PIN, 1)
+#define macroNWK_POWER_KEY_OFF()          		GPIO_WritePinOutput(macroNWK_POWER_KEY_GPIO, macroNWK_POWER_KEY_PIN, 0)
+
 //network module reset
 #define macroNWK_RESET_ACTIVE()					GPIO_WritePinOutput(macroNWK_RESET_GPIO, macroNWK_RESET_PIN, 0)
 #define macroNWK_RESET_DEACTIVE()				GPIO_WritePinOutput(macroNWK_RESET_GPIO, macroNWK_RESET_PIN, 1)
+
+//For network wifi module power
+#define macroNWK_POWER_WIFI_ON()        		GPIO_WritePinOutput(macroNWK_POWER_WIFI_GPIO, macroNWK_POWER_WIFI_PIN, 1)
+#define macroNWK_POWER_WIFI_OFF()      			GPIO_WritePinOutput(macroNWK_POWER_WIFI_GPIO, macroNWK_POWER_WIFI_PIN, 0)
+
+//reset nwk wifi module
+#define macroNWK_RESET_WIFI_ON()        		GPIO_WritePinOutput(macroNWK_RESET_WIFI_GPIO, macroNWK_RESET_WIFI_PIN, 0)
+#define macroNWK_RESET_WIFI_OFF()      			GPIO_WritePinOutput(macroNWK_RESET_WIFI_GPIO, macroNWK_RESET_WIFI_PIN, 1)
 
 
 /****************** connectivity module ***********************/

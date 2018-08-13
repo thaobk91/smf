@@ -229,9 +229,10 @@ void vSDCardTask_Run( void *pvParameters )
 				break;
 		}
 
-		if(uError_Counter >= 10)
+		if(uError_Counter >= 60)
 		{
 			uError_Counter = 0;
+			NVIC_SystemReset();
 			Enum_CARD_EVENT = eCARD_EVENT_DEINIT;
 		}
 		xTask.uiSDCardTask_Finish = 0;

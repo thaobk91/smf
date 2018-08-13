@@ -47,25 +47,10 @@ extern "C" {
 #define macroLED_STATUS_GPIO_PIN      			3U
 
 /****************** network module ***********************/
-//For network module power key
-#define macroNWK_POWER_KEY_PORT        			PORTE
-#define macroNWK_POWER_KEY_GPIO        			GPIOE
-#define macroNWK_POWER_KEY_PIN		    		25U
-
 //For network module power
 #define macroNWK_POWER_PORT          			PORTC
 #define macroNWK_POWER_GPIO          			GPIOC
 #define macroNWK_POWER_PIN			    		17U
-
-//Power for wifi
-#define macroNWK_POWER_WIFI_PORT          		PORTD
-#define macroNWK_POWER_WIFI_GPIO          		GPIOD
-#define macroNWK_POWER_WIFI_PIN			    	5U
-
-//nwk reset
-#define macroNWK_RESET_WIFI_PORT          		PORTD
-#define macroNWK_RESET_WIFI_GPIO          		GPIOD
-#define macroNWK_RESET_WIFI_PIN			    	4U
 
 //For network module power saving
 #define macroNWK_POWER_SAVE_PORT          		PORTC
@@ -76,11 +61,27 @@ extern "C" {
 #define macroGNSS_POWER_PORT      				PORTE
 #define macroGNSS_POWER_GPIO          			GPIOE
 #define macroGNSS_POWER_GPIO_PIN      			24U
+	
+//For network module power key
+#define macroNWK_POWER_KEY_PORT        			PORTE
+#define macroNWK_POWER_KEY_GPIO        			GPIOE
+#define macroNWK_POWER_KEY_PIN		    		25U
 
 //network module reset
 #define macroNWK_RESET_PORT						PORTE
 #define macroNWK_RESET_GPIO						GPIOE
 #define macroNWK_RESET_PIN						26U
+	
+	
+//Power for wifi
+#define macroNWK_POWER_WIFI_PORT          		PORTD
+#define macroNWK_POWER_WIFI_GPIO          		GPIOD
+#define macroNWK_POWER_WIFI_PIN			    	5U
+
+//nwk reset
+#define macroNWK_RESET_WIFI_PORT          		PORTD
+#define macroNWK_RESET_WIFI_GPIO          		GPIOD
+#define macroNWK_RESET_WIFI_PIN			    	4U
 	
 
 /****************** connectivity module ***********************/

@@ -111,7 +111,7 @@ uint16_t ui16WAMICounter = 0;
 uint16_t ui16SendCounter=0;
 uint8_t uLedStatus =0;
 
-char cID_EndDevice[17]={0};
+char cID_EndDevice[17] = {0};
 
 //event system
 uint16_t _EVENT_SYS = EVENT_SYS_IDLE;

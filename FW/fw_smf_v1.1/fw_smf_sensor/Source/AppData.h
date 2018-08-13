@@ -44,6 +44,7 @@ define for sensor user
 #define macroSENSOR_TEMPA								"TempA"
 #define macroSENSOR_HUMIA								"HumiA"
 #define macroSENSOR_LIGHT								"Light"
+#define macroSENSOR_D_STATE								"D_State"
 
 //ID Data control
 #define macroCTRL_STATUS								"CtrlStat"
@@ -53,6 +54,7 @@ define for sensor user
 //ID Reqs
 #define macroREQUEST_ALL								"ALL"
 #define macroREQUSET_RTC                            	"RTC"
+#define macroREQUSET_D_STATE                           	"D_State"
 
 
 //ID name Config
@@ -65,7 +67,7 @@ define for sensor user
 #define macroCFG_SENSOR_LIGHT							"Light"
 #define macroCFG_DataUT                                 "DataUT"
 
-#define macroCFG_TIMESEND 								300
+#define macroCFG_TIMESEND 								30
 
 
 //define for Thresh

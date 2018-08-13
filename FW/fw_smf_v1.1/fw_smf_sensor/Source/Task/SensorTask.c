@@ -88,29 +88,10 @@ void vSensorTask_Task( void *pvParameters)
 
 		uReadSS_Counter++;
 		APP_DEBUG("--- SensorTask: Reading sensor... Counter = %d\r\n", uReadSS_Counter);
-#ifdef PH_SENSOR
-		/*pH sensor, data pH already store xss_value.fpH after this funtion*/
-		APP_DEBUG("--- SensorTask: Reading pH sensor\r\n");
-		vSS_PH_Read();
-		vSensorTask_Wait_SS_Feedback();
-		//check val pH vua doc dc
-		if((xSS_Value_Current.fpH > xDataLocal.xPH.ui16LowThresh) && (xSS_Value_Current.fpH < xDataLocal.xPH.ui16HighThresh))
-			xSS_Value.fpH = xSS_Value_Current.fpH;
-#endif
-
-#ifdef EC_SENSOR
-		/*EC sensor, data ec already store xss_value.fEC after this funtion*/
-		APP_DEBUG("--- SensorTask: Reading EC sensor\r\n");
-		vSS_EC_Read();
-		vSensorTask_Wait_SS_Feedback();
-		//check val vua doc dc
-		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh)&&(xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
-			xSS_Value.fEC = xSS_Value_Current.fEC;
-#endif
-
+		
 #ifdef TEMP_HUMI_AIR_SENSOR
-		/*SHT11: TempA & HumiA*/
-		APP_DEBUG("--- SensorTask: Reading SHTA sensor\r\n");
+		/*TempA & HumiA*/
+		APP_DEBUG("--- SensorTask: Reading Temp & Humi Air sensor\r\n");
 		vSS_TempAndHumi_Air_Index( &xSS_Value_Current.fTempA, &xSS_Value_Current.fHumiA );
 		
 		//check val vua doc dc
@@ -121,8 +102,8 @@ void vSensorTask_Task( void *pvParameters)
 #endif
 			
 #ifdef TEMP_HUMI_SOIL_SENSOR
-			/*SHT11: TempG & HumiG*/
-		APP_DEBUG("--- SensorTask: Reading SHTG sensor\r\n");
+			/*TempG & HumiG*/
+		APP_DEBUG("--- SensorTask: Reading Temp & Humi Soil sensor\r\n");
 		vSS_TempAndHumi_Soil_Index( &xSS_Value_Current.fTempG, &xSS_Value_Current.fHumiG );
 		
 		//check val vua doc dc
@@ -130,6 +111,26 @@ void vSensorTask_Task( void *pvParameters)
 			xSS_Value.fTempG = xSS_Value_Current.fTempG;
 		if((xSS_Value_Current.fHumiG > xDataLocal.xHumiG.ui16LowThresh) && (xSS_Value_Current.fHumiG < xDataLocal.xHumiG.ui16HighThresh))
 			xSS_Value.fHumiG = xSS_Value_Current.fHumiG;
+#endif
+		
+#ifdef PH_SENSOR
+		/*pH sensor, data pH already store xss_value.fpH after this funtion*/
+		APP_DEBUG("--- SensorTask: Reading pH sensor\r\n");
+		vSS_PH_Read( xSS_Value.fTempG );
+		vSensorTask_Wait_SS_Feedback();
+		//check val pH vua doc dc
+		if((xSS_Value_Current.fpH > xDataLocal.xPH.ui16LowThresh) && (xSS_Value_Current.fpH < xDataLocal.xPH.ui16HighThresh))
+			xSS_Value.fpH = xSS_Value_Current.fpH;
+#endif
+
+#ifdef EC_SENSOR
+		/*EC sensor, data ec already store xss_value.fEC after this funtion*/
+		APP_DEBUG("--- SensorTask: Reading EC sensor\r\n");
+		vSS_EC_Read( xSS_Value.fTempG );
+		vSensorTask_Wait_SS_Feedback();
+		//check val vua doc dc
+		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh)&&(xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
+			xSS_Value.fEC = xSS_Value_Current.fEC;
 #endif
 
 #ifdef LIGHT_SENSOR

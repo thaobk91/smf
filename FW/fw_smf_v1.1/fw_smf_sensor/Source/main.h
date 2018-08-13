@@ -68,10 +68,10 @@ extern "C"
 
 //For Task
 /* Task priorities. */
-#define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 0)
-#define macroPRIORITY_TASK_SENSOR					(configMAX_PRIORITIES - 1)
-#define macroPRIORITY_TASK_WhoAmI					(configMAX_PRIORITIES - 2)
-#define macroPRIORITY_TASK_SDCard					(configMAX_PRIORITIES - 3)
+#define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 1)
+#define macroPRIORITY_TASK_SENSOR					(configMAX_PRIORITIES - 2)
+#define macroPRIORITY_TASK_WhoAmI					(configMAX_PRIORITIES - 3)
+#define macroPRIORITY_TASK_SDCard					(configMAX_PRIORITIES - 4)
 
 
 typedef struct

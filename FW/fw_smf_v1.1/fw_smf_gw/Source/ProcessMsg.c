@@ -96,7 +96,7 @@ void vProcessMsg_AllMessage( uint8_t *pDataIn, bool isStringMessage, bool fromCo
 			vCheckMsg_JsonMessage( &_PacketIO );
 	}
 
-	memset(pDataIn, 0, strlen((char *)pDataIn));
+	memset(pDataIn, 0, strlen((char *)pDataIn) + 1);
 
 	if(_PacketIO.bPacketIsOK == false)
 	{
@@ -397,13 +397,16 @@ static void vProcessMsg_REQS(PacketIO *_PacketIO, bool isStringMessage, bool fro
 		}
 		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_REQS_IDGW) == 0 )
 		{
+			uint8_t uBuff[macroUART_TX_BUFFER_LENGHT] = {0};
+			
 			APP_DEBUG("--- ProcessMsg: REQS is IDGw\r\n");
+			strcpy((char *)_PacketIO->TypePacket, macroTYPE_PACKET_CONF);
 			strcpy((char *)_PacketIO->Data[0].Name, macroID_CONF_IDGW);
 			strcpy((char *)_PacketIO->Data[0].Info, (char *)uIDGw);
 			if(isStringMessage ==  true)
 			{
-				vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
-				vMain_setEvent(EVENT_UART_NWK_SEND);
+				vParseMsg_Packing_StringMessage(_PacketIO, uBuff, false);
+				UART_NWK_WRITE_DATA(uBuff);
 			}
 		#ifdef macroCONNECTIVITY_ETH
 			else
@@ -412,6 +415,20 @@ static void vProcessMsg_REQS(PacketIO *_PacketIO, bool isStringMessage, bool fro
 				vMain_setEvent(EVENT_ETH_MQTT_SEND);
 			}
 		#endif
+		}
+		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_REQS_D_STATE) == 0 )
+		{
+			if( (strcmp((char *)_PacketIO->IDEd, (char *)uIDGw) == 0) || (_PacketIO->IDEd[0] == 0) )
+			{	
+				APP_DEBUG("--- ProcessMsg: REQS is gw device state\r\n");
+				vProcessMsg_Send_Data( NULL, macroID_DATA_DEVICE_STATE, macroRESP_OK );
+			}
+			else
+			{
+				APP_DEBUG("--- ProcessMsg: REQS is end device state\r\n");
+				vParseMsg_Packing_StringMessage(_PacketIO, uUART_CONN_TX_Buffer, true);
+				vMain_setEvent(EVENT_UART_CONN_SEND);
+			}
 		}
 		else
 		{
@@ -521,10 +538,11 @@ void vProcessMsg_Send_Data( char *IDEp, char *ID_Data, char *State )
 
 	strcpy((char *)_PacketIO.TypePacket, macroTYPE_PACKET_DATA);
 	strcpy((char *)_PacketIO.TypeDevice, macroAPP_TYPE_DEVICE_GW);
-	strcpy((char *)_PacketIO.IDGw, (char *)uIDGw);
 
 	if(IDEp != NULL)
 		strcpy((char *)_PacketIO.IDEd, IDEp);
+	else
+		strcpy((char *)_PacketIO.IDEd, (char *)uIDGw);
 	strcpy((char *)_PacketIO.Data[0].Name, ID_Data);
 
 	if(State != NULL)

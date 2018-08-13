@@ -111,3 +111,9 @@ void SHT11(float *_temp, float *humi)
 	raw = _readRaw(humi_cmd);
 	*humi = (*_temp - 25.0) * (T1*T2*raw) + C1 + C2 * raw + (C3 * raw)* raw;
 }
+
+
+
+
+
+

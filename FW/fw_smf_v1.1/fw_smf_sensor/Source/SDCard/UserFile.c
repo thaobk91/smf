@@ -86,10 +86,10 @@ bool bUserFile_ReadAll(DataLocal* xDataLocalIO)
 	}
 
 	xDataLocalIO->uiTimeUpdate = (uint16_t)fDataUT;
-	APP_DEBUG("--- UserFile: Data update time = %d\r\n", xDataLocalIO->uiTimeUpdate);
+	APP_DEBUG("\r\n--- UserFile: Data update time = %d\r\n", xDataLocalIO->uiTimeUpdate);
 	  
 #ifdef PH_SENSOR
-    if(bUserFile_ReadFile(macroUSER_FILE_PH, &xDataLocalIO->xPH.ui16LowThresh, (float*)&xDataLocalIO->xPH.ui16HighThresh) == false)
+    if(bUserFile_ReadFile(macroUSER_FILE_PH, &xDataLocalIO->xPH.ui16LowThresh, &xDataLocalIO->xPH.ui16HighThresh) == false)
     {
         APP_DEBUG("--- UserFile: Read config failture\r\n");
         return false;
@@ -103,7 +103,7 @@ bool bUserFile_ReadAll(DataLocal* xDataLocalIO)
         APP_DEBUG("--- UserFile: Read config failture\r\n");
         return false;
     }
-	APP_DEBUG("--- UserFile: EC Threshold = L:.3%f - H:%.3f\r\n", xDataLocalIO->xEC.ui16LowThresh, xDataLocalIO->xEC.ui16HighThresh);
+	APP_DEBUG("--- UserFile: EC Threshold = L:%.3f - H:%.3f\r\n", xDataLocalIO->xEC.ui16LowThresh, xDataLocalIO->xEC.ui16HighThresh);
 #endif
     
 #ifdef TEMP_HUMI_AIR_SENSOR

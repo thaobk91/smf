@@ -22,10 +22,12 @@ void vIDControl_Init( void )
 
 	//Enable network module
 	macroNWK_POWER_ON();
-	macroNWK_POWER_WIFI_ON();
-	macroNWK_POWER_SAVING_ON();
+	macroNWK_POWER_SAVING_ON() ;
 	macroGNSS_POWER_OFF();
+	macroNWK_POWER_KEY_ON();
 	macroNWK_RESET_DEACTIVE();
+	macroNWK_POWER_WIFI_ON();
+	macroNWK_RESET_WIFI_OFF();
 
 	//enable connectivity module
 	macroCONN_POWER_ON();

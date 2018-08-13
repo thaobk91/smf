@@ -63,6 +63,7 @@ void vUART_DeInit( UART_Type *xBase )
 *******************************************************************************/
 void vUART_Write(UART_Type * UartBase, uint8_t *Buffer)
 {
+	macroTASK_DELAY_MS( 20 );
 	if(UartBase == macroUART_NETWORK_BASE)
 		APP_DEBUG("--- UART: send \"%s\" to Network module\r\n", (char *)Buffer);
 	else if(UartBase == macroUART_CONNECTIVITY_BASE)

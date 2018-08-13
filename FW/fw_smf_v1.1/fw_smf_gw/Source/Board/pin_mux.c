@@ -91,17 +91,27 @@ void BOARD_InitPins(void)
     GPIO_PinInit( macroLED_STATUS_GPIO, macroLED_STATUS_GPIO_PIN, &xGPIO_ConfigOutput );
 	
     /******************************* network module ***************************/
-    //For network module power key
-	PORT_SetPinMux( macroNWK_POWER_KEY_PORT, macroNWK_POWER_KEY_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
-	GPIO_PinInit( macroNWK_POWER_KEY_GPIO, macroNWK_POWER_KEY_PIN, &xGPIO_ConfigOutput );
-
+	//For network module power
+	PORT_SetPinMux( macroNWK_POWER_PORT, macroNWK_POWER_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
+	GPIO_PinInit( macroNWK_POWER_GPIO, macroNWK_POWER_PIN, &xGPIO_ConfigOutput );
+	
 	//For network module power saving
 	PORT_SetPinMux( macroNWK_POWER_SAVE_PORT, macroNWK_POWER_SAVE_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
 	GPIO_PinInit( macroNWK_POWER_SAVE_GPIO, macroNWK_POWER_SAVE_PIN, &xGPIO_ConfigOutput );
+	
+	//For network module power key
+	PORT_SetPinMux( macroNWK_POWER_KEY_PORT, macroNWK_POWER_KEY_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
+	GPIO_PinInit( macroNWK_POWER_KEY_GPIO, macroNWK_POWER_KEY_PIN, &xGPIO_ConfigOutput );
 
-    //For network module power
-	PORT_SetPinMux( macroNWK_POWER_PORT, macroNWK_POWER_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
-	GPIO_PinInit( macroNWK_POWER_GPIO, macroNWK_POWER_PIN, &xGPIO_ConfigOutput );
+	//network module reset
+	PORT_SetPinMux( macroNWK_RESET_PORT, macroNWK_RESET_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
+	GPIO_PinInit( macroNWK_RESET_GPIO, macroNWK_RESET_PIN, &xGPIO_ConfigOutput );
+	
+	//For GPS power
+	PORT_SetPinMux( macroGNSS_POWER_PORT, macroGNSS_POWER_GPIO_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
+	GPIO_PinInit( macroGNSS_POWER_GPIO, macroGNSS_POWER_GPIO_PIN, &xGPIO_ConfigOutput );
+
+
 	
 	//For network wifi module power
 	PORT_SetPinMux( macroNWK_POWER_WIFI_PORT, macroNWK_POWER_WIFI_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
@@ -110,14 +120,6 @@ void BOARD_InitPins(void)
 	//For network wifi module power
 	PORT_SetPinMux( macroNWK_RESET_WIFI_PORT, macroNWK_RESET_WIFI_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
 	GPIO_PinInit( macroNWK_RESET_WIFI_GPIO, macroNWK_RESET_WIFI_PIN, &xGPIO_ConfigOutput );
-
-	//For GPS power
-	PORT_SetPinMux( macroGNSS_POWER_PORT, macroGNSS_POWER_GPIO_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
-	GPIO_PinInit( macroGNSS_POWER_GPIO, macroGNSS_POWER_GPIO_PIN, &xGPIO_ConfigOutput );
-
-	//network module reset
-	PORT_SetPinMux( macroNWK_RESET_PORT, macroNWK_RESET_PIN, kPORT_MuxAsGpio); // @suppress("Symbol is not resolved")
-	GPIO_PinInit( macroNWK_RESET_GPIO, macroNWK_RESET_PIN, &xGPIO_ConfigOutput );
 	/**************************************************************************/
 	
 	/*************************** connectivity module **************************/
