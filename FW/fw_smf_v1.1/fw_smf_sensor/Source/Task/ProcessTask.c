@@ -137,6 +137,7 @@ static void vProcessTask_CheckEvent( void )
 #ifdef PH_SENSOR
 	if(_EVENT_SYS & EVENT_SYS_PH_SS_RECV)
 	{
+		APP_DEBUG("--- SensorTask: pH data = %s\r\n", uUART_PH_RX_Buffer);
 		xSS_Value_Current.fpH = atof((char*)uUART_PH_RX_Buffer);
 		bSensor_Feedback = true;
 		memset((void *)uUART_PH_RX_Buffer, 0, strlen((char *)uUART_PH_RX_Buffer));
@@ -148,7 +149,15 @@ static void vProcessTask_CheckEvent( void )
 #ifdef EC_SENSOR
 	if(_EVENT_SYS & EVENT_SYS_EC_SS_RECV)
 	{
-		xSS_Value_Current.fEC = atof((char*)uUART_EC_RX_Buffer) / 1000; //uS/m to dS/m
+		char cStr[16] = {0};
+		uint8_t uk = 0;
+		APP_DEBUG("--- SensorTask: EC data = %s\r\n", uUART_EC_RX_Buffer);
+		for(uint8_t ui = 0; ui < strlen((char *)uUART_EC_RX_Buffer); ui++)
+		{
+			if((uUART_EC_RX_Buffer[ui] >= '0') && (uUART_EC_RX_Buffer[ui] <= '9'))
+			   cStr[uk++] = uUART_EC_RX_Buffer[ui];		   
+		}
+		xSS_Value_Current.fEC = atof((char*)cStr) / 1000; //uS/m to dS/m
 		bSensor_Feedback = true;
 		memset((void *)uUART_EC_RX_Buffer, 0, strlen((char *)uUART_EC_RX_Buffer));
 		_EVENT_SYS ^= EVENT_SYS_EC_SS_RECV;

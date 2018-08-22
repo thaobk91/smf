@@ -29,9 +29,9 @@ void vSS_EC_Atlas_Init( void )
 /*******************************************************************************/
 void vSS_EC_Atlas_Read( float fTemp )
 {
-	char cStr[16] = {0};
-	sprintf(cStr, "RT,%0.2f\r\n", fTemp);
-	vSS_EC_Atlas_SendCMD(cStr);
+	//char cStr[16] = {0};
+	//sprintf(cStr, "RT,%0.2f\r\n", fTemp);
+	//vSS_EC_Atlas_SendCMD(cStr);
 	macroTASK_DELAY_MS(200);
 	
 	vSS_EC_Atlas_SendCMD(macroEC_SINGLE_READ_CMD);

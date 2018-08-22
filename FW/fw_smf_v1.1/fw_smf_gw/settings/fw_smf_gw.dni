@@ -41,7 +41,7 @@ ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
 [DebugChecksum]
-Checksum=1313286333
+Checksum=1020417419
 [Trace1]
 Enabled=0
 ShowSource=1

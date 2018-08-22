@@ -33,10 +33,10 @@ void vSS_PH_Atlas_Init( void )
 /*****************************************************************************/
 void vSS_PH_Atlas_Read( float fTemp )
 {
-	char cStr[16] = {0};
-	sprintf(cStr, "T,%0.2f\r\n", fTemp);
-	vSS_PH_Atlas_SendCMD(cStr);
-	macroTASK_DELAY_MS(200);
+	//char cStr[16] = {0};
+	//sprintf(cStr, "T,%0.2f\r\n", fTemp);
+	//vSS_PH_Atlas_SendCMD(cStr);
+	//macroTASK_DELAY_MS(200);
 	
 	vSS_PH_Atlas_SendCMD(macroPH_SINGLE_READ_CMD);
 }

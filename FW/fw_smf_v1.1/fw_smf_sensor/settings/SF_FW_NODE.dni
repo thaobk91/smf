@@ -15,7 +15,7 @@ TraceBufferSize=0x00010000
 TraceStallIfFIFOFull=0x00000000
 TracePortSize=0x00000004
 [DebugChecksum]
-Checksum=-591731456
+Checksum=719639249
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -120,5 +120,7 @@ mode=0
 Count=0
 [Aliases]
 A0=_ "C:\Users\giangnvIOT\OneDrive\smart_farm\SF_FW_NODE\Library\devices\MK64F12\drivers\fsl_i2c.c" ""
-Count=1
-SuppressDialog=0
+A1=_ "D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Library\CMSIS\Include\core_cm4.h" ""
+A2=_ "D:\05.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Source\main.c" ""
+Count=3
+SuppressDialog=1

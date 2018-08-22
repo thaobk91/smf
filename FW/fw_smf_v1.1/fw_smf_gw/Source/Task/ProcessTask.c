@@ -93,6 +93,7 @@ void vProcessTask_Run( void *pvParameters )
 	uMinuteOld = _RTC.minute;
 	vIDControl_Init();
 	vProcessTask_LPTMR_Init();
+	memset(uUART_NWK_RX_Buffer, 0, macroUART_RX_BUFFER_LENGHT);
 
     while( 1 )
     {

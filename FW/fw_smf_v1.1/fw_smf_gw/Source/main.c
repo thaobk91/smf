@@ -221,15 +221,16 @@ void vMain_Peripheral_DeInit( void )
 *******************************************************************************/
 void macroUART_NETWORK_IRQHandler( void )
 {
-	if ((kUART_RxDataRegFullFlag | kUART_RxOverrunFlag) & UART_GetStatusFlags(macroUART_NETWORK_BASE))
+//	if ((kUART_RxDataRegFullFlag | kUART_RxOverrunFlag) & UART_GetStatusFlags(macroUART_NETWORK_BASE))
+	if (UART_GetStatusFlags(macroUART_NETWORK_BASE))
     {
 		uUART_NWK_RX_Buffer[uiUART_NWK_RX_Lenght] = UART_ReadByte( macroUART_NETWORK_BASE );
 //		APP_DEBUG("--- Here. buf = %s\r\n", uUART_NWK_RX_Buffer);
 		
         if(uiUART_NWK_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-            uiUART_NWK_RX_Lenght = 0;
 			memset(uUART_NWK_RX_Buffer, 0, uiUART_NWK_RX_Lenght + 1);
+			uiUART_NWK_RX_Lenght = 0;
 		}
         else if(uUART_NWK_RX_Buffer[uiUART_NWK_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
         {
@@ -259,8 +260,8 @@ void macroUART_CONNECTIVITY_IRQHandler( void )
 		
         if(uiUART_CONN_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-            uiUART_CONN_RX_Lenght = 0;
 			memset(uUART_CONN_RX_Buffer, 0, uiUART_CONN_RX_Lenght + 1);
+			uiUART_CONN_RX_Lenght = 0;
 		}
         else if(uUART_CONN_RX_Buffer[uiUART_CONN_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
         {
@@ -333,6 +334,9 @@ void vMain_GetUniqueID(uint8_t *pID)
 	pID[13] = ((uValue = (((xSim_UID.L  >> 8 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
 	pID[14] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
 	pID[15] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
+	
+	if(pID[15] == 'E')
+		pID[14] = '5';
 }
 
 

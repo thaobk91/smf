@@ -704,24 +704,24 @@ MQTT_STATE_IDE              = 11;
 STATE_GETGPS                = 12;
 -------------------------------------------------------------------------------
 --MQTT DEFINE
-MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
-MQTT_TOPIC_SUBSCRIBE  =   "smartfarm/command/";
+--MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
+--MQTT_TOPIC_SUBSCRIBE  =   "smartfarm/command/";
 
 --user for first config
-MQTT_USER       =   "SMF_TEST";
-MQTT_PWD        =   "12348765";
-MQTT_ADDR_SV    =   "m13.cloudmqtt.com";
-MQTT_PORT       =   "10622";
+--MQTT_USER       =   "SMF_TEST";
+--MQTT_PWD        =   "12348765";
+--MQTT_ADDR_SV    =   "m13.cloudmqtt.com";
+--MQTT_PORT       =   "10622";
 -------------------------------------------------------------------------------
 --MQTT DEFINE
---MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
---MQTT_TOPIC_SUBSCRIBE    =   "smartfarm/command/";
+MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
+MQTT_TOPIC_SUBSCRIBE    =   "smartfarm/command/";
 ----
 ------user for first config
---MQTT_USER       =   "admin";
---MQTT_PWD        =   "20051926";
---MQTT_ADDR_SV      =   "broker.hosco.com.vn";
---MQTT_PORT       =   "1883";
+MQTT_USER       =   "admin";
+MQTT_PWD        =   "20051926";
+MQTT_ADDR_SV      =   "broker.hosco.com.vn";
+MQTT_PORT       =   "1883";
 ------------------------------------------
 MQTT_INDEX_CLIENT = 0;
 ----------------------------------------

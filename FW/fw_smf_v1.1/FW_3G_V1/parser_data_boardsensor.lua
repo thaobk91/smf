@@ -296,15 +296,17 @@ function parser_data_boardsensor.cSend2server(xpacket, etype_packet)
 	
 	-- process for config msg
 	if(etype_packet == eRequest) then
-		cMsg2server = string.format("{\"%s\":\"%s\",\"%s\":\"%s\",\"%s\":\"\",\"%s\":\"\",\"%s\":{\"%s\"}}"
+		cMsg2server = string.format("{\"%s\":\"%s\",\"%s\":\"%s\",\"%s\":\"\",\"%s\":\"%s\",\"%s\":{\"%s\":\"\"}}"
 								,macroJSTYPE_PACKET
 								,xpacket[eTypePacketField]
 								,macroJSTYPE_DEVICE
 								,xpacket[eTypeDeviceField]
 								,macroJSID_EP
 								,macroJSID_GW
+								,cID_GateWay
 								,macroJS_DATA
 								,macroCONF_RTC);
+		print("---- cSend2server: cMsg2server = ",cMsg2server, "\r\n");
 		return cMsg2server;
 	end;
 end;
