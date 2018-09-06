@@ -1,79 +1,79 @@
 ###############################################################################
 #
-# IAR ELF Linker V7.80.2.11947/W32 for ARM                13/Aug/2018  22:21:08
+# IAR ELF Linker V7.80.2.11947/W32 for ARM                06/Sep/2018  02:31:21
 # Copyright 2007-2016 IAR Systems AB.
 #
 #    Output file  =  
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Exe\fw_smf_sensor.out
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Exe\fw_smf_sensor.out
 #    Map file     =  
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\List\fw_smf_sensor.map
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\List\fw_smf_sensor.map
 #    Command line =  
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\BH1750.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\board.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\clock_config.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\croutine.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\DeviceControl.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\diskio.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\event_groups.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ff.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ffsystem.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ffunicode.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\FileAccess.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_clock.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_common.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_debug_console.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_dspi.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_dspi_freertos.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_flash.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_ftm.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_gpio.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_i2c.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_i2c_freertos.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_lptmr.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sd.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sd_disk.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdhc.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_common.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_event.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_host.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sim.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_smc.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_tickless_systick.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_uart.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_uart_freertos.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_wdog.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\heap_4.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\I2C.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\list.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\main.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\PacketHandle.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\pin_mux.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\port.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\portasm.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ProcessTask.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\queue.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SDCardTask.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SensorTask.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SHT1x.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_EC.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_EC_Atlas.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_Light.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_PH.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_PH_Atlas.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_TempAndHumi.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\startup_MK64F12.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\system_MK64F12.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\tasks.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\timers.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\UART.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\UserFile.o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\WhoAmITask.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\BH1750.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\board.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\clock_config.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\croutine.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\DeviceControl.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\diskio.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\event_groups.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ff.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ffsystem.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ffunicode.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\FileAccess.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_clock.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_common.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_debug_console.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_dspi.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_dspi_freertos.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_flash.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_ftm.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_gpio.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_i2c.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_i2c_freertos.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_lptmr.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sd.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sd_disk.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdhc.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_common.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_event.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sdmmc_host.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_sim.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_smc.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_tickless_systick.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_uart.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_uart_freertos.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\fsl_wdog.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\heap_4.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\I2C.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\list.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\main.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\PacketHandle.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\pin_mux.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\port.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\portasm.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\ProcessTask.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\queue.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SDCardTask.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SensorTask.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SHT1x.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_EC.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_EC_Atlas.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_Light.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_PH.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_PH_Atlas.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\SS_TempAndHumi.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\startup_MK64F12.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\system_MK64F12.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\tasks.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\timers.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\UART.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\UserFile.o
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj\WhoAmITask.o
 #        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfSmall -o
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Exe\fw_smf_sensor.out
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Exe\fw_smf_sensor.out
 #        --map
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\List\fw_smf_sensor.map
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\List\fw_smf_sensor.map
 #        --config
-#        D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor/MK64FN1M0xxx12_flash.icf
+#        F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor/MK64FN1M0xxx12_flash.icf
 #        --semihosting --entry __iar_program_start --vfe
 #
 ###############################################################################
@@ -112,7 +112,7 @@ initialize by copy { rw, section .textrw };
   FlashConfig           ro code  0x00000400     0x10  startup_MK64F12.o [1]
                                - 0x00000410     0x10
 
-"P2":                                        0x1e50c
+"P2":                                        0x1e4dc
   .rodata               const    0x00000410   0x7378  ffunicode.o [1]
   .rodata               const    0x00007788   0x7378  ffunicode.o [1]
   .text                 ro code  0x0000eb00   0x1bc4  ff.o [1]
@@ -207,185 +207,191 @@ initialize by copy { rw, section .textrw };
   .text                 ro code  0x0001ba44     0x20  fsl_smc.o [1]
   .text                 ro code  0x0001ba64     0x56  xdunscal.o [4]
   .text                 ro code  0x0001babc    0x35c  SHT1x.o [1]
-  .text                 ro code  0x0001be18    0x324  ProcessTask.o [1]
-  .text                 ro code  0x0001c13c    0x324  SensorTask.o [1]
-  .text                 ro code  0x0001c460     0x10  SS_PH.o [1]
-  .text                 ro code  0x0001c470     0x10  SS_EC.o [1]
-  .text                 ro code  0x0001c480     0x10  SS_TempAndHumi.o [1]
-  .text                 ro code  0x0001c490     0x50  SS_PH_Atlas.o [1]
-  .text                 ro code  0x0001c4e0     0x54  SS_EC_Atlas.o [1]
-  .text                 ro code  0x0001c534    0x27c  SDCardTask.o [1]
-  .rodata               const    0x0001c7b0    0x1f4  ffunicode.o [1]
-  .text                 ro code  0x0001c9a4     0xd4  fsl_dspi.o [1]
-  .text                 ro code  0x0001ca78     0xcc  WhoAmITask.o [1]
-  .rodata               const    0x0001cb44     0xbc  ffunicode.o [1]
-  Initializer bytes     const    0x0001cc00     0x8c  <for RW-1>
-  .text                 ro code  0x0001cc8c     0x68  fsl_i2c.o [1]
-  .rodata               const    0x0001ccf4     0x58  fsl_clock.o [1]
-  .rodata               const    0x0001cd4c     0x58  fsl_dspi.o [1]
-  .rodata               const    0x0001cda4     0x58  fsl_ftm.o [1]
-  .rodata               const    0x0001cdfc     0x58  fsl_gpio.o [1]
-  .rodata               const    0x0001ce54     0x58  fsl_sdhc.o [1]
-  .rodata               const    0x0001ceac     0x58  fsl_sdhc.o [1]
-  .rodata               const    0x0001cf04     0x58  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001cf5c     0x58  fsl_uart.o [1]
-  .rodata               const    0x0001cfb4     0x58  fsl_wdog.o [1]
-  .rodata               const    0x0001d00c     0x58  pin_mux.o [1]
-  .rodata               const    0x0001d064     0x54  fsl_sdhc.o [1]
-  .rodata               const    0x0001d0b8     0x50  fsl_sdhc.o [1]
-  .rodata               const    0x0001d108     0x4c  fsl_sd.o [1]
-  .rodata               const    0x0001d154     0x4c  fsl_sdhc.o [1]
-  .rodata               const    0x0001d1a0     0x48  main.o [1]
-  .rodata               const    0x0001d1e8     0x48  main.o [1]
-  .rodata               const    0x0001d230     0x44  PacketHandle.o [1]
-  .rodata               const    0x0001d274     0x44  SensorTask.o [1]
-  .rodata               const    0x0001d2b8     0x40  fsl_uart.o [1]
-  .rodata               const    0x0001d2f8     0x40  fsl_uart.o [1]
-  .rodata               const    0x0001d338     0x40  ProcessTask.o [1]
-  .rodata               const    0x0001d378     0x40  SDCardTask.o [1]
-  .rodata               const    0x0001d3b8     0x40  WhoAmITask.o [1]
-  .text                 ro code  0x0001d3f8     0x40  zero_init3.o [5]
-  .rodata               const    0x0001d438     0x3c  PacketHandle.o [1]
-  .rodata               const    0x0001d474     0x3c  WhoAmITask.o [1]
-  .rodata               const    0x0001d4b0     0x38  main.o [1]
-  .rodata               const    0x0001d4e8     0x38  PacketHandle.o [1]
-  .rodata               const    0x0001d520     0x38  WhoAmITask.o [1]
-  .rodata               const    0x0001d558     0x34  FileAccess.o [1]
-  .rodata               const    0x0001d58c     0x34  PacketHandle.o [1]
-  .rodata               const    0x0001d5c0     0x34  SensorTask.o [1]
-  .rodata               const    0x0001d5f4     0x34  SensorTask.o [1]
-  .rodata               const    0x0001d628     0x34  UserFile.o [1]
-  .rodata               const    0x0001d65c     0x34  UserFile.o [1]
-  .text                 ro code  0x0001d690     0x34  system_MK64F12.o [1]
-  .rodata               const    0x0001d6c4     0x30  fsl_sd.o [1]
+  .text                 ro code  0x0001be18    0x324  SensorTask.o [1]
+  .text                 ro code  0x0001c13c     0x10  SS_PH.o [1]
+  .text                 ro code  0x0001c14c     0x10  SS_EC.o [1]
+  .text                 ro code  0x0001c15c     0x10  SS_TempAndHumi.o [1]
+  .text                 ro code  0x0001c16c     0x50  SS_PH_Atlas.o [1]
+  .text                 ro code  0x0001c1bc     0x54  SS_EC_Atlas.o [1]
+  .text                 ro code  0x0001c210    0x2f4  ProcessTask.o [1]
+  .text                 ro code  0x0001c504    0x27c  SDCardTask.o [1]
+  .rodata               const    0x0001c780    0x1f4  ffunicode.o [1]
+  .text                 ro code  0x0001c974     0xd4  fsl_dspi.o [1]
+  .text                 ro code  0x0001ca48     0xcc  WhoAmITask.o [1]
+  .rodata               const    0x0001cb14     0xbc  ffunicode.o [1]
+  Initializer bytes     const    0x0001cbd0     0x8c  <for RW-1>
+  .text                 ro code  0x0001cc5c     0x68  fsl_i2c.o [1]
+  .rodata               const    0x0001ccc4     0x58  fsl_clock.o [1]
+  .rodata               const    0x0001cd1c     0x58  fsl_dspi.o [1]
+  .rodata               const    0x0001cd74     0x58  fsl_ftm.o [1]
+  .rodata               const    0x0001cdcc     0x58  fsl_gpio.o [1]
+  .rodata               const    0x0001ce24     0x58  fsl_sdhc.o [1]
+  .rodata               const    0x0001ce7c     0x58  fsl_sdhc.o [1]
+  .rodata               const    0x0001ced4     0x58  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001cf2c     0x58  fsl_uart.o [1]
+  .rodata               const    0x0001cf84     0x58  fsl_wdog.o [1]
+  .rodata               const    0x0001cfdc     0x58  pin_mux.o [1]
+  .rodata               const    0x0001d034     0x54  fsl_sdhc.o [1]
+  .rodata               const    0x0001d088     0x50  fsl_sdhc.o [1]
+  .rodata               const    0x0001d0d8     0x4c  fsl_sd.o [1]
+  .rodata               const    0x0001d124     0x4c  fsl_sdhc.o [1]
+  .rodata               const    0x0001d170     0x48  main.o [1]
+  .rodata               const    0x0001d1b8     0x48  main.o [1]
+  .rodata               const    0x0001d200     0x44  PacketHandle.o [1]
+  .rodata               const    0x0001d244     0x44  SensorTask.o [1]
+  .rodata               const    0x0001d288     0x40  fsl_uart.o [1]
+  .rodata               const    0x0001d2c8     0x40  fsl_uart.o [1]
+  .rodata               const    0x0001d308     0x40  ProcessTask.o [1]
+  .rodata               const    0x0001d348     0x40  SDCardTask.o [1]
+  .rodata               const    0x0001d388     0x40  WhoAmITask.o [1]
+  .text                 ro code  0x0001d3c8     0x40  zero_init3.o [5]
+  .rodata               const    0x0001d408     0x3c  PacketHandle.o [1]
+  .rodata               const    0x0001d444     0x3c  WhoAmITask.o [1]
+  .rodata               const    0x0001d480     0x38  main.o [1]
+  .rodata               const    0x0001d4b8     0x38  PacketHandle.o [1]
+  .rodata               const    0x0001d4f0     0x38  WhoAmITask.o [1]
+  .rodata               const    0x0001d528     0x34  FileAccess.o [1]
+  .rodata               const    0x0001d55c     0x34  PacketHandle.o [1]
+  .rodata               const    0x0001d590     0x34  SensorTask.o [1]
+  .rodata               const    0x0001d5c4     0x34  SensorTask.o [1]
+  .rodata               const    0x0001d5f8     0x34  UserFile.o [1]
+  .rodata               const    0x0001d62c     0x34  UserFile.o [1]
+  .text                 ro code  0x0001d660     0x34  system_MK64F12.o [1]
+  .rodata               const    0x0001d694     0x30  fsl_sd.o [1]
+  .rodata               const    0x0001d6c4     0x30  PacketHandle.o [1]
   .rodata               const    0x0001d6f4     0x30  PacketHandle.o [1]
   .rodata               const    0x0001d724     0x30  PacketHandle.o [1]
   .rodata               const    0x0001d754     0x30  PacketHandle.o [1]
-  .rodata               const    0x0001d784     0x30  PacketHandle.o [1]
+  .rodata               const    0x0001d784     0x30  UserFile.o [1]
   .rodata               const    0x0001d7b4     0x30  UserFile.o [1]
   .rodata               const    0x0001d7e4     0x30  UserFile.o [1]
-  .rodata               const    0x0001d814     0x30  UserFile.o [1]
-  .rodata               const    0x0001d844     0x2c  fsl_sd.o [1]
-  .rodata               const    0x0001d870     0x2c  main.o [1]
-  .rodata               const    0x0001d89c     0x2c  main.o [1]
-  .rodata               const    0x0001d8c8     0x2c  main.o [1]
-  .rodata               const    0x0001d8f4     0x2c  main.o [1]
-  .rodata               const    0x0001d920     0x2c  PacketHandle.o [1]
-  .rodata               const    0x0001d94c     0x2c  PacketHandle.o [1]
-  .rodata               const    0x0001d978     0x2c  PacketHandle.o [1]
-  .rodata               const    0x0001d9a4     0x2c  PacketHandle.o [1]
-  .rodata               const    0x0001d9d0     0x2c  PacketHandle.o [1]
-  .rodata               const    0x0001d9fc     0x2c  ProcessTask.o [1]
-  .rodata               const    0x0001da28     0x2c  ProcessTask.o [1]
-  .rodata               const    0x0001da54     0x2c  SDCardTask.o [1]
-  .rodata               const    0x0001da80     0x2c  SensorTask.o [1]
-  .text                 ro code  0x0001daac     0x2c  copy_init3.o [5]
-  .rodata               const    0x0001dad8     0x28  fsl_sdhc.o [1]
-  .rodata               const    0x0001db00     0x28  PacketHandle.o [1]
-  .rodata               const    0x0001db28     0x28  PacketHandle.o [1]
-  .rodata               const    0x0001db50     0x28  ProcessTask.o [1]
-  .rodata               const    0x0001db78     0x28  ProcessTask.o [1]
-  .rodata               const    0x0001dba0     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dbc8     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dbf0     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dc18     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dc40     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dc68     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dc90     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dcb8     0x28  SDCardTask.o [1]
-  .rodata               const    0x0001dce0     0x28  SensorTask.o [1]
-  .rodata               const    0x0001dd08     0x28  UserFile.o [1]
-  .rodata               const    0x0001dd30     0x28  UserFile.o [1]
-  .rodata               const    0x0001dd58     0x28  WhoAmITask.o [1]
-  .text                 ro code  0x0001dd80     0x28  startup_MK64F12.o [1]
-  .text                 ro code  0x0001dda8     0x28  data_init.o [5]
-  .rodata               const    0x0001ddd0     0x24  FileAccess.o [1]
-  .rodata               const    0x0001ddf4     0x24  FileAccess.o [1]
-  .rodata               const    0x0001de18     0x24  FileAccess.o [1]
-  .rodata               const    0x0001de3c     0x24  fsl_sdhc.o [1]
-  .rodata               const    0x0001de60     0x24  PacketHandle.o [1]
-  .rodata               const    0x0001de84     0x24  PacketHandle.o [1]
-  .rodata               const    0x0001dea8     0x24  SDCardTask.o [1]
-  .rodata               const    0x0001decc     0x24  SDCardTask.o [1]
-  .rodata               const    0x0001def0     0x24  SensorTask.o [1]
-  .rodata               const    0x0001df14     0x24  SensorTask.o [1]
-  .text                 ro code  0x0001df38     0x22  fpinit_M.o [4]
-  .iar.init_table       const    0x0001df5c     0x24  - Linker created -
-  .rodata               const    0x0001df80     0x20  clock_config.o [1]
-  .rodata               const    0x0001dfa0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001dfc0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001dfe0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e000     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e020     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e040     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e060     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e080     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e0a0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e0c0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e0e0     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e100     0x20  fsl_sd.o [1]
-  .rodata               const    0x0001e120     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e140     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e160     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e180     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e1a0     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e1c0     0x20  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e1e0     0x20  PacketHandle.o [1]
-  .rodata               const    0x0001e200     0x20  ProcessTask.o [1]
-  .rodata               const    0x0001e220     0x20  ProcessTask.o [1]
-  .rodata               const    0x0001e240     0x20  SDCardTask.o [1]
-  .rodata               const    0x0001e260     0x1c  fsl_ftm.o [1]
-  .rodata               const    0x0001e27c     0x1c  fsl_uart.o [1]
-  .rodata               const    0x0001e298     0x1c  main.o [1]
-  .rodata               const    0x0001e2b4     0x1c  SensorTask.o [1]
-  .rodata               const    0x0001e2d0     0x1c  SensorTask.o [1]
-  .text                 ro code  0x0001e2ec     0x1a  cmain.o [5]
-  .text                 ro code  0x0001e306      0x4  low_level_init.o [3]
-  .text                 ro code  0x0001e30a      0x4  exit.o [3]
-  .text                 ro code  0x0001e310      0xa  cexit.o [5]
+  .rodata               const    0x0001d814     0x2c  fsl_sd.o [1]
+  .rodata               const    0x0001d840     0x2c  main.o [1]
+  .rodata               const    0x0001d86c     0x2c  main.o [1]
+  .rodata               const    0x0001d898     0x2c  main.o [1]
+  .rodata               const    0x0001d8c4     0x2c  main.o [1]
+  .rodata               const    0x0001d8f0     0x2c  PacketHandle.o [1]
+  .rodata               const    0x0001d91c     0x2c  PacketHandle.o [1]
+  .rodata               const    0x0001d948     0x2c  PacketHandle.o [1]
+  .rodata               const    0x0001d974     0x2c  PacketHandle.o [1]
+  .rodata               const    0x0001d9a0     0x2c  PacketHandle.o [1]
+  .rodata               const    0x0001d9cc     0x2c  ProcessTask.o [1]
+  .rodata               const    0x0001d9f8     0x2c  ProcessTask.o [1]
+  .rodata               const    0x0001da24     0x2c  SDCardTask.o [1]
+  .rodata               const    0x0001da50     0x2c  SensorTask.o [1]
+  .text                 ro code  0x0001da7c     0x2c  copy_init3.o [5]
+  .rodata               const    0x0001daa8     0x28  fsl_sdhc.o [1]
+  .rodata               const    0x0001dad0     0x28  PacketHandle.o [1]
+  .rodata               const    0x0001daf8     0x28  PacketHandle.o [1]
+  .rodata               const    0x0001db20     0x28  ProcessTask.o [1]
+  .rodata               const    0x0001db48     0x28  ProcessTask.o [1]
+  .rodata               const    0x0001db70     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001db98     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dbc0     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dbe8     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dc10     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dc38     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dc60     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dc88     0x28  SDCardTask.o [1]
+  .rodata               const    0x0001dcb0     0x28  SensorTask.o [1]
+  .rodata               const    0x0001dcd8     0x28  UserFile.o [1]
+  .rodata               const    0x0001dd00     0x28  UserFile.o [1]
+  .rodata               const    0x0001dd28     0x28  WhoAmITask.o [1]
+  .text                 ro code  0x0001dd50     0x28  startup_MK64F12.o [1]
+  .text                 ro code  0x0001dd78     0x28  data_init.o [5]
+  .rodata               const    0x0001dda0     0x24  FileAccess.o [1]
+  .rodata               const    0x0001ddc4     0x24  FileAccess.o [1]
+  .rodata               const    0x0001dde8     0x24  FileAccess.o [1]
+  .rodata               const    0x0001de0c     0x24  fsl_sdhc.o [1]
+  .rodata               const    0x0001de30     0x24  PacketHandle.o [1]
+  .rodata               const    0x0001de54     0x24  PacketHandle.o [1]
+  .rodata               const    0x0001de78     0x24  SDCardTask.o [1]
+  .rodata               const    0x0001de9c     0x24  SDCardTask.o [1]
+  .rodata               const    0x0001dec0     0x24  SensorTask.o [1]
+  .rodata               const    0x0001dee4     0x24  SensorTask.o [1]
+  .text                 ro code  0x0001df08     0x22  fpinit_M.o [4]
+  .iar.init_table       const    0x0001df2c     0x24  - Linker created -
+  .rodata               const    0x0001df50     0x20  clock_config.o [1]
+  .rodata               const    0x0001df70     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001df90     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001dfb0     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001dfd0     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001dff0     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e010     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e030     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e050     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e070     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e090     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e0b0     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e0d0     0x20  fsl_sd.o [1]
+  .rodata               const    0x0001e0f0     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e110     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e130     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e150     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e170     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e190     0x20  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e1b0     0x20  PacketHandle.o [1]
+  .rodata               const    0x0001e1d0     0x20  ProcessTask.o [1]
+  .rodata               const    0x0001e1f0     0x20  ProcessTask.o [1]
+  .rodata               const    0x0001e210     0x20  SDCardTask.o [1]
+  .rodata               const    0x0001e230     0x1c  fsl_ftm.o [1]
+  .rodata               const    0x0001e24c     0x1c  fsl_uart.o [1]
+  .rodata               const    0x0001e268     0x1c  main.o [1]
+  .rodata               const    0x0001e284     0x1c  SensorTask.o [1]
+  .rodata               const    0x0001e2a0     0x1c  SensorTask.o [1]
+  .text                 ro code  0x0001e2bc     0x1a  cmain.o [5]
+  .text                 ro code  0x0001e2d6      0x4  low_level_init.o [3]
+  .text                 ro code  0x0001e2da      0x4  exit.o [3]
+  .text                 ro code  0x0001e2e0      0xa  cexit.o [5]
+  .rodata               const    0x0001e2ec     0x18  fsl_uart.o [1]
+  .rodata               const    0x0001e304     0x18  fsl_uart.o [1]
   .rodata               const    0x0001e31c     0x18  fsl_uart.o [1]
-  .rodata               const    0x0001e334     0x18  fsl_uart.o [1]
-  .rodata               const    0x0001e34c     0x18  fsl_uart.o [1]
-  .rodata               const    0x0001e364     0x14  fsl_sd.o [1]
-  .rodata               const    0x0001e378     0x14  main.o [1]
-  .rodata               const    0x0001e38c     0x14  main.o [1]
-  .rodata               const    0x0001e3a0     0x14  main.o [1]
-  .rodata               const    0x0001e3b4     0x14  SDCardTask.o [1]
-  .rodata               const    0x0001e3c8     0x10  ff.o [1]
-  .rodata               const    0x0001e3d8     0x10  fsl_clock.o [1]
-  .rodata               const    0x0001e3e8     0x10  fsl_clock.o [1]
-  .rodata               const    0x0001e3f8     0x10  fsl_dspi.o [1]
-  .rodata               const    0x0001e408     0x10  fsl_dspi.o [1]
-  .rodata               const    0x0001e418     0x10  fsl_dspi.o [1]
-  .rodata               const    0x0001e428     0x10  fsl_ftm.o [1]
-  .rodata               const    0x0001e438     0x10  fsl_ftm.o [1]
-  .rodata               const    0x0001e448     0x10  fsl_sdhc.o [1]
-  .rodata               const    0x0001e458     0x10  fsl_sdhc.o [1]
-  .rodata               const    0x0001e468     0x10  fsl_sdhc.o [1]
-  .rodata               const    0x0001e478     0x10  main.o [1]
-  .rodata               const    0x0001e488     0x10  PacketHandle.o [1]
-  .rodata               const    0x0001e498     0x10  SS_PH_Atlas.o [1]
-  .rodata               const    0x0001e4a8     0x10  UserFile.o [1]
-  .rodata               const    0x0001e4b8      0xc  ff.o [1]
-  .rodata               const    0x0001e4c4      0xc  ff.o [1]
-  .rodata               const    0x0001e4d0      0xc  fsl_clock.o [1]
-  .rodata               const    0x0001e4dc      0xc  fsl_clock.o [1]
-  .rodata               const    0x0001e4e8      0xc  fsl_sd.o [1]
-  .rodata               const    0x0001e4f4      0xc  fsl_sdhc.o [1]
-  .rodata               const    0x0001e500      0xc  fsl_sdhc.o [1]
-  .rodata               const    0x0001e50c      0xc  fsl_sdhc.o [1]
-  .rodata               const    0x0001e518      0xc  fsl_sdhc.o [1]
-  .rodata               const    0x0001e524      0xc  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e530      0xc  PacketHandle.o [1]
-  .rodata               const    0x0001e53c      0xc  SensorTask.o [1]
-  .rodata               const    0x0001e548      0xc  UserFile.o [1]
-  .rodata               const    0x0001e554      0xc  UserFile.o [1]
-  .rodata               const    0x0001e560      0xc  UserFile.o [1]
-  .text                 ro code  0x0001e56c      0xc  cstartup_M.o [5]
-  .rodata               const    0x0001e578      0x8  ff.o [1]
-  .rodata               const    0x0001e580      0x8  ff.o [1]
-  .rodata               const    0x0001e588      0x8  fsl_ftm.o [1]
-  .rodata               const    0x0001e590      0x8  fsl_gpio.o [1]
+  .rodata               const    0x0001e334     0x14  fsl_sd.o [1]
+  .rodata               const    0x0001e348     0x14  main.o [1]
+  .rodata               const    0x0001e35c     0x14  main.o [1]
+  .rodata               const    0x0001e370     0x14  main.o [1]
+  .rodata               const    0x0001e384     0x14  SDCardTask.o [1]
+  .rodata               const    0x0001e398     0x10  ff.o [1]
+  .rodata               const    0x0001e3a8     0x10  fsl_clock.o [1]
+  .rodata               const    0x0001e3b8     0x10  fsl_clock.o [1]
+  .rodata               const    0x0001e3c8     0x10  fsl_dspi.o [1]
+  .rodata               const    0x0001e3d8     0x10  fsl_dspi.o [1]
+  .rodata               const    0x0001e3e8     0x10  fsl_dspi.o [1]
+  .rodata               const    0x0001e3f8     0x10  fsl_ftm.o [1]
+  .rodata               const    0x0001e408     0x10  fsl_ftm.o [1]
+  .rodata               const    0x0001e418     0x10  fsl_sdhc.o [1]
+  .rodata               const    0x0001e428     0x10  fsl_sdhc.o [1]
+  .rodata               const    0x0001e438     0x10  fsl_sdhc.o [1]
+  .rodata               const    0x0001e448     0x10  main.o [1]
+  .rodata               const    0x0001e458     0x10  PacketHandle.o [1]
+  .rodata               const    0x0001e468     0x10  SS_PH_Atlas.o [1]
+  .rodata               const    0x0001e478     0x10  UserFile.o [1]
+  .rodata               const    0x0001e488      0xc  ff.o [1]
+  .rodata               const    0x0001e494      0xc  ff.o [1]
+  .rodata               const    0x0001e4a0      0xc  fsl_clock.o [1]
+  .rodata               const    0x0001e4ac      0xc  fsl_clock.o [1]
+  .rodata               const    0x0001e4b8      0xc  fsl_sd.o [1]
+  .rodata               const    0x0001e4c4      0xc  fsl_sdhc.o [1]
+  .rodata               const    0x0001e4d0      0xc  fsl_sdhc.o [1]
+  .rodata               const    0x0001e4dc      0xc  fsl_sdhc.o [1]
+  .rodata               const    0x0001e4e8      0xc  fsl_sdhc.o [1]
+  .rodata               const    0x0001e4f4      0xc  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e500      0xc  PacketHandle.o [1]
+  .rodata               const    0x0001e50c      0xc  SensorTask.o [1]
+  .rodata               const    0x0001e518      0xc  UserFile.o [1]
+  .rodata               const    0x0001e524      0xc  UserFile.o [1]
+  .rodata               const    0x0001e530      0xc  UserFile.o [1]
+  .text                 ro code  0x0001e53c      0xc  cstartup_M.o [5]
+  .rodata               const    0x0001e548      0x8  ff.o [1]
+  .rodata               const    0x0001e550      0x8  ff.o [1]
+  .rodata               const    0x0001e558      0x8  fsl_ftm.o [1]
+  .rodata               const    0x0001e560      0x8  fsl_gpio.o [1]
+  .rodata               const    0x0001e568      0x8  fsl_sd.o [1]
+  .rodata               const    0x0001e570      0x8  fsl_sd.o [1]
+  .rodata               const    0x0001e578      0x8  fsl_sd.o [1]
+  .rodata               const    0x0001e580      0x8  fsl_sd.o [1]
+  .rodata               const    0x0001e588      0x8  fsl_sd.o [1]
+  .rodata               const    0x0001e590      0x8  fsl_sd.o [1]
   .rodata               const    0x0001e598      0x8  fsl_sd.o [1]
   .rodata               const    0x0001e5a0      0x8  fsl_sd.o [1]
   .rodata               const    0x0001e5a8      0x8  fsl_sd.o [1]
@@ -399,23 +405,23 @@ initialize by copy { rw, section .textrw };
   .rodata               const    0x0001e5e8      0x8  fsl_sd.o [1]
   .rodata               const    0x0001e5f0      0x8  fsl_sd.o [1]
   .rodata               const    0x0001e5f8      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e600      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e608      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e610      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e618      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e620      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e628      0x8  fsl_sd.o [1]
-  .rodata               const    0x0001e630      0x8  fsl_sdhc.o [1]
-  .rodata               const    0x0001e638      0x8  fsl_sdhc.o [1]
-  .rodata               const    0x0001e640      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e648      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e650      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e658      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e660      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e668      0x8  fsl_sdmmc_common.o [1]
-  .rodata               const    0x0001e670      0x8  fsl_uart.o [1]
-  .rodata               const    0x0001e678      0x8  fsl_uart.o [1]
-  .rodata               const    0x0001e680      0x8  fsl_wdog.o [1]
+  .rodata               const    0x0001e600      0x8  fsl_sdhc.o [1]
+  .rodata               const    0x0001e608      0x8  fsl_sdhc.o [1]
+  .rodata               const    0x0001e610      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e618      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e620      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e628      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e630      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e638      0x8  fsl_sdmmc_common.o [1]
+  .rodata               const    0x0001e640      0x8  fsl_uart.o [1]
+  .rodata               const    0x0001e648      0x8  fsl_uart.o [1]
+  .rodata               const    0x0001e650      0x8  fsl_wdog.o [1]
+  .rodata               const    0x0001e658      0x8  PacketHandle.o [1]
+  .rodata               const    0x0001e660      0x8  PacketHandle.o [1]
+  .rodata               const    0x0001e668      0x8  PacketHandle.o [1]
+  .rodata               const    0x0001e670      0x8  PacketHandle.o [1]
+  .rodata               const    0x0001e678      0x8  PacketHandle.o [1]
+  .rodata               const    0x0001e680      0x8  PacketHandle.o [1]
   .rodata               const    0x0001e688      0x8  PacketHandle.o [1]
   .rodata               const    0x0001e690      0x8  PacketHandle.o [1]
   .rodata               const    0x0001e698      0x8  PacketHandle.o [1]
@@ -423,26 +429,26 @@ initialize by copy { rw, section .textrw };
   .rodata               const    0x0001e6a8      0x8  PacketHandle.o [1]
   .rodata               const    0x0001e6b0      0x8  PacketHandle.o [1]
   .rodata               const    0x0001e6b8      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6c0      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6c8      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6d0      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6d8      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6e0      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6e8      0x8  PacketHandle.o [1]
-  .rodata               const    0x0001e6f0      0x8  pin_mux.o [1]
-  .rodata               const    0x0001e6f8      0x8  SensorTask.o [1]
-  .rodata               const    0x0001e700      0x8  SensorTask.o [1]
-  .rodata               const    0x0001e708      0x8  SensorTask.o [1]
-  .rodata               const    0x0001e710      0x8  SensorTask.o [1]
-  .rodata               const    0x0001e718      0x8  SS_EC_Atlas.o [1]
-  .rodata               const    0x0001e720      0x8  SS_EC_Atlas.o [1]
-  .rodata               const    0x0001e728      0x8  SS_PH_Atlas.o [1]
-  .rodata               const    0x0001e730      0x8  tasks.o [1]
-  .rodata               const    0x0001e738      0x8  timers.o [1]
-  .rodata               const    0x0001e740      0x8  timers.o [1]
-  .rodata               const    0x0001e748      0x8  UserFile.o [1]
-  .rodata               const    0x0001e750      0x8  UserFile.o [1]
-  .rodata               const    0x0001e758      0x8  UserFile.o [1]
+  .rodata               const    0x0001e6c0      0x8  pin_mux.o [1]
+  .rodata               const    0x0001e6c8      0x8  SensorTask.o [1]
+  .rodata               const    0x0001e6d0      0x8  SensorTask.o [1]
+  .rodata               const    0x0001e6d8      0x8  SensorTask.o [1]
+  .rodata               const    0x0001e6e0      0x8  SensorTask.o [1]
+  .rodata               const    0x0001e6e8      0x8  SS_EC_Atlas.o [1]
+  .rodata               const    0x0001e6f0      0x8  SS_EC_Atlas.o [1]
+  .rodata               const    0x0001e6f8      0x8  SS_PH_Atlas.o [1]
+  .rodata               const    0x0001e700      0x8  tasks.o [1]
+  .rodata               const    0x0001e708      0x8  timers.o [1]
+  .rodata               const    0x0001e710      0x8  timers.o [1]
+  .rodata               const    0x0001e718      0x8  UserFile.o [1]
+  .rodata               const    0x0001e720      0x8  UserFile.o [1]
+  .rodata               const    0x0001e728      0x8  UserFile.o [1]
+  .text                 ro code  0x0001e730      0x8  startup_MK64F12.o [1]
+  .text                 ro code  0x0001e738      0x8  startup_MK64F12.o [1]
+  .text                 ro code  0x0001e740      0x8  startup_MK64F12.o [1]
+  .text                 ro code  0x0001e748      0x8  startup_MK64F12.o [1]
+  .text                 ro code  0x0001e750      0x8  startup_MK64F12.o [1]
+  .text                 ro code  0x0001e758      0x8  startup_MK64F12.o [1]
   .text                 ro code  0x0001e760      0x8  startup_MK64F12.o [1]
   .text                 ro code  0x0001e768      0x8  startup_MK64F12.o [1]
   .text                 ro code  0x0001e770      0x8  startup_MK64F12.o [1]
@@ -483,34 +489,28 @@ initialize by copy { rw, section .textrw };
   .text                 ro code  0x0001e888      0x8  startup_MK64F12.o [1]
   .text                 ro code  0x0001e890      0x8  startup_MK64F12.o [1]
   .text                 ro code  0x0001e898      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8a0      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8a8      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8b0      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8b8      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8c0      0x8  startup_MK64F12.o [1]
-  .text                 ro code  0x0001e8c8      0x8  startup_MK64F12.o [1]
-  .rodata               const    0x0001e8d0      0x4  fsl_sdhc.o [1]
-  .rodata               const    0x0001e8d4      0x4  fsl_sdhc.o [1]
-  .rodata               const    0x0001e8d8      0x4  heap_4.o [1]
-  .rodata               const    0x0001e8dc      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8e0      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8e4      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8e8      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8ec      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8f0      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8f4      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8f8      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e8fc      0x4  pin_mux.o [1]
-  .rodata               const    0x0001e900      0x4  port.o [1]
-  .rodata               const    0x0001e904      0x4  SDCardTask.o [1]
-  .rodata               const    0x0001e908      0x4  SHT1x.o [1]
-  .rodata               const    0x0001e90c      0x4  SHT1x.o [1]
-  .rodata               const    0x0001e910      0x4  SHT1x.o [1]
-  .rodata               const    0x0001e914      0x4  SHT1x.o [1]
-  .text                 ro code  0x0001e918      0x4  startup_MK64F12.o [1]
-  .rodata               const    0x0001e91c      0x0  zero_init3.o [5]
-  .rodata               const    0x0001e91c      0x0  copy_init3.o [5]
-                               - 0x0001e91c  0x1e50c
+  .rodata               const    0x0001e8a0      0x4  fsl_sdhc.o [1]
+  .rodata               const    0x0001e8a4      0x4  fsl_sdhc.o [1]
+  .rodata               const    0x0001e8a8      0x4  heap_4.o [1]
+  .rodata               const    0x0001e8ac      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8b0      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8b4      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8b8      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8bc      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8c0      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8c4      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8c8      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8cc      0x4  pin_mux.o [1]
+  .rodata               const    0x0001e8d0      0x4  port.o [1]
+  .rodata               const    0x0001e8d4      0x4  SDCardTask.o [1]
+  .rodata               const    0x0001e8d8      0x4  SHT1x.o [1]
+  .rodata               const    0x0001e8dc      0x4  SHT1x.o [1]
+  .rodata               const    0x0001e8e0      0x4  SHT1x.o [1]
+  .rodata               const    0x0001e8e4      0x4  SHT1x.o [1]
+  .text                 ro code  0x0001e8e8      0x4  startup_MK64F12.o [1]
+  .rodata               const    0x0001e8ec      0x0  zero_init3.o [5]
+  .rodata               const    0x0001e8ec      0x0  copy_init3.o [5]
+                               - 0x0001e8ec  0x1e4dc
 
 "P3-P4", part 1 of 2:                           0x8c
   RW                             0x1fff0000     0x8c  <Block>
@@ -637,7 +637,7 @@ Zero (__iar_zero_init3)
 
 Copy (__iar_copy_init3)
     1 source range, total size 0x8c (102% of destination):
-          0x0001cc00    0x8c
+          0x0001cbd0    0x8c
     1 destination range, total size 0x89:
           0x1fff0000    0x89
 
@@ -649,10 +649,10 @@ Copy (__iar_copy_init3)
 
     Module                  ro code  ro data  rw data
     ------                  -------  -------  -------
-D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj: [1]
+F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj: [1]
     FileAccess.o                264      160
     PacketHandle.o            2 310      964
-    ProcessTask.o               804      296        9
+    ProcessTask.o               756      296        9
     SDCardTask.o                636      556      571
     SHT1x.o                     860       52       36
     SS_EC.o                      16
@@ -698,7 +698,7 @@ D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj: [1]
     tasks.o                   3 116        8      260
     timers.o                  1 056       16       60
     -------------------------------------------------
-    Total:                   43 692   66 490   35 666
+    Total:                   43 644   66 490   35 666
 
 command line: [2]
     -------------------------------------------------
@@ -782,7 +782,7 @@ shb_l.a: [6]
     Gaps                         37        4
     Linker created                        39    1 024
 -----------------------------------------------------
-    Grand Total:             58 675   66 537   37 190
+    Grand Total:             58 627   66 537   37 190
 
 
 *******************************************************************************
@@ -791,9 +791,9 @@ shb_l.a: [6]
 
 Entry                      Address    Size  Type      Object
 -----                      -------    ----  ----      ------
-.iar.init_table$$Base   0x0001df5c           --   Gb  - Linker created -
-.iar.init_table$$Limit  0x0001df80           --   Gb  - Linker created -
-?main                   0x0001e2ed          Code  Gb  cmain.o [5]
+.iar.init_table$$Base   0x0001df2c           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x0001df50           --   Gb  - Linker created -
+?main                   0x0001e2bd          Code  Gb  cmain.o [5]
 BOARD_BootClockVLPR     0x0001addf    0x40  Code  Gb  clock_config.o [1]
 BOARD_InitDebugConsole  0x0001ae35    0x1c  Code  Gb  board.o [1]
 BOARD_InitPins          0x0001ab5b   0x20e  Code  Gb  pin_mux.o [1]
@@ -812,7 +812,7 @@ CLOCK_GetFllExtRefClkFreq
                         0x0001a211    0x66  Code  Lc  fsl_clock.o [1]
 CLOCK_GetFllFreq        0x0001a4c3    0x4a  Code  Gb  fsl_clock.o [1]
 CLOCK_GetFllFreq::fllFactorTable
-                        0x0001e3e8    0x10  Data  Lc  fsl_clock.o [1]
+                        0x0001e3b8    0x10  Data  Lc  fsl_clock.o [1]
 CLOCK_GetFllRefClkFreq  0x0001a29d    0x20  Code  Lc  fsl_clock.o [1]
 CLOCK_GetFreq           0x0001a3a3    0xce  Code  Gb  fsl_clock.o [1]
 CLOCK_GetInternalRefClkFreq
@@ -836,9 +836,9 @@ CLOCK_SetSimSafeDivs    0x0001adcd     0xa  Code  Lc  clock_config.o [1]
 CSTACK$$Base            0x2002fc00           --   Gb  - Linker created -
 CSTACK$$Limit           0x20030000           --   Gb  - Linker created -
 CurrVol                 0x1fff8d40     0x1  Data  Lc  ff.o [1]
-DSPI_CommonIRQHandler   0x0001c9ad    0x28  Code  Lc  fsl_dspi.o [1]
-DSPI_IsMaster           0x0001c9a5     0x8  Code  Lc  fsl_dspi.o [1]
-DbcTbl                  0x0001e4c4     0xc  Data  Lc  ff.o [1]
+DSPI_CommonIRQHandler   0x0001c97d    0x28  Code  Lc  fsl_dspi.o [1]
+DSPI_IsMaster           0x0001c975     0x8  Code  Lc  fsl_dspi.o [1]
+DbcTbl                  0x0001e494     0xc  Data  Lc  ff.o [1]
 DbgConsole_ConvertFloatRadixNumToString
                         0x00016c91   0x1b6  Code  Lc  fsl_debug_console.o [1]
 DbgConsole_ConvertRadixNumToString
@@ -873,19 +873,19 @@ Fsid                    0x1fff8d30     0x2  Data  Lc  ff.o [1]
 GPIO_PinInit            0x0001b9fb    0x42  Code  Gb  fsl_gpio.o [1]
 GPIO_ReadPinInput       0x00012f31     0xa  Code  Lc  fsl_sdmmc_host.o [1]
 GPIO_ReadPinInput       0x0001bad7     0xa  Code  Lc  SHT1x.o [1]
-GPIO_TogglePinsOutput   0x0001be4f     0x4  Code  Lc  ProcessTask.o [1]
+GPIO_TogglePinsOutput   0x0001c247     0x4  Code  Lc  ProcessTask.o [1]
 GPIO_WritePinOutput     0x0001b9e1    0x1a  Code  Lc  fsl_gpio.o [1]
 GPIO_WritePinOutput     0x00019b15    0x1a  Code  Lc  main.o [1]
-GPIO_WritePinOutput     0x0001be35    0x1a  Code  Lc  ProcessTask.o [1]
+GPIO_WritePinOutput     0x0001c22d    0x1a  Code  Lc  ProcessTask.o [1]
 GPIO_WritePinOutput     0x0001babd    0x1a  Code  Lc  SHT1x.o [1]
-GPIO_WritePinOutput     0x0001ca79    0x1a  Code  Lc  WhoAmITask.o [1]
-I2C0_DriverIRQHandler   0x0001ccb3     0xe  Code  Gb  fsl_i2c.o [1]
-I2C1_DriverIRQHandler   0x0001ccc1     0xe  Code  Gb  fsl_i2c.o [1]
-I2C2_DriverIRQHandler   0x0001cccf     0xe  Code  Gb  fsl_i2c.o [1]
+GPIO_WritePinOutput     0x0001ca49    0x1a  Code  Lc  WhoAmITask.o [1]
+I2C0_DriverIRQHandler   0x0001cc83     0xe  Code  Gb  fsl_i2c.o [1]
+I2C1_DriverIRQHandler   0x0001cc91     0xe  Code  Gb  fsl_i2c.o [1]
+I2C2_DriverIRQHandler   0x0001cc9f     0xe  Code  Gb  fsl_i2c.o [1]
 I2C_TransferCommonIRQHandler
-                        0x0001cc8d    0x26  Code  Lc  fsl_i2c.o [1]
+                        0x0001cc5d    0x26  Code  Lc  fsl_i2c.o [1]
 LfnBuf                  0x1fff0098   0x200  Data  Lc  ff.o [1]
-LfnOfs                  0x0001e3c8    0x10  Data  Lc  ff.o [1]
+LfnOfs                  0x0001e398    0x10  Data  Lc  ff.o [1]
 LoadInt                 0x0001578b    0x6e  Code  Lc  xprintffull.o [3]
 NVIC_DisableIRQ         0x00012373    0x16  Code  Lc  fsl_sdhc.o [1]
 NVIC_EnableIRQ          0x0001235d    0x16  Code  Lc  fsl_sdhc.o [1]
@@ -893,10 +893,10 @@ NVIC_EnableIRQ          0x00012ee1    0x16  Code  Lc  fsl_sdmmc_host.o [1]
 NVIC_EnableIRQ          0x00019ab1    0x16  Code  Lc  main.o [1]
 NVIC_EnableIRQ          0x00019079    0x14  Code  Lc  UART.o [1]
 NVIC_SetPriority        0x00012ef7    0x22  Code  Lc  fsl_sdmmc_host.o [1]
-NVIC_SetPriority        0x0001c535    0x22  Code  Lc  SDCardTask.o [1]
+NVIC_SetPriority        0x0001c505    0x22  Code  Lc  SDCardTask.o [1]
 NVIC_SetPriority        0x0001908d    0x22  Code  Lc  UART.o [1]
-NVIC_SystemReset        0x0001be19    0x1c  Code  Lc  ProcessTask.o [1]
-NVIC_SystemReset        0x0001c557    0x1c  Code  Lc  SDCardTask.o [1]
+NVIC_SystemReset        0x0001c211    0x1c  Code  Lc  ProcessTask.o [1]
+NVIC_SystemReset        0x0001c527    0x1c  Code  Lc  SDCardTask.o [1]
 PORTE_IRQHandler        0x0001313b    0x26  Code  Gb  fsl_sdmmc_host.o [1]
 PORT_ClearPinsInterruptFlags
                         0x00012f91     0x6  Code  Lc  fsl_sdmmc_host.o [1]
@@ -909,9 +909,9 @@ PORT_SetPinMux          0x0001ab43    0x18  Code  Lc  pin_mux.o [1]
 PendSV_Handler          0x0001513d          Code  Gb  portasm.o [1]
 RW$$Base                0x1fff0000           --   Gb  - Linker created -
 RW$$Limit               0x1fff008c           --   Gb  - Linker created -
-Region$$Table$$Base     0x0001df5c           --   Gb  - Linker created -
-Region$$Table$$Limit    0x0001df80           --   Gb  - Linker created -
-SDCARD_DetectCallBack   0x0001c705     0xc  Code  Lc  SDCardTask.o [1]
+Region$$Table$$Base     0x0001df2c           --   Gb  - Linker created -
+Region$$Table$$Limit    0x0001df50           --   Gb  - Linker created -
+SDCARD_DetectCallBack   0x0001c6d5     0xc  Code  Lc  SDCardTask.o [1]
 SDHC_CardDetectByData3  0x00012f59    0x1a  Code  Lc  fsl_sdmmc_host.o [1]
 SDHC_ClearInterruptStatusFlags
                         0x00012413     0x4  Code  Lc  fsl_sdhc.o [1]
@@ -1056,14 +1056,14 @@ SMC_GetPowerModeState   0x0001addb     0x4  Code  Lc  clock_config.o [1]
 SMC_SetPowerModeProtection
                         0x0001add7     0x4  Code  Lc  clock_config.o [1]
 SMC_SetPowerModeVlpr    0x0001ba45    0x20  Code  Gb  fsl_smc.o [1]
-SPI0_DriverIRQHandler   0x0001c9d5    0x26  Code  Gb  fsl_dspi.o [1]
-SPI1_DriverIRQHandler   0x0001c9fd    0x26  Code  Gb  fsl_dspi.o [1]
-SPI2_DriverIRQHandler   0x0001ca29    0x26  Code  Gb  fsl_dspi.o [1]
+SPI0_DriverIRQHandler   0x0001c9a5    0x26  Code  Gb  fsl_dspi.o [1]
+SPI1_DriverIRQHandler   0x0001c9cd    0x26  Code  Gb  fsl_dspi.o [1]
+SPI2_DriverIRQHandler   0x0001c9f9    0x26  Code  Gb  fsl_dspi.o [1]
 SVC_Handler             0x00015195          Code  Gb  portasm.o [1]
 SYSMPU_Enable           0x00019afb    0x1a  Code  Lc  main.o [1]
 SysTick_Handler         0x0001494f    0x28  Code  Gb  port.o [1]
 SystemCoreClock         0x1fff0080     0x4  Data  Gb  system_MK64F12.o [1]
-SystemInit              0x0001d691    0x26  Code  Gb  system_MK64F12.o [1]
+SystemInit              0x0001d661    0x26  Code  Gb  system_MK64F12.o [1]
 UART0_DriverIRQHandler  0x000177dd    0x10  Code  Gb  fsl_uart.o [1]
 UART0_RX_TX_DriverIRQHandler
                         0x000177ed     0x8  Code  Gb  fsl_uart.o [1]
@@ -1135,7 +1135,7 @@ __aeabi_memclr4         0x000122dd          Code  Gb  ABImemclr4.o [5]
 __aeabi_memset          0x00011f31          Code  Gb  ABImemset.o [5]
 __aeabi_ui2d            0x000163b9          Code  Gb  I32ToDbl.o [4]
 __aeabi_uldivmod        0x000160a5          Code  Gb  I64DivMod.o [5]
-__cmain                 0x0001e2ed          Code  Gb  cmain.o [5]
+__cmain                 0x0001e2bd          Code  Gb  cmain.o [5]
 __exit                  0x00013385    0x14  Code  Gb  exit.o [6]
 __iar_Dint              0x0001832d    0x7e  Code  Gb  xdint.o [4]
 __iar_Dnorm             0x00016193    0x44  Code  Gb  xdnorm.o [4]
@@ -1156,19 +1156,19 @@ __iar_Stodx             0x0001a99d   0x14e  Code  Gb  xstod.o [4]
 __iar_Stoul             0x0001a841     0x4  Code  Gb  xstoul.o [3]
 __iar_Stoulx            0x0001a6f9   0x142  Code  Gb  xstoul.o [3]
 __iar_Strchr            0x00015fb9          Code  Gb  strchr.o [5]
-__iar_copy_init3        0x0001daad    0x2c  Code  Gb  copy_init3.o [5]
+__iar_copy_init3        0x0001da7d    0x2c  Code  Gb  copy_init3.o [5]
 __iar_d2uiz             0x00016385          Code  Gb  DblToI32.o [4]
 __iar_dadd              0x00016975          Code  Gb  DblAdd.o [4]
-__iar_data_init3        0x0001dda9    0x28  Code  Gb  data_init.o [5]
+__iar_data_init3        0x0001dd79    0x28  Code  Gb  data_init.o [5]
 __iar_dlfree            0x00019469   0x51a  Code  Gb  dlmalloc.o [3]
 __iar_dlib_perthread_access
                         0x0001872f     0x2  Code  Gb  xtls.o [3]
 __iar_dsub              0x000163e9          Code  Gb  DblSub.o [4]
 __iar_dsubStart         0x000163fb          Code  Gb  DblSub.o [4]
-__iar_init_vfp          0x0001df39          Code  Gb  fpinit_M.o [4]
+__iar_init_vfp          0x0001df09          Code  Gb  fpinit_M.o [4]
 __iar_modf              0x0001789d          Code  Gb  modf.o [4]
 __iar_modfl             0x0001789d          Code  Gb  modf.o [4]
-__iar_program_start     0x0001e56d          Code  Gb  cstartup_M.o [5]
+__iar_program_start     0x0001e53d          Code  Gb  cstartup_M.o [5]
 __iar_ui2d              0x000163bd          Code  Gb  I32ToDbl.o [4]
 __iar_ul2d              0x000182f1          Code  Gb  I64ToDbl.o [4]
 __iar_unaligned___aeabi_memcpy
@@ -1182,21 +1182,21 @@ __iar_vfp_atof          0x000199c1    0x10  Code  Gb  atof.o [4]
 __iar_vfp_modf          0x00017885          Code  Gb  modf.o [4]
 __iar_vfp_modfl         0x00017885          Code  Gb  modf.o [4]
 __iar_vfp_pow           0x00017e19    0x18  Code  Gb  pow.o [4]
-__iar_zero_init3        0x0001d3f9    0x40  Code  Gb  zero_init3.o [5]
-__low_level_init        0x0001e307     0x4  Code  Gb  low_level_init.o [3]
+__iar_zero_init3        0x0001d3c9    0x40  Code  Gb  zero_init3.o [5]
+__low_level_init        0x0001e2d7     0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x00000000          Data  Gb  startup_MK64F12.o [1]
 __vector_table_0x1c     0x0000001c          Data  Gb  startup_MK64F12.o [1]
-_call_main              0x0001e2f9          Code  Gb  cmain.o [5]
-_exit                   0x0001e311          Code  Gb  cexit.o [5]
+_call_main              0x0001e2c9          Code  Gb  cmain.o [5]
+_exit                   0x0001e2e1          Code  Gb  cexit.o [5]
 _gm_                    0x1fff8b58   0x1d8  Data  Lc  dlmalloc.o [3]
-_main                   0x0001e303          Code  Gb  cmain.o [5]
+_main                   0x0001e2d3          Code  Gb  cmain.o [5]
 abort                   0x00013243     0x6  Code  Gb  abort.o [3]
 atoi                    0x0001917b     0x8  Code  Gb  atoi.o [3]
 bData_Sending           0x1fff8d44     0x1  Data  Gb  ProcessTask.o [1]
 bFileAccess_Open        0x0001a895    0x26  Code  Gb  FileAccess.o [1]
 bFileAccess_Read_All    0x0001a8bf    0x7c  Code  Gb  FileAccess.o [1]
 bFileAccess_Write_All   0x0001a93b    0x52  Code  Gb  FileAccess.o [1]
-bSDCardTask_MMC_Access  0x0001c711    0x32  Code  Lc  SDCardTask.o [1]
+bSDCardTask_MMC_Access  0x0001c6e1    0x32  Code  Lc  SDCardTask.o [1]
 bSensor_Feedback        0x1fff8d48     0x1  Data  Gb  SensorTask.o [1]
 bUserFile_ReadAll       0x000192b7   0x118  Code  Gb  UserFile.o [1]
 bUserFile_ReadFile      0x00019185    0xb6  Code  Gb  UserFile.o [1]
@@ -1224,8 +1224,8 @@ disk_status             0x0001084d    0x16  Code  Gb  diskio.o [1]
 disk_write              0x00010891    0x18  Code  Gb  diskio.o [1]
 div                     0x0001694f     0xe  Code  Gb  div.o [3]
 dmul                    0x0001b5e1    0x5a  Code  Lc  xdtento.o [4]
-driverNumberBuffer      0x0001e904     0x4  Data  Gb  SDCardTask.o [1]
-exit                    0x0001e30b     0x4  Code  Gb  exit.o [3]
+driverNumberBuffer      0x0001e8d4     0x4  Data  Gb  SDCardTask.o [1]
+exit                    0x0001e2db     0x4  Code  Gb  exit.o [3]
 f_chdrive               0x00010685    0x18  Code  Gb  ff.o [1]
 f_close                 0x0001065d    0x28  Code  Gb  ff.o [1]
 f_mount                 0x0000ffd1    0x58  Code  Gb  ff.o [1]
@@ -1236,12 +1236,12 @@ f_write                 0x000103cf   0x1f4  Code  Gb  ff.o [1]
 ff_oem2uni              0x0001072b    0x62  Code  Gb  ffunicode.o [1]
 ff_uni2oem              0x000106c5    0x66  Code  Gb  ffunicode.o [1]
 ff_wtoupper             0x0001078d    0xae  Code  Gb  ffunicode.o [1]
-ff_wtoupper::cvt1       0x0001c7b0   0x1f4  Data  Lc  ffunicode.o [1]
-ff_wtoupper::cvt2       0x0001cb44    0xbc  Data  Lc  ffunicode.o [1]
+ff_wtoupper::cvt1       0x0001c780   0x1f4  Data  Lc  ffunicode.o [1]
+ff_wtoupper::cvt2       0x0001cb14    0xbc  Data  Lc  ffunicode.o [1]
 find_volume             0x0000fc91   0x2fa  Code  Lc  ff.o [1]
 follow_path             0x0000fb0d    0xb2  Code  Lc  ff.o [1]
 g_defaultClockConfigVlpr
-                        0x0001df80    0x20  Data  Gb  clock_config.o [1]
+                        0x0001df50    0x20  Data  Gb  clock_config.o [1]
 g_dspiHandle            0x1fff02b0     0xc  Data  Lc  fsl_dspi.o [1]
 g_eventCardDetect       0x1fff05a0     0x4  Data  Lc  fsl_sdmmc_event.o [1]
 g_eventTransferComplete
@@ -1271,7 +1271,7 @@ mparams                 0x1fff8b40    0x18  Data  Lc  dlmalloc.o [3]
 ndigs                   0x0001a86c    0x28  Data  Lc  xstoul.o [3]
 oem2uni932              0x00007788  0x7378  Data  Lc  ffunicode.o [1]
 pcInterruptPriorityRegisters
-                        0x0001e900     0x4  Data  Lc  port.o [1]
+                        0x0001e8d0     0x4  Data  Lc  port.o [1]
 pows                    0x0001b798    0x48  Data  Lc  xdtento.o [4]
 prvAddCurrentTaskToDelayedList
                         0x00014701    0x80  Code  Lc  tasks.o [1]
@@ -1331,16 +1331,16 @@ s_debugConsole          0x1fff02a0    0x10  Data  Lc  fsl_debug_console.o [1]
 s_dspiMasterIsr         0x1fff02bc     0x4  Data  Lc  fsl_dspi.o [1]
 s_dspiSlaveIsr          0x1fff02c0     0x4  Data  Lc  fsl_dspi.o [1]
 s_fastIrcFreq           0x1fff0004     0x4  Data  Lc  fsl_clock.o [1]
-s_ftmBases              0x0001e428    0x10  Data  Lc  fsl_ftm.o [1]
-s_ftmClocks             0x0001e438    0x10  Data  Lc  fsl_ftm.o [1]
+s_ftmBases              0x0001e3f8    0x10  Data  Lc  fsl_ftm.o [1]
+s_ftmClocks             0x0001e408    0x10  Data  Lc  fsl_ftm.o [1]
 s_i2cHandle             0x1fff02c4     0xc  Data  Lc  fsl_i2c.o [1]
 s_i2cMasterIsr          0x1fff02d0     0x4  Data  Lc  fsl_i2c.o [1]
 s_i2cSlaveIsr           0x1fff02d4     0x4  Data  Lc  fsl_i2c.o [1]
-s_sdCardDetect          0x0001e3b4    0x14  Data  Lc  SDCardTask.o [1]
+s_sdCardDetect          0x0001e384    0x14  Data  Lc  SDCardTask.o [1]
 s_sdInsertedFlag        0x1fff8d41     0x1  Data  Lc  fsl_sdmmc_host.o [1]
 s_sdhcAdmaTable         0x1fff05cc    0x20  Data  Lc  fsl_sdmmc_host.o [1]
-s_sdhcBase              0x0001e8d0     0x4  Data  Lc  fsl_sdhc.o [1]
-s_sdhcClock             0x0001e8d4     0x4  Data  Lc  fsl_sdhc.o [1]
+s_sdhcBase              0x0001e8a0     0x4  Data  Lc  fsl_sdhc.o [1]
+s_sdhcClock             0x0001e8a4     0x4  Data  Lc  fsl_sdhc.o [1]
 s_sdhcHandle            0x1fff0394     0x4  Data  Lc  fsl_sdhc.o [1]
 s_sdhcHandle            0x1fff05a4    0x28  Data  Lc  fsl_sdmmc_host.o [1]
 s_sdhcIRQ               0x00015fb6     0x1  Data  Lc  fsl_sdhc.o [1]
@@ -1348,8 +1348,8 @@ s_sdhcIsr               0x1fff0398     0x4  Data  Lc  fsl_sdhc.o [1]
 s_sdhcTransferSuccessFlag
                         0x1fff0088     0x1  Data  Lc  fsl_sdmmc_host.o [1]
 s_slowIrcFreq           0x1fff0000     0x4  Data  Lc  fsl_clock.o [1]
-s_uartBases             0x0001e334    0x18  Data  Lc  fsl_uart.o [1]
-s_uartClock             0x0001e34c    0x18  Data  Lc  fsl_uart.o [1]
+s_uartBases             0x0001e304    0x18  Data  Lc  fsl_uart.o [1]
+s_uartClock             0x0001e31c    0x18  Data  Lc  fsl_uart.o [1]
 s_uartHandle            0x1fff05ec    0x18  Data  Lc  fsl_uart.o [1]
 s_uartIsr               0x1fff0604     0x4  Data  Lc  fsl_uart.o [1]
 sd_disk_initialize      0x0001096f    0x44  Code  Gb  fsl_sd_disk.o [1]
@@ -1430,14 +1430,14 @@ vPortStartFirstTask     0x000151b1          Code  Gb  portasm.o [1]
 vPortValidateInterruptPriority
                         0x00014979    0x4a  Code  Gb  port.o [1]
 vProcessTask_CheckEvent
-                        0x0001bf19   0x1be  Code  Lc  ProcessTask.o [1]
-vProcessTask_Task       0x0001be53    0xc6  Code  Gb  ProcessTask.o [1]
+                        0x0001c311   0x18e  Code  Lc  ProcessTask.o [1]
+vProcessTask_Task       0x0001c24b    0xc6  Code  Gb  ProcessTask.o [1]
 vQueueAddToRegistry     0x00013af5    0x24  Code  Gb  queue.o [1]
 vQueueDelete            0x00013977    0x26  Code  Gb  queue.o [1]
 vQueueUnregisterQueue   0x00013b19    0x2a  Code  Gb  queue.o [1]
 vQueueWaitForMessageRestricted
                         0x00013b4d    0x4a  Code  Gb  queue.o [1]
-vSDCardTask_Run         0x0001c573   0x192  Code  Gb  SDCardTask.o [1]
+vSDCardTask_Run         0x0001c543   0x192  Code  Gb  SDCardTask.o [1]
 vSHT11_Read             0x0001bc77    0xc2  Code  Gb  SHT1x.o [1]
 vSHT1x_ClkDir_In        0x0001bd75    0x14  Code  Lc  SHT1x.o [1]
 vSHT1x_ClkDir_Out       0x0001bd61    0x14  Code  Lc  SHT1x.o [1]
@@ -1447,23 +1447,23 @@ vSHT1x_DataDir_In       0x0001bd4d    0x14  Code  Lc  SHT1x.o [1]
 vSHT1x_DataDir_Out      0x0001bd39    0x14  Code  Lc  SHT1x.o [1]
 vSHT1x_DataOut_High     0x0001bdd5     0xe  Code  Lc  SHT1x.o [1]
 vSHT1x_DataOut_Low      0x0001bde3     0xe  Code  Lc  SHT1x.o [1]
-vSS_EC_Atlas_Init       0x0001c4f9    0x1c  Code  Gb  SS_EC_Atlas.o [1]
-vSS_EC_Atlas_Read       0x0001c515    0x10  Code  Gb  SS_EC_Atlas.o [1]
-vSS_EC_Atlas_SendCMD    0x0001c4e1    0x18  Code  Gb  SS_EC_Atlas.o [1]
-vSS_EC_Init             0x0001c471     0x8  Code  Gb  SS_EC.o [1]
-vSS_EC_Read             0x0001c479     0x8  Code  Gb  SS_EC.o [1]
-vSS_PH_Atlas_Init       0x0001c4a9    0x1c  Code  Gb  SS_PH_Atlas.o [1]
-vSS_PH_Atlas_Read       0x0001c4c5     0xa  Code  Gb  SS_PH_Atlas.o [1]
-vSS_PH_Atlas_SendCMD    0x0001c491    0x18  Code  Lc  SS_PH_Atlas.o [1]
-vSS_PH_Init             0x0001c461     0x8  Code  Gb  SS_PH.o [1]
-vSS_PH_Read             0x0001c469     0x8  Code  Gb  SS_PH.o [1]
+vSS_EC_Atlas_Init       0x0001c1d5    0x1c  Code  Gb  SS_EC_Atlas.o [1]
+vSS_EC_Atlas_Read       0x0001c1f1    0x10  Code  Gb  SS_EC_Atlas.o [1]
+vSS_EC_Atlas_SendCMD    0x0001c1bd    0x18  Code  Gb  SS_EC_Atlas.o [1]
+vSS_EC_Init             0x0001c14d     0x8  Code  Gb  SS_EC.o [1]
+vSS_EC_Read             0x0001c155     0x8  Code  Gb  SS_EC.o [1]
+vSS_PH_Atlas_Init       0x0001c185    0x1c  Code  Gb  SS_PH_Atlas.o [1]
+vSS_PH_Atlas_Read       0x0001c1a1     0xa  Code  Gb  SS_PH_Atlas.o [1]
+vSS_PH_Atlas_SendCMD    0x0001c16d    0x18  Code  Lc  SS_PH_Atlas.o [1]
+vSS_PH_Init             0x0001c13d     0x8  Code  Gb  SS_PH.o [1]
+vSS_PH_Read             0x0001c145     0x8  Code  Gb  SS_PH.o [1]
 vSS_TempAndHumi_Soil_Index
-                        0x0001c481     0xa  Code  Gb  SS_TempAndHumi.o [1]
+                        0x0001c15d     0xa  Code  Gb  SS_TempAndHumi.o [1]
 vSensorTask_SetDataSensor
-                        0x0001c2d9    0xf8  Code  Gb  SensorTask.o [1]
-vSensorTask_Task        0x0001c13d   0x19c  Code  Gb  SensorTask.o [1]
+                        0x0001bfb5    0xf8  Code  Gb  SensorTask.o [1]
+vSensorTask_Task        0x0001be19   0x19c  Code  Gb  SensorTask.o [1]
 vSensorTask_Wait_SS_Feedback
-                        0x0001c3d1    0x28  Code  Lc  SensorTask.o [1]
+                        0x0001c0ad    0x28  Code  Lc  SensorTask.o [1]
 vTaskDelay              0x00013d93    0x4c  Code  Gb  tasks.o [1]
 vTaskMissedYield        0x00014401     0xa  Code  Gb  tasks.o [1]
 vTaskPlaceOnEventList   0x0001425f    0x2e  Code  Gb  tasks.o [1]
@@ -1478,7 +1478,7 @@ vTaskSuspendAll         0x00013fdf    0x10  Code  Gb  tasks.o [1]
 vTaskSwitchContext      0x000141f3    0x6c  Code  Gb  tasks.o [1]
 vUART_Init              0x000190d5    0x58  Code  Gb  UART.o [1]
 vUART_Write             0x0001912d     0xa  Code  Gb  UART.o [1]
-vWhoAmITask_Task        0x0001ca93    0x96  Code  Gb  WhoAmITask.o [1]
+vWhoAmITask_Task        0x0001ca63    0x96  Code  Gb  WhoAmITask.o [1]
 validate                0x0000ff8b    0x46  Code  Lc  ff.o [1]
 xActiveTimerList1       0x1fff8b04    0x14  Data  Lc  timers.o [1]
 xActiveTimerList2       0x1fff8b18    0x14  Data  Lc  timers.o [1]
@@ -1490,7 +1490,7 @@ xFileAccess_GetSizeByID
                         0x0001a8bb     0x4  Code  Lc  FileAccess.o [1]
 xFlags                  0x1fff842c     0x4  Data  Gb  main.o [1]
 xFreeBytesReMaining     0x1fff7e14     0x4  Data  Lc  heap_4.o [1]
-xHeapStructSize         0x0001e8d8     0x4  Data  Lc  heap_4.o [1]
+xHeapStructSize         0x0001e8a8     0x4  Data  Lc  heap_4.o [1]
 xIdleTaskHandle         0x1fff8afc     0x4  Data  Lc  tasks.o [1]
 xMinimumEverFreeBytesReMaining
                         0x1fff7e18     0x4  Data  Lc  heap_4.o [1]
@@ -1536,14 +1536,14 @@ xWdog_Base              0x1fff0044     0x4  Data  Lc  main.o [1]
 xYieldPending           0x1fff8aec     0x4  Data  Lc  tasks.o [1]
 
 
-[1] = D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj
+[1] = F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_sensor\Release\Obj
 [2] = command line
 [3] = dl7M_tln.a
 [4] = m7M_tls.a
 [5] = rt7M_tl.a
 [6] = shb_l.a
 
-  58 675 bytes of readonly  code memory
+  58 627 bytes of readonly  code memory
   66 537 bytes of readonly  data memory
   37 190 bytes of readwrite data memory
 

@@ -152,11 +152,11 @@ static void vProcessTask_CheckEvent( void )
 		char cStr[16] = {0};
 		uint8_t uk = 0;
 		APP_DEBUG("--- SensorTask: EC data = %s\r\n", uUART_EC_RX_Buffer);
-		for(uint8_t ui = 0; ui < strlen((char *)uUART_EC_RX_Buffer); ui++)
-		{
-			if((uUART_EC_RX_Buffer[ui] >= '0') && (uUART_EC_RX_Buffer[ui] <= '9'))
-			   cStr[uk++] = uUART_EC_RX_Buffer[ui];		   
-		}
+//		for(uint8_t ui = 0; ui < strlen((char *)uUART_EC_RX_Buffer); ui++)
+//		{
+//			if((uUART_EC_RX_Buffer[ui] >= '0') && (uUART_EC_RX_Buffer[ui] <= '9'))
+//			   cStr[uk++] = uUART_EC_RX_Buffer[ui];		   
+//		}
 		xSS_Value_Current.fEC = atof((char*)cStr) / 1000; //uS/m to dS/m
 		bSensor_Feedback = true;
 		memset((void *)uUART_EC_RX_Buffer, 0, strlen((char *)uUART_EC_RX_Buffer));
