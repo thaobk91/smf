@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.general.xcl" --backend -f "D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.general.xcl" --backend -f "F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.general.xcl" "--debug_file=%~1" --backend -f "D:\01.Git_thaobk91\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.general.xcl" "--debug_file=%~1" --backend -f "F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_gw\settings\fw_smf_gw.Release.driver.xcl" 
 
 @echo off 
 :end
