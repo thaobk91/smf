@@ -17,6 +17,7 @@
 //#define macroUSER_FILE_MQTT_CONFIG				"mqttthing.txt"
 #define macroUSER_FILE_MQTT_CONFIG				"mqtthosco.txt"
 #define macroUSER_FILE_RTC_CONFIG				"RTC.txt"
+#define macroUSER_FILE_DATA						"data.txt"
 
 
 
@@ -212,6 +213,32 @@ void vUserFile_Write_Connectivity_Long_Addr( char *EndDevice_File, uint8_t *Long
 		APP_DEBUG("--- UserFile: Write long address of connectivity fail\r\n");
 		return;
 	}
+}
+
+
+
+
+/*****************************************************************************
+ * Function	: void vUserFile_Write_Data( uint8_t *Host, uint16_t Port, uint8_t *User, uint8_t *Pwd )
+ * Desc		: write mqtt config
+ * Param	: None
+ * return	: None
+ *****************************************************************************/
+void vUserFile_Write_Data( uint8_t *pData )
+{
+//	char cStr[256] = {0};
+//
+//	sprintf(cStr, "%d.%d.%d.%d\r\n%d\r\n%s\r\n%s\r\n", \
+//					Host[0], Host[1], Host[2], Host[3], \
+//					Port, \
+//					(char *)User, \
+//					(char *)Pwd \
+//			);
+//
+//	if(bFileAccess_Write_All(macroUSER_FILE_MQTT_CONFIG, cStr) == false)
+//	{
+//		APP_DEBUG("--- UserFile: Write mqtt config error\r\n");
+//	}
 }
 
 #endif

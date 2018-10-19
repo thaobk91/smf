@@ -1,0 +1,4 @@
+Record=TopLevelDocument|FileName=smf_control_block.SchDoc
+Record=SheetSymbol|SourceDocument=smf_control_block.SchDoc|Designator=[1]|SchDesignator=[1]|FileName=MCU_Schematic.SchDoc|SymbolType=Normal|RawFileName=MCU_Schematic.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=smf_control_block.SchDoc|Designator=[2]|SchDesignator=[2]|FileName=Power_Schematic.SchDoc|SymbolType=Normal|RawFileName=Power_Schematic.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=smf_control_block.SchDoc|Designator=[3]|SchDesignator=[3]|FileName=Output_Schematic.SchDoc|SymbolType=Normal|RawFileName=Output_Schematic.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 

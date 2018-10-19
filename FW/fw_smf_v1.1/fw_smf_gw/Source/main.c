@@ -10,10 +10,6 @@
 #include "board.h"
 
 /* Task */
-#ifdef macroCONNECTIVITY_ETH
-	#include "EthTask.h"
-#endif
-
 #include "ProcessTask.h"
 #include "WhoAmITask.h"
 
@@ -54,10 +50,6 @@ uint16_t Event_IO = EVENT_IDLE;
 taskHandle_t xTask =
 {
 	.uiProcessTask_Finish	= 1,
-
-#ifdef macroCONNECTIVITY_ETH
-	.uiEthTask_Finish		= 1,
-#endif
 
 	.uiWamiTask_Finish		= 1,
 
@@ -141,12 +133,6 @@ int main(void)
 	if(xTaskCreate(vProcessTask_Run	, "vProcessTask_Run"	, configMINIMAL_STACK_SIZE + 1024	, NULL, macroPRIORITY_TASK_PROCESS	, &xTask.xTaskHandle_Process) != pdPASS)
 		APP_DEBUG("--- Main: Failed to create process task\r\n");
 
-	//Ethernet task
-#ifdef macroCONNECTIVITY_ETH
-	if(xTaskCreate(vEthTask_Run		, "vEthTask_Run"		, configMINIMAL_STACK_SIZE + 1024	, NULL, macroPRIORITY_TASK_ETH		, &xTask.xTaskHandle_Eth) != pdPASS)
-		APP_DEBUG("--- Main: Failed to create ethernet task\r\n");
-#endif
-
 	//Who am i task
 	if(xTaskCreate(vWhoAmITask_Run	, "vWhoAmITask_Run"		, configMINIMAL_STACK_SIZE + 256	, NULL, macroPRIORITY_TASK_WhoAmI	, &xTask.xTaskHandle_WhoAmI) != pdPASS)
 		APP_DEBUG("--- Main: Failed to create Who Am I task\r\n");
@@ -215,7 +201,7 @@ void vMain_Peripheral_DeInit( void )
 
 /******************************************************************************
  * Function		: void macroUART_NETWORK_IRQHandler( void )
- * Description	: Network uart rx interrupt
+ * Description	: Network uart rx interrupt0x 
  * Param		: none
  * Return		: none
 *******************************************************************************/
@@ -229,7 +215,7 @@ void macroUART_NETWORK_IRQHandler( void )
 		
         if(uiUART_NWK_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-			memset(uUART_NWK_RX_Buffer, 0, uiUART_NWK_RX_Lenght + 1);
+			memset(uUART_NWK_RX_Buffer, 0, uiUART_NWK_RX_Lenght);
 			uiUART_NWK_RX_Lenght = 0;
 		}
         else if(uUART_NWK_RX_Buffer[uiUART_NWK_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
@@ -238,9 +224,9 @@ void macroUART_NETWORK_IRQHandler( void )
         }
 		uiUART_NWK_RX_Lenght++;
     }
-#if defined __CORTEX_M && (__CORTEX_M == 4U)
-    __DSB();
-#endif
+//#if defined __CORTEX_M && (__CORTEX_M == 4U)
+//    __DSB();
+//#endif
 }
 
 
@@ -260,7 +246,7 @@ void macroUART_CONNECTIVITY_IRQHandler( void )
 		
         if(uiUART_CONN_RX_Lenght >= macroUART_RX_BUFFER_LENGHT - 1)
 		{
-			memset(uUART_CONN_RX_Buffer, 0, uiUART_CONN_RX_Lenght + 1);
+			memset(uUART_CONN_RX_Buffer, 0, uiUART_CONN_RX_Lenght);
 			uiUART_CONN_RX_Lenght = 0;
 		}
         else if(uUART_CONN_RX_Buffer[uiUART_CONN_RX_Lenght] == macroPACKET_STRING_ENDCHAR)
@@ -314,29 +300,25 @@ void vMain_InitWatchdog( void )
 void vMain_GetUniqueID(uint8_t *pID)
 {
 	sim_uid_t xSim_UID;
-	uint8_t uValue = 0;
+	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-";
 	
 	SIM_GetUniqueId(&xSim_UID);
-	
-	pID[0]  = ((uValue = (((xSim_UID.ML >> 24) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[1]  = ((uValue = (((xSim_UID.ML >> 24) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[2]  = ((uValue = (((xSim_UID.ML >> 16) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[3]  = ((uValue = (((xSim_UID.ML >> 16) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[4]  = ((uValue = (((xSim_UID.ML >> 8 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[5]  = ((uValue = (((xSim_UID.ML >> 8 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[6]  = ((uValue = (((xSim_UID.ML >> 0 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[7]  = ((uValue = (((xSim_UID.ML >> 0 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[8]  = ((uValue = (((xSim_UID.L  >> 24) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[9]  = ((uValue = (((xSim_UID.L  >> 24) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[10] = ((uValue = (((xSim_UID.L  >> 16) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[11] = ((uValue = (((xSim_UID.L  >> 16) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[12] = ((uValue = (((xSim_UID.L  >> 8 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[13] = ((uValue = (((xSim_UID.L  >> 8 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[14] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pID[15] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	
-	if(pID[15] == 'E')
-		pID[14] = '5';
+	pID[0] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
+	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
+	pID[2] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
+	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
+	pID[4] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
+	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
+	pID[6] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
+	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
+	pID[8] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
+	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
+	pID[10] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
+	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
+	pID[12] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
+	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
+	pID[14] = uChar[(xSim_UID.L & 0xFFF) / 64];
+	pID[15] = uChar[(xSim_UID.L & 0xFFF) % 64];
 }
 
 

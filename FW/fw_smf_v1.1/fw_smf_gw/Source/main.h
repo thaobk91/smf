@@ -53,22 +53,13 @@ extern "C"
 #define EVENT_UART_CONN_RECEIVED					0x0004
 #define EVENT_UART_CONN_SEND						0x0008
 #define EVENT_UART_NWK_RECEIVED						0x0010
-#define EVENT_UART_NWK_SEND							0x0020
-
-#ifdef macroCONNECTIVITY_ETH
-	#define EVENT_ETH_MQTT_RECEIVED					0x0040
-	#define EVENT_ETH_MQTT_SEND						0x0080
-#endif
-	
-#define EVENT_WAIT_NWK_CONNECTED					0x0100
+#define EVENT_UART_NWK_SEND							0x0020	
+#define EVENT_WAIT_NWK_CONNECTED					0x0040
 
 
 //For Task
 /* Task priorities. */
 #define macroPRIORITY_TASK_PROCESS					(configMAX_PRIORITIES - 1)
-#ifdef macroCONNECTIVITY_ETH
-	#define macroPRIORITY_TASK_ETH					(configMAX_PRIORITIES - 2)
-#endif
 #define macroPRIORITY_TASK_WhoAmI					(configMAX_PRIORITIES - 3)
 
 #ifdef macroUSE_SDCARD
@@ -80,9 +71,6 @@ extern "C"
 typedef struct
 {
 	TaskHandle_t 	xTaskHandle_Process;
-#ifdef macroCONNECTIVITY_ETH
-	TaskHandle_t 	xTaskHandle_Eth;
-#endif
 	TaskHandle_t 	xTaskHandle_WhoAmI;
 
 #ifdef macroUSE_SDCARD
@@ -92,9 +80,6 @@ typedef struct
 	struct
 	{
 		uint16_t	uiProcessTask_Finish;
-	#ifdef macroCONNECTIVITY_ETH
-		uint16_t	uiEthTask_Finish;
-	#endif
 		uint16_t	uiWamiTask_Finish;
 	#ifdef macroUSE_SDCARD
 		uint16_t	uiSDCardTask_Finish;

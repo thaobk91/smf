@@ -4,6 +4,7 @@
 
 extern uint8 uPacketIDSent;
 extern uint8 uMain_TaskID;
+extern char ZIGBEE_RX_Buffer[macroZIGBEE_RX_BUFF_SIZE];
 
 
 
@@ -51,8 +52,10 @@ uint8 uZigbeeIO_SendMessage(afAddrType_t xAddrDst, uint16 uiClusterID, uint8 *pD
 *****************************************************************************************/
 uint8 uZigbeeIO_RecvMessage(afIncomingMSGPacket_t *xDataStructRecv)
 {	
-	APP_DEBUG("\r\n\r\n--- ZigbeeIO: Recv = %s\r\n", xDataStructRecv->cmd.Data);	
-	APP_DEBUG("--- ZigbeeIO: Addr Node = 0x%x\r\n", xDataStructRecv->srcAddr.addr.shortAddr);
+	APP_DEBUG("\r\n\r\n--- ZigbeeIO: Recv data = %s\r\n", xDataStructRecv->cmd.Data);	
+	//APP_DEBUG("--- ZigbeeIO: Addr = 0x%x\r\n", xDataStructRecv->srcAddr.addr.shortAddr);
+	strcpy(ZIGBEE_RX_Buffer, (char *)xDataStructRecv->cmd.Data);
+	macroSET_EVENT( uMain_TaskID, EVENT_ZIGBEE_RECV);
 	
 	return 1;
 }

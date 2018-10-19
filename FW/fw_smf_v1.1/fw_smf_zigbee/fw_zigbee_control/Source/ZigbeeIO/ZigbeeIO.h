@@ -5,8 +5,8 @@
 #include "Main.h"
 
 
-#define macroZIGBEE_TX_BUFF_SIZE				256
-#define macroZIGBEE_RX_BUFF_SIZE				256
+#define macroZIGBEE_TX_BUFF_SIZE				512
+#define macroZIGBEE_RX_BUFF_SIZE				512
 
 
 

@@ -28,11 +28,14 @@
 
 //event
 #define EVENT_LED_STATUS					0x0001
-#define EVENT_CHECK							0x0002
+#define EVENT_ZIGBEE_RECV					0x0002
+#define EVENT_SEND_MESSAGE					0x0004
 
 
 //event time
 #define macroTIME_EVENT_LED_STATUS			100
+#define macroTIME_EVENT_RESEND_DATA			500
+
 
 
  
@@ -59,7 +62,10 @@ void vMain_Init( byte task_id );
 *******************************************************************************/
 UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events );
 
+
+
 #endif /* GENERICAPP_H */
+
 
 
 

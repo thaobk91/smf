@@ -10,11 +10,11 @@
 
 /******************************* Define connectivity **************************/
 //#define macroCONNECTIVITY_ETH 					 		"Ethe"
-#define macroCONNECTIVITY_WIFI 					 		"Wifi"
+//#define macroCONNECTIVITY_WIFI 					 		"Wifi"
 #define macroCONNECTIVITY_3G 					 		"3G"
-#define macroCONNECTIVITY_2G 					 		"2G"
+//#define macroCONNECTIVITY_2G 					 		"2G"
 #define macroCONNECTIVITY_ZIGB 					 		"Zigb"
-#define macroCONNECTIVITY_SUB1G							"Sub1"
+//#define macroCONNECTIVITY_SUB1G							"Sub1"
 /******************************************************************************/
 
 

@@ -56,25 +56,23 @@ Array2D xParse_SplitMessage( char *pMessage )
 
 PacketIO xParse_getArrayData( char *pMessage )
 {
+	uint8_t ui = 0;
 	PacketIO _PacketIO = {0};
 	Array2D _Array2D = xParse_SplitMessage( pMessage );
 	
-	vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[0], 0);
-	vParse_Coppy( _PacketIO.TypeDevice, _Array2D.Array[1], 0);
-	vParse_Coppy( _PacketIO.IDDevice, _Array2D.Array[2], 0);
-	
-	uint8_t ui = 3;
+	vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui++], 0);
+	vParse_Coppy( _PacketIO.TypeDevice, _Array2D.Array[ui++], 0);
+	vParse_Coppy( _PacketIO.IDDevice, _Array2D.Array[ui++], 0);
 	
 	for(;;)
 	{
 		if(_Array2D.Array[ui][0] > 0)
-			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui], 0);
+			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui++], 0);
 		else
 			break;
 		
 		if(_Array2D.Array[ui + 1][0] == ':')
-			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui + 1], 1);
-		ui += 2;
+			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui++], 1);
 	}
 	
 	return _PacketIO;

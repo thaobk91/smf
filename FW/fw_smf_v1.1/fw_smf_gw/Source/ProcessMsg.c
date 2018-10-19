@@ -14,11 +14,6 @@
 #include "ProcessMsg.h"
 #include "UART.h"
 
-#ifdef macroCONNECTIVITY_ETH
-	#include "MQTTClient.h"
-	#include "EthTask.h"
-#endif
-
 #ifdef macroUSE_SDCARD
 	#include "UserFile.h"
 #endif
@@ -32,11 +27,6 @@ extern uint8_t uUART_CONN_TX_Buffer[macroUART_TX_BUFFER_LENGHT];
 //UART to network
 extern uint8_t uUART_NWK_TX_Buffer[macroUART_TX_BUFFER_LENGHT];
 
-//Buffer MQTT (Ethernet)
-#ifdef macroCONNECTIVITY_ETH
-	extern uint8_t uETH_MQTT_TX_Buffer[macroMQTT_TX_BUFFER_LENGHT];
-#endif
-
 extern WhoAmI _WhoAmI;
 
 //response
@@ -46,10 +36,6 @@ extern rtc_datetime_t _RTC;
 
 //sync RTC
 extern bool bRTC_Sync;
-
-#ifdef macroCONNECTIVITY_ETH
-	extern mqttConfig _mqttConfig;
-#endif
 
 //ID Gw
 extern uint8_t uIDGw[17];
@@ -168,14 +154,6 @@ static void vProcessMsg_DATA(PacketIO *_PacketIO, bool isStringMessage, bool fro
 	if(fromConnectivity == true)
 	{
 		isResponse = false;
-	#ifdef macroCONNECTIVITY_ETH
-		if(_WhoAmI.Network.Ethernet == true)
-		{
-			vParseMsg_Packing_JsonMessage(_PacketIO, uETH_MQTT_TX_Buffer);
-			vMain_setEvent(EVENT_ETH_MQTT_SEND);
-		}
-		else
-	#endif
 		if( (_WhoAmI.Network.Wifi == true) || (_WhoAmI.Network._2G == true) || (_WhoAmI.Network._3G == true) )
 		{
 			vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
@@ -183,9 +161,6 @@ static void vProcessMsg_DATA(PacketIO *_PacketIO, bool isStringMessage, bool fro
 		}
 		else
 		{
-		#ifdef macroCONNECTIVITY_ETH
-			vParseMsg_Packing_JsonMessage(_PacketIO, uETH_MQTT_TX_Buffer);
-		#endif
 			vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
 			APP_DEBUG("--- ProcessMsg: Lost all nwk connection. waiting nwk connected\r\n");
 			bWaitNWK_Connected = true;
@@ -272,75 +247,6 @@ static void vProcessMsg_CONF(PacketIO *_PacketIO, bool isStringMessage, bool fro
 			APP_DEBUG("--- ProcessMsg: CONF is Smart config wifi\r\n");
 			uSmartConfig_Counter = 1;
 		}
-	#ifdef macroCONNECTIVITY_ETH
-		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_MQTT_ETH) == 0 )
-		{
-			APP_DEBUG("--- ProcessMsg: CONF is MQTT Config\r\n");
-			if(isStringMessage == false)
-			{
-				#define MQTT_MAX_FIELD			4
-				#define MQTT_MAX_FIELD_LENGHT	32
-
-				uint8_t Array[MQTT_MAX_FIELD][MQTT_MAX_FIELD_LENGHT] = {0};
-				uint8_t ui = 0, uj = 0, uk = 0;
-
-				while(_PacketIO->Data[0].Info[ui] > 0)
-				{
-					if(_PacketIO->Data[0].Info[ui] == '/')
-					{
-						uj++;
-						uk = 0;
-					}
-					else
-						Array[uj][uk++] = _PacketIO->Data[0].Info[ui];
-					if( (uk >= MQTT_MAX_FIELD_LENGHT) || (uj >= MQTT_MAX_FIELD) )
-					{
-						ERROR();
-						break;
-					}
-					ui++;
-				}
-
-				ui = 0; uj = 0; uk = 0;
-				uint8_t HostArray[4][6] = {0};
-				while(Array[0][ui] > 0)
-				{
-					if(Array[0][ui] == '.')
-					{
-						uj++;
-						uk = 0;
-					}
-					else
-						HostArray[uj][uk++] = Array[0][ui];
-					if( (uk >= 6) || (uj >= 4) )
-					{
-						ERROR();
-						break;
-					}
-					ui++;
-				}
-
-				_mqttConfig.Host[0] = atoi((char *)HostArray[0]);
-				_mqttConfig.Host[1] = atoi((char *)HostArray[1]);
-				_mqttConfig.Host[2] = atoi((char *)HostArray[2]);
-				_mqttConfig.Host[3] = atoi((char *)HostArray[3]);
-				_mqttConfig.Port = atoi((char *)Array[1]);
-				strcpy((char *)_mqttConfig.User, (char *)Array[2]);
-				strcpy((char *)_mqttConfig.Pwd, (char *)Array[3]);
-				APP_DEBUG("--- ProcessMsg: MQTT Config = %d.%d.%d.%d, %d, %s, %s\r\n", \
-								_mqttConfig.Host[0], _mqttConfig.Host[1], _mqttConfig.Host[2], _mqttConfig.Host[3], \
-								_mqttConfig.Port, _mqttConfig.User, _mqttConfig.Pwd \
-							);
-
-			#ifdef macroUSE_SDCARD
-				vUserFile_Write_MQTTConfig(_mqttConfig.Host, _mqttConfig.Port, _mqttConfig.User, _mqttConfig.Pwd);
-			#endif
-				vMQTTClient_Disconnect();
-			}
-			else
-				APP_DEBUG("--- ProcessMsg: no action\r\n");
-		}
-	#endif
 		else if( (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_PH) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_EC) == 0) || \
 				 (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_TEMP_G) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_HUMI_G) == 0) || \
 				 (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_TEMP_A) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_THRESHOLD_HUMI_A) == 0) || \
@@ -408,13 +314,6 @@ static void vProcessMsg_REQS(PacketIO *_PacketIO, bool isStringMessage, bool fro
 				vParseMsg_Packing_StringMessage(_PacketIO, uBuff, false);
 				UART_NWK_WRITE_DATA(uBuff);
 			}
-		#ifdef macroCONNECTIVITY_ETH
-			else
-			{
-				vParseMsg_Packing_JsonMessage(_PacketIO, uETH_MQTT_TX_Buffer);
-				vMain_setEvent(EVENT_ETH_MQTT_SEND);
-			}
-		#endif
 		}
 		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_REQS_D_STATE) == 0 )
 		{
@@ -487,37 +386,66 @@ static void vProcessMsg_RESP(PacketIO *_PacketIO, bool isStringMessage, bool fro
 ******************************************************************************/
 static void vProcessMsg_WAMI(PacketIO *_PacketIO, bool isStringMessage, bool fromConnectivity)
 {
+	APP_DEBUG("--- ProcessMsg: WAMI is %s\r\n", (char *)_PacketIO->Data[0].Name);
 	if(fromConnectivity == false)
 	{
+#ifdef macroCONNECTIVITY_WIFI
 		if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_WIFI) == 0)
-			_WhoAmI.Network.Wifi = true;
-		else if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_2G) == 0)
-			_WhoAmI.Network._2G = true;
-		else if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_3G) == 0)
-			_WhoAmI.Network._3G = true;
-		else
 		{
-			APP_DEBUG("--- ProcessMsg: WAMI network is none\r\n");
+			_WhoAmI.Network.Wifi = true;
+			APP_DEBUG("--- ProcessMsg: Wifi is running\r\n");
+		}
+		else 
+#endif	
+#ifdef macroCONNECTIVITY_2G
+		if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_2G) == 0)
+		{
+			_WhoAmI.Network._2G = true;
+			APP_DEBUG("--- ProcessMsg: 2G is running\r\n");
+		}
+		else 
+#endif	
+#ifdef macroCONNECTIVITY_3G
+		if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_3G) == 0)
+		{
+			_WhoAmI.Network._3G = true;
+			APP_DEBUG("--- ProcessMsg: 3G is running\r\n");
+		}
+		else
+#endif
+		{
+			APP_DEBUG("--- ProcessMsg: WAMI network is not running\r\n");
 			return;
 		}
 
 		if(strcmp((char *)_PacketIO->Data[0].Info, macroRESP_OK) == 0)
+		{
+			APP_DEBUG("--- ProcessMsg: nwk is connected\r\n");
 			_WhoAmI.Network.ConnectionOK = true;
+		}
+		else
+		{
+			APP_DEBUG("--- ProcessMsg: nwk is disconnected\r\n");
+		}
 	}
 	else
 	{
+#ifdef macroCONNECTIVITY_ZIGB
 		if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_ZIGB) == 0)
 			_WhoAmI.Connectivity.Zigbee = true;
-		else if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_SUB1G) == 0)
+		else
+#endif
+#ifdef macroCONNECTIVITY_SUB1G
+		if(strcmp((char *)_PacketIO->Data[0].Name, macroCONNECTIVITY_SUB1G) == 0)
 			_WhoAmI.Connectivity.Sub1Ghz = true;
 		else
+#endif
 		{
 			APP_DEBUG("--- ProcessMsg: WAMI connectivity is none\r\n");
 			return;
 		}
 	}
 
-	APP_DEBUG("--- ProcessMsg: WAMI is %s\r\n", (char *)_PacketIO->Data[0].Name);
 	if(bWaitNWK_Connected == true)
 		vMain_setEvent(EVENT_WAIT_NWK_CONNECTED);
 	bWaitNWK_Connected = false;
@@ -548,14 +476,6 @@ void vProcessMsg_Send_Data( char *IDEp, char *ID_Data, char *State )
 	if(State != NULL)
 		strcpy((char *)_PacketIO.Data[0].Info, State);
 
-#ifdef macroCONNECTIVITY_ETH
-	if(_WhoAmI.Network.Ethernet == true)
-	{
-		vParseMsg_Packing_JsonMessage(&_PacketIO, uETH_MQTT_TX_Buffer);
-		vMain_setEvent(EVENT_ETH_MQTT_SEND);
-	}
-	else
-#endif
 	if( (_WhoAmI.Network.Wifi == true) || (_WhoAmI.Network._2G == true) || (_WhoAmI.Network._3G == true) )
 	{
 		vParseMsg_Packing_StringMessage(&_PacketIO, uUART_NWK_TX_Buffer, false);
@@ -584,14 +504,6 @@ void vProcessMsg_Send_Request( char *Request, bool toConnectivity )
 		strcpy((char *)_PacketIO.IDGw, (char *)uIDGw);
 		strcpy((char *)_PacketIO.Data[0].Name, Request);
 
-	#ifdef macroCONNECTIVITY_ETH
-		if(_WhoAmI.Network.Ethernet == true)
-		{
-			vParseMsg_Packing_JsonMessage(&_PacketIO, uDataOut);
-			ETH_MQTT_WRITE_DATA(uDataOut);
-		}
-		else
-	#endif
 		if( (_WhoAmI.Network.Wifi == true) || (_WhoAmI.Network._2G == true) || (_WhoAmI.Network._3G == true) )
 		{
 			vParseMsg_Packing_StringMessage(&_PacketIO, uDataOut, toConnectivity);
@@ -641,10 +553,6 @@ void vProcessMsg_Send_Wami( void )
 {
 	UART_NWK_WRITE_DATA("WAMI!");
 	UART_CONN_WRITE_DATA("WAMI!");
-
-#ifdef macroCONNECTIVITY_ETH
-	//ETH_MQTT_WRITE_DATA("WAMI!");
-#endif
 }
 
 

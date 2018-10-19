@@ -3,7 +3,7 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>fw_zigbee_router</name>
+    <name>fw_zigbee_control</name>
     <toolchain>
       <name>ARM</name>
     </toolchain>
@@ -17,15 +17,15 @@
         <debug>0</debug>
         <option>
           <name>ExePath</name>
-          <state>fw_zigbee_router\Exe</state>
+          <state>fw_zigbee_control\Exe</state>
         </option>
         <option>
           <name>ObjPath</name>
-          <state>fw_zigbee_router\Obj</state>
+          <state>fw_zigbee_control\Obj</state>
         </option>
         <option>
           <name>ListPath</name>
-          <state>fw_zigbee_router\List</state>
+          <state>fw_zigbee_control\List</state>
         </option>
         <option>
           <name>GEndianMode</name>
@@ -650,7 +650,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>fw_zigbee_router.hex</state>
+          <state>fw_zigbee_control.hex</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -705,7 +705,7 @@
         </option>
         <option>
           <name>IlinkOutputFile</name>
-          <state>fw_zigbee_router.out</state>
+          <state>fw_zigbee_control.out</state>
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
@@ -1052,6 +1052,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\Source\Main.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\Message.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\Message.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\Source\OSAL_Main.c</name>
@@ -1545,13 +1551,13 @@
     <file>
       <name>$PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wCoord.cfg</name>
       <excluded>
-        <configuration>fw_zigbee_router</configuration>
+        <configuration>fw_zigbee_control</configuration>
       </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wEndev.cfg</name>
       <excluded>
-        <configuration>fw_zigbee_router</configuration>
+        <configuration>fw_zigbee_control</configuration>
       </excluded>
     </file>
     <file>

@@ -9,7 +9,7 @@
 #define macroUART_TX_BUFFER_LENGHT					512
 
 // UART for Network
-#define macroUART_NETWORK_BAUDRATE		          	115200
+#define macroUART_NETWORK_BAUDRATE		          	38400
 #define macroUART_NETWORK_BASE             			UART4
 #define macroUART_NETWORK_CLKSRC           			UART4_CLK_SRC
 #define macroUART_NETWORK_IRQn             			UART4_RX_TX_IRQn

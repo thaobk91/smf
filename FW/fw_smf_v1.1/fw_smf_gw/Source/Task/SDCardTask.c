@@ -16,12 +16,6 @@
 	 
 #include "UserFile.h"
 #include "RTC.h"
-	 
-#ifdef macroCONNECTIVITY_ETH
-	#include "MQTTClient.h"
-	extern mqttConfig _mqttConfig;
-#endif
-
 
 enum Card_Event
 {
@@ -199,22 +193,7 @@ void vSDCardTask_Run( void *pvParameters )
 						vUserFile_Write_RTC( _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year );
 					bRTCisRead = true;
 				}
-				
-			#ifdef macroCONNECTIVITY_ETH
-				macroTASK_DELAY_MS( 1000 );
-				if(bUserFile_Read_MQTTConfig(_mqttConfig.Host, &_mqttConfig.Port, _mqttConfig.User, _mqttConfig.Pwd) == false)
-				{
-					uError_Counter++;
-					APP_DEBUG("--- SDCardTask: Read mqtt config fail\r\n");
-				}
-				else
-				{
-					_mqttConfig.getMMC = true;
-					Enum_CARD_EVENT = eCARD_EVENT_IDLE;
-				}
-			#else
 				Enum_CARD_EVENT = eCARD_EVENT_IDLE;
-			#endif
 				break;
 
 			case eCARD_EVENT_READ:

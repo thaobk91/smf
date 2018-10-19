@@ -2,22 +2,30 @@
 #include "mac_low_level.h"
 
 #include "Main.h"
+#include "Message.h"
 
 
 uint8 uMain_TaskID; 			
 devStates_t xMain_NWKSatte;
 uint8 uPacketIDSent; 				//Counter send msg
-afAddrType_t xAddrNode;
-
-uint16_t uCounterNWK = 0;
-
-uint8_t status = 0;
+afAddrType_t xAddrCoordinator;
 
 char IDZb[17] = {0};
-
+uint16_t uCounterNWK = 0;
 uint8_t uLedCounter = 0;
+uint16_t uSendCounter = 0;
+
+char ZIGBEE_RX_Buffer[macroZIGBEE_RX_BUFF_SIZE] = {0};
+char ZIGBEE_TX_Buffer[macroZIGBEE_TX_BUFF_SIZE] = {0};
+
+//output status
+uint8_t OutVAC_Status[macroMAX_OUTPUT_VAC] = {0};
+
+
 
 void vMain_GetIDLocal( char *IDLocal );
+
+
 
 
 
@@ -33,9 +41,9 @@ void vMain_Init( byte task_id )
 	xMain_NWKSatte = DEV_INIT;
 	uPacketIDSent = 0;
 
-	xAddrNode.addrMode = (afAddrMode_t)Addr16Bit;
-	xAddrNode.endPoint = 8;
-	xAddrNode.addr.shortAddr = 0;
+	xAddrCoordinator.addrMode = (afAddrMode_t)Addr16Bit;
+	xAddrCoordinator.endPoint = 8;
+	xAddrCoordinator.addr.shortAddr = 0;
 
 	// Register the endpoint description with the AF
 	afRegister( &xDataEPDesc );
@@ -66,7 +74,6 @@ void vMain_Init( byte task_id )
 	GPIOPinTypeGPIOOutput(macroLED_STATUS_PORT, macroLED_STATUS_PIN);
 	IOCPadConfigSet(macroLED_STATUS_PORT, macroLED_STATUS_PIN, IOC_OVERRIDE_PUE);//Pull up resistor
 	
-	//vUART_Init(macroUART_APP_BASE, 115200);
 	vUART_Init(macroUART_DEBUG_BASE, 115200);
 	APP_DEBUG("\r\n------------------------------ MAIN TASK ------------------------------\r\n");
 	
@@ -120,6 +127,7 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 					else 
 					{
 						APP_DEBUG("--- MAIN: Send Data FAIL! Status = 0x%x\r\n", (ZStatus_t)(MSGpkt->hdr.status));
+						macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_MESSAGE, macroTIME_EVENT_RESEND_DATA);
 					}
 					break;
 				}
@@ -138,7 +146,6 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 					}
 
 					APP_DEBUG("--- MAIN: ZDO_STATE. NWK State = 0x%x\r\n", xMain_NWKSatte);
-
 					if((xMain_NWKSatte == DEV_ZB_COORD) || (xMain_NWKSatte == DEV_ROUTER) || (xMain_NWKSatte == DEV_END_DEVICE))
 					{
 						uCounterNWK = 0;
@@ -155,34 +162,36 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 		return (events ^ SYS_EVENT_MSG);
 	}
 	
-	if(events & EVENT_CHECK)
+	//recv data from zigbee
+	if(events & EVENT_ZIGBEE_RECV)
 	{
-		APP_DEBUG("--- Main: status = %d\r\n", status);
-//		if(status == 0)
-//		{
-//			macroOUTPUT_1_ON();
-//			macroOUTPUT_2_ON();
-//			macroOUTPUT_3_ON();
-//			macroOUTPUT_4_ON();
-//			macroOUTPUT_5_ON();
-//			macroOUTPUT_6_ON();
-//		}
-//		else
-//		{
-//			macroOUTPUT_1_OFF();
-//			macroOUTPUT_2_OFF();
-//			macroOUTPUT_3_OFF();
-//			macroOUTPUT_4_OFF();
-//			macroOUTPUT_5_OFF();
-//			macroOUTPUT_6_OFF();
-//		}
-		status = ~status;
-		  
-		macroLOOP_EVENT(uMain_TaskID, EVENT_CHECK, 1000);
+		APP_DEBUG("--- Main: EVENT_ZIGBEE_RECV\r\n");
+		vMessage_Check( ZIGBEE_RX_Buffer );
 		
-		events ^= EVENT_CHECK;
+		events ^= EVENT_ZIGBEE_RECV;
 	}
 	
+	//send data
+	if(events & EVENT_SEND_MESSAGE)
+	{
+		uSendCounter++;
+		if(uSendCounter == 1)
+		{
+			if(uZigbeeIO_SendMessage(xAddrCoordinator, APPDATA_CLUSTER_COOR_IN_NODE_OUT, (uint8_t *)ZIGBEE_TX_Buffer) == 0)
+				uSendCounter++;
+		}
+		else if(uSendCounter >= (5000 / macroTIME_EVENT_RESEND_DATA))
+		{
+			uSendCounter = 0;
+		}
+		
+		if(uSendCounter != 1)
+			macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_MESSAGE, macroTIME_EVENT_RESEND_DATA);
+		
+		events ^= EVENT_SEND_MESSAGE;
+	}
+	
+	//led status
 	if(events & EVENT_LED_STATUS)
 	{
 		uLedCounter++;
@@ -227,6 +236,7 @@ void vMain_GetIDLocal( char *IDLocal )
 		IDLocal[uCnt++] = cHex[IDExtLocal[ui] % 0x10];
 	}
 }
+
 
 						
 

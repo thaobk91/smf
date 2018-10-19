@@ -705,24 +705,24 @@ MQTT_STATE_IDE              = 11;
 STATE_GETGPS                = 12;
 -------------------------------------------------------------------------------
 --MQTT DEFINE
-MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
-MQTT_TOPIC_SUBSCRIBE  =   "smartfarm/command/";
+--MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
+--MQTT_TOPIC_SUBSCRIBE  =   "smartfarm/command/";
 
 --user for first config
-MQTT_USER       =   "SMF_TEST";
-MQTT_PWD        =   "12348765";
-MQTT_ADDR_SV    =   "m13.cloudmqtt.com";
-MQTT_PORT       =   "10622";
+--MQTT_USER       =   "SMF_TEST";
+--MQTT_PWD        =   "12348765";
+--MQTT_ADDR_SV    =   "m13.cloudmqtt.com";
+--MQTT_PORT       =   "10622";
 -------------------------------------------------------------------------------
 --MQTT DEFINE
---MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
---MQTT_TOPIC_SUBSCRIBE    =   "smartfarm/command/";
+MQTT_TOPIC_PUBLISH    =   "smartfarm/data/";
+MQTT_TOPIC_SUBSCRIBE    =   "smartfarm/command/";
 ----
 ------user for first config
---MQTT_USER       =   "admin";
---MQTT_PWD        =   "20051926";
---MQTT_ADDR_SV      =   "broker.hosco.com.vn";
---MQTT_PORT       =   "1883";
+MQTT_USER       =   "admin";
+MQTT_PWD        =   "20051926";
+MQTT_ADDR_SV      =   "broker.hosco.com.vn";
+MQTT_PORT       =   "1883";
 ------------------------------------------
 MQTT_INDEX_CLIENT = 0;
 ----------------------------------------
@@ -838,9 +838,9 @@ ID_vTaskSIO_DATA = thread.create(vTaskSIO_DATA);
 ID_vTaskTimer = thread.create(vTaskTimer);
 ---------------------------
 -- set priority
-thread.setpri(ID_vTaskUart, MEDIUM_PRIORITY);
+thread.setpri(ID_vTaskUart, HIGH_PRIORITY);
 thread.setpri(ID_vTaskSIO_DATA, HIGH_PRIORITY);
-thread.setpri(ID_vTaskTimer, MEDIUM_PRIORITY);
+thread.setpri(ID_vTaskTimer, HIGH_PRIORITY);
 ----------------------------
 
 thread.run(ID_vTaskTimer);

@@ -1,11 +1,6 @@
 
 #include "AppData.h"
 #include "WhoAmITask.h"
-
-#ifdef macroCONNECTIVITY_ETH
-	#include "EthTask.h"
-#endif
-
 #include "IOControl.h"
 #include "ProcessMsg.h"
 #include "main.h"
@@ -84,7 +79,9 @@ void vWhoAmITask_Run( void *pvParameters)
 			uCONNState_Counter++;
 		}
 		else
+		{
 			uCONN_UART_Fail_Counter = 0;
+		}
 
 		if(uWhoAmI_SendCounter >= macroCOUNTER_RESET)
 		{

@@ -132,6 +132,7 @@ F:\03.Git\smf\FW\fw_smf_v1.1\fw_smf_gw\Source\SDCard\fatfs\option
 -DUSE_RTOS=1
 -DPRINTF_FLOAT_ENABLE=1
 -DPRINTF_ADVANCED_ENABLE=1
+-DSIM_UIDH=1
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0

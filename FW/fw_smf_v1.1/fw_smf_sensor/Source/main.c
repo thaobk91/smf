@@ -119,7 +119,7 @@ uint16_t _EVENT_SYS = EVENT_SYS_IDLE;
 /******************************** Function ************************************/
 void vMain_InitWatchdog( void );
 void vMain_TimerInit(void);
-void vMain_GetUniqueID(char *pcDeviceID);
+void vMain_GetUniqueID(char *pID);
 /******************************************************************************/
 
 
@@ -436,36 +436,33 @@ void BOARD_FTM_HANDLER(void)
 
 
 /******************************************************************************
- * Function		: void vMain_GetUniqueID(char *pcDeviceID)
+ * Function		: void vMain_GetUniqueID(char *pID)
  * Description	: Ham lay Unique ID of mcu
  * Param		: pcDeviceID - ID device of mcu
  * Return		: none
 *******************************************************************************/
-void vMain_GetUniqueID(char *pcDeviceID)
+void vMain_GetUniqueID(char *pID)
 {
 	sim_uid_t xSim_UID;
-	uint8_t uValue = 0;
-
+	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-";
+	
 	SIM_GetUniqueId(&xSim_UID);
-
-	pcDeviceID[0]  = ((uValue = (((xSim_UID.ML >> 24) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[1]  = ((uValue = (((xSim_UID.ML >> 24) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[2]  = ((uValue = (((xSim_UID.ML >> 16) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[3]  = ((uValue = (((xSim_UID.ML >> 16) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[4]  = ((uValue = (((xSim_UID.ML >> 8 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[5]  = ((uValue = (((xSim_UID.ML >> 8 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[6]  = ((uValue = (((xSim_UID.ML >> 0 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[7]  = ((uValue = (((xSim_UID.ML >> 0 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[8]  = ((uValue = (((xSim_UID.L  >> 24) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[9]  = ((uValue = (((xSim_UID.L  >> 24) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[10] = ((uValue = (((xSim_UID.L  >> 16) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[11] = ((uValue = (((xSim_UID.L  >> 16) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[12] = ((uValue = (((xSim_UID.L  >> 8 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[13] = ((uValue = (((xSim_UID.L  >> 8 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[14] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) / 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	pcDeviceID[15] = ((uValue = (((xSim_UID.L  >> 0 ) & 0xFF) % 16)) <= 9)? (uValue | 0x30) : ((uValue - 9) | 0x41);
-	//    if(pcDeviceID[15]=='E')
-	//        pcDeviceID[15] = 'D';
+	pID[0] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
+	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
+	pID[2] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
+	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
+	pID[4] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
+	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
+	pID[6] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
+	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
+	pID[8] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
+	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
+	pID[10] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
+	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
+	pID[12] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
+	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
+	pID[14] = uChar[(xSim_UID.L & 0xFFF) / 64];
+	pID[15] = uChar[(xSim_UID.L & 0xFFF) % 64];
 }
 
 

@@ -10,12 +10,12 @@
 
 
 /******************************************************************************
- * Function		: void vIDControl_Init( void )
+ * Function		: void vIOControl_Init( void )
  * Description	: Ham khoi IO
  * Param		: none
  * Return		: none
 *******************************************************************************/
-void vIDControl_Init( void )
+void vIOControl_Init( void )
 {
 	//turn off led status
 	macroLED_STATUS_OFF();
