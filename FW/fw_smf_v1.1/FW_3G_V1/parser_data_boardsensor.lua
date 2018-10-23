@@ -13,6 +13,7 @@ local parser_data_boardsensor =  {}
 --type device
 --------------------------------------------------
 macroTYPE_DEVICE_NODESS			= "SMF_SENSN";
+macroTYPE_DEVICE_NODECTRL		= "SMF_CTRLN";
 macroTYPE_DEVICE_GW				= "SMF_GW";
 --------------------------------------------------
 --type packet

@@ -27,7 +27,7 @@ Array2D xParse_SplitMessage( char *pMessage )
 			ui++;
 			uk = 0;
 			if(*pMessage == ':')
-				_Array2D.Array[ui][0] = ':';
+				_Array2D.Array[ui][uk++] = ':';
 		}
 		else if(*pMessage == '!')
 		{
@@ -56,7 +56,7 @@ Array2D xParse_SplitMessage( char *pMessage )
 
 PacketIO xParse_getArrayData( char *pMessage )
 {
-	uint8_t ui = 0;
+	uint8_t ui = 0, uk = 0;
 	PacketIO _PacketIO = {0};
 	Array2D _Array2D = xParse_SplitMessage( pMessage );
 	
@@ -67,12 +67,24 @@ PacketIO xParse_getArrayData( char *pMessage )
 	for(;;)
 	{
 		if(_Array2D.Array[ui][0] > 0)
-			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui++], 0);
+			vParse_Coppy( _PacketIO.Data[uk].Name, _Array2D.Array[ui++], 0);
 		else
 			break;
 		
-		if(_Array2D.Array[ui + 1][0] == ':')
-			vParse_Coppy( _PacketIO.TypePacket, _Array2D.Array[ui++], 1);
+		if(_Array2D.Array[ui][0] == ':')
+			vParse_Coppy( _PacketIO.Data[uk].Info, _Array2D.Array[ui++], 1);
+		uk++;
+	}
+	
+	APP_DEBUG("--- Parse: Type packet = %s\r\n", _PacketIO.TypePacket);
+	APP_DEBUG("--- Parse: Type device = %s\r\n", _PacketIO.TypeDevice);
+	APP_DEBUG("--- Parse: ID Device = %s\r\n", _PacketIO.IDDevice);
+	
+	for(uk = 0; _PacketIO.Data[uk].Name[0] > 0; uk++)
+	{
+		APP_DEBUG("--- Parse: Data [%d] name = %s\r\n", uk, _PacketIO.Data[uk].Name);
+		if(_PacketIO.Data[uk].Info[0] > 0)
+			APP_DEBUG("--- Parse: Data [%d] Info = %s\r\n", uk, _PacketIO.Data[uk].Info);
 	}
 	
 	return _PacketIO;

@@ -3,7 +3,7 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>fw_zigbee_router</name>
+    <name>fw_zigbee_control</name>
     <toolchain>
       <name>ARM</name>
     </toolchain>
@@ -1192,6 +1192,18 @@
     </file>
     <file>
       <name>$PROJ_DIR$\Source\AppData.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\Control.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\Control.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\FlashInternal.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\FlashInternal.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\Source\Main.c</name>

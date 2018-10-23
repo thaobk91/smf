@@ -49,7 +49,7 @@ extern "C"
 //Event
 #define EVENT_IDLE									0x0000
 #define EVENT_WAMI									0x0001
-#define EVENT_SET_RTC								0x0002
+#define EVENT_RTC_CONFIG								0x0002
 #define EVENT_UART_CONN_RECEIVED					0x0004
 #define EVENT_UART_CONN_SEND						0x0008
 #define EVENT_UART_NWK_RECEIVED						0x0010

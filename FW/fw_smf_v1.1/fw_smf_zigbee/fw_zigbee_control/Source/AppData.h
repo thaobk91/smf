@@ -26,38 +26,38 @@
 //Output
 #define macroOUTPUT_1_PORT					GPIO_C_BASE
 #define macroOUTPUT_1_PIN					GPIO_PIN_7
-#define macroOUTPUT_1_ON()					GPIOPinWrite( macroOUTPUT_1_PORT, macroOUTPUT_1_PIN, macroOUTPUT_1_PIN)
-#define macroOUTPUT_1_OFF()					GPIOPinWrite( macroOUTPUT_1_PORT, macroOUTPUT_1_PIN, 0)
+#define macroOUTPUT_1_ON()					GPIOPinWrite( macroOUTPUT_1_PORT, macroOUTPUT_1_PIN, 0)
+#define macroOUTPUT_1_OFF()					GPIOPinWrite( macroOUTPUT_1_PORT, macroOUTPUT_1_PIN, macroOUTPUT_1_PIN)
 #define macroREAD_OUTPUT_1()				GPIOPinRead( macroOUTPUT_1_PORT, macroOUTPUT_1_PIN)
 
 #define macroOUTPUT_2_PORT					GPIO_C_BASE
 #define macroOUTPUT_2_PIN					GPIO_PIN_6
-#define macroOUTPUT_2_ON()					GPIOPinWrite( macroOUTPUT_2_PORT, macroOUTPUT_2_PIN, macroOUTPUT_2_PIN)
-#define macroOUTPUT_2_OFF()					GPIOPinWrite( macroOUTPUT_2_PORT, macroOUTPUT_2_PIN, 0)
+#define macroOUTPUT_2_ON()					GPIOPinWrite( macroOUTPUT_2_PORT, macroOUTPUT_2_PIN, 0)
+#define macroOUTPUT_2_OFF()					GPIOPinWrite( macroOUTPUT_2_PORT, macroOUTPUT_2_PIN, macroOUTPUT_2_PIN)
 #define macroREAD_OUTPUT_2()				GPIOPinRead( macroOUTPUT_2_PORT, macroOUTPUT_2_PIN)
 
 #define macroOUTPUT_3_PORT					GPIO_C_BASE
 #define macroOUTPUT_3_PIN					GPIO_PIN_5
-#define macroOUTPUT_3_ON()					GPIOPinWrite( macroOUTPUT_3_PORT, macroOUTPUT_3_PIN, macroOUTPUT_3_PIN)
-#define macroOUTPUT_3_OFF()					GPIOPinWrite( macroOUTPUT_3_PORT, macroOUTPUT_3_PIN, 0)
+#define macroOUTPUT_3_ON()					GPIOPinWrite( macroOUTPUT_3_PORT, macroOUTPUT_3_PIN, 0)
+#define macroOUTPUT_3_OFF()					GPIOPinWrite( macroOUTPUT_3_PORT, macroOUTPUT_3_PIN, macroOUTPUT_3_PIN)
 #define macroREAD_OUTPUT_3()				GPIOPinRead( macroOUTPUT_3_PORT, macroOUTPUT_3_PIN)
 
 #define macroOUTPUT_4_PORT					GPIO_C_BASE
 #define macroOUTPUT_4_PIN					GPIO_PIN_4
-#define macroOUTPUT_4_ON()					GPIOPinWrite( macroOUTPUT_4_PORT, macroOUTPUT_4_PIN, macroOUTPUT_4_PIN)
-#define macroOUTPUT_4_OFF()					GPIOPinWrite( macroOUTPUT_4_PORT, macroOUTPUT_4_PIN, 0)
+#define macroOUTPUT_4_ON()					GPIOPinWrite( macroOUTPUT_4_PORT, macroOUTPUT_4_PIN, 0)
+#define macroOUTPUT_4_OFF()					GPIOPinWrite( macroOUTPUT_4_PORT, macroOUTPUT_4_PIN, macroOUTPUT_4_PIN)
 #define macroREAD_OUTPUT_4()				GPIOPinRead( macroOUTPUT_4_PORT, macroOUTPUT_4_PIN)
 
 #define macroOUTPUT_5_PORT					GPIO_C_BASE
 #define macroOUTPUT_5_PIN					GPIO_PIN_1
-#define macroOUTPUT_5_ON()					GPIOPinWrite( macroOUTPUT_5_PORT, macroOUTPUT_5_PIN, macroOUTPUT_5_PIN)
-#define macroOUTPUT_5_OFF()					GPIOPinWrite( macroOUTPUT_5_PORT, macroOUTPUT_5_PIN, 0)
+#define macroOUTPUT_5_ON()					GPIOPinWrite( macroOUTPUT_5_PORT, macroOUTPUT_5_PIN, 0)
+#define macroOUTPUT_5_OFF()					GPIOPinWrite( macroOUTPUT_5_PORT, macroOUTPUT_5_PIN, macroOUTPUT_5_PIN)
 #define macroREAD_OUTPUT_5()				GPIOPinRead( macroOUTPUT_5_PORT, macroOUTPUT_5_PIN)
 
 #define macroOUTPUT_6_PORT					GPIO_C_BASE
 #define macroOUTPUT_6_PIN					GPIO_PIN_0
-#define macroOUTPUT_6_ON()					GPIOPinWrite( macroOUTPUT_6_PORT, macroOUTPUT_6_PIN, macroOUTPUT_6_PIN)
-#define macroOUTPUT_6_OFF()					GPIOPinWrite( macroOUTPUT_6_PORT, macroOUTPUT_6_PIN, 0)
+#define macroOUTPUT_6_ON()					GPIOPinWrite( macroOUTPUT_6_PORT, macroOUTPUT_6_PIN, 0)
+#define macroOUTPUT_6_OFF()					GPIOPinWrite( macroOUTPUT_6_PORT, macroOUTPUT_6_PIN, macroOUTPUT_6_PIN)
 #define macroREAD_OUTPUT_6()				GPIOPinRead( macroOUTPUT_6_PORT, macroOUTPUT_6_PIN)
 
 //Led status

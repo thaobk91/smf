@@ -2,6 +2,8 @@
 #include "Message.h"
 #include "Parse.h"
 #include "main.h"
+#include "Control.h"
+#include "FlashInternal.h"
 
 extern uint8 uMain_TaskID; 
 extern char IDZb[17];
@@ -12,8 +14,6 @@ extern char ZIGBEE_TX_Buffer[macroZIGBEE_TX_BUFF_SIZE];
 void vMessage_isConfig( PacketIO *_PacketIO );
 void vMessage_isRequest( PacketIO *_PacketIO );
 void vMessage_isControl( PacketIO *_PacketIO );
-void vMessage_sendOutVAC_Status( void );
-void vMessage_getOutVAC_Status( void );
 void vMessage_PackingMsg( PacketIO *_PacketIO, char *pMessage );
 
 
@@ -74,53 +74,16 @@ void vMessage_isControl( PacketIO *_PacketIO )
 		APP_DEBUG("--- Message: Control is outVAC\r\n");
 		for(uint8_t ui = 0; ui < macroMAX_OUTPUT_VAC; ui++)
 		{
-			switch(ui)
+			if( (_PacketIO->Data[0].Info[ui] == '1') || (_PacketIO->Data[0].Info[ui] == '0') )
 			{
-				case 0:
-					if(_PacketIO->Data[0].Info[0] == '1')
-						macroOUTPUT_1_ON();
-					else if(_PacketIO->Data[0].Info[0] == '0')
-						macroOUTPUT_1_OFF();
-					break;
-					
-				case 1:
-					if(_PacketIO->Data[0].Info[1] == '1')
-						macroOUTPUT_2_ON();
-					else if(_PacketIO->Data[0].Info[1] == '0')
-						macroOUTPUT_2_OFF();
-					break;
-					
-				case 2:
-					if(_PacketIO->Data[0].Info[2] == '1')
-						macroOUTPUT_3_ON();
-					else if(_PacketIO->Data[0].Info[2] == '0')
-						macroOUTPUT_3_OFF();
-					break;
-					
-				case 3:
-					if(_PacketIO->Data[0].Info[3] == '1')
-						macroOUTPUT_4_ON();
-					else if(_PacketIO->Data[0].Info[3] == '0')
-						macroOUTPUT_4_OFF();
-					break;
-					
-				case 4:
-					if(_PacketIO->Data[0].Info[4] == '1')
-						macroOUTPUT_5_ON();
-					else if(_PacketIO->Data[0].Info[4] == '0')
-						macroOUTPUT_5_OFF();
-					break;
-					
-				case 5:
-					if(_PacketIO->Data[0].Info[5] == '1')
-						macroOUTPUT_6_ON();
-					else if(_PacketIO->Data[0].Info[5] == '0')
-						macroOUTPUT_6_OFF();
-					break;
+				OutVAC_Status[ui] = _PacketIO->Data[0].Info[ui] ^ 0x30;
 			}
 		}
+		
+		vControl_set_OutVAC( outVAC_ALL, OutVAC_Status );
 		//get status
-		vMessage_getOutVAC_Status();
+		vControl_get_OutVAC( OutVAC_Status );
+		vFlashInternal_Write_OutVAC_State( OutVAC_Status );
 		vMessage_sendOutVAC_Status();
 	}
 }
@@ -137,55 +100,10 @@ void vMessage_sendOutVAC_Status( void )
 	strcpy(_PacketIO.IDDevice, IDZb);
 	strcpy(_PacketIO.IDZb, IDZb);
 	strcpy(_PacketIO.Data[0].Name, macroCONTROL_STATUS);
-	for(uint8_t ui = 0; ui < macroMAX_OUTPUT_VAC; ui++)
-		_PacketIO.Data[0].Info[ui] = OutVAC_Status[ui] | 0x30;
+	sprintf(_PacketIO.Data[0].Info, "%d%d%d%d%d%d", OutVAC_Status[0], \
+		OutVAC_Status[1], OutVAC_Status[2], OutVAC_Status[3], OutVAC_Status[4], OutVAC_Status[5]);
 	vMessage_PackingMsg( &_PacketIO, ZIGBEE_TX_Buffer);
 	macroSET_EVENT(uMain_TaskID, EVENT_SEND_MESSAGE);
-}
-
-
-
-
-void vMessage_getOutVAC_Status( void )
-{
-	uint32_t uValue;
-	
-	for(uint8_t ui = 0; ui < macroMAX_OUTPUT_VAC; ui++)
-	{
-		uValue = 0;
-		switch(ui)
-		{
-			case 0:
-				uValue = macroREAD_OUTPUT_1();
-				OutVAC_Status[0] = (uValue != 0)? 1 : 0;
-				break;
-				
-			case 1:
-				uValue = macroREAD_OUTPUT_2();
-				OutVAC_Status[1] = (uValue != 0)? 1 : 0;
-				break;
-				
-			case 2:
-				uValue = macroREAD_OUTPUT_3();
-				OutVAC_Status[2] = (uValue != 0)? 1 : 0;
-				break;
-				
-			case 3:
-				uValue = macroREAD_OUTPUT_4();
-				OutVAC_Status[3] = (uValue != 0)? 1 : 0;
-				break;
-				
-			case 4:
-				uValue = macroREAD_OUTPUT_5();
-				OutVAC_Status[4] = (uValue != 0)? 1 : 0;
-				break;
-				
-			case 5:
-				uValue = macroREAD_OUTPUT_6();
-				OutVAC_Status[5] = (uValue != 0)? 1 : 0;
-				break;
-		}
-	}
 }
 
 

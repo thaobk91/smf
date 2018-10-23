@@ -37,7 +37,7 @@ void vIOControl_Init( void )
 	macroETH_POWER_ON();
 
 	//refesh nano timer
-	macroNANO_TIMER_DONE_HIGH();
+	macroNANO_TIMER_DONE_LOW();
 }
 
 

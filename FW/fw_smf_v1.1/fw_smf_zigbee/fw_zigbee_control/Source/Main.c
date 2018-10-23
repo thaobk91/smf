@@ -3,6 +3,8 @@
 
 #include "Main.h"
 #include "Message.h"
+#include "FlashInternal.h"
+#include "Control.h"
 
 
 uint8 uMain_TaskID; 			
@@ -85,6 +87,9 @@ void vMain_Init( byte task_id )
 	else
 		APP_DEBUG("--- Main: Set Tx Power with CC2592 failture!\r\n");
 	
+	vFlashInternal_Read_OutVAC_State( OutVAC_Status );
+	vControl_set_OutVAC( outVAC_ALL, OutVAC_Status );
+	
 	macroLOOP_EVENT(uMain_TaskID, EVENT_LED_STATUS, macroTIME_EVENT_LED_STATUS);
 }
 //End main init
@@ -142,7 +147,7 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 					if(uCounterNWK >= 90)
 					{
 						uCounterNWK = 0;
-						//SysCtrlReset();
+						SysCtrlReset();
 					}
 
 					APP_DEBUG("--- MAIN: ZDO_STATE. NWK State = 0x%x\r\n", xMain_NWKSatte);
@@ -150,6 +155,8 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 					{
 						uCounterNWK = 0;
 						APP_DEBUG("--- MAIN: NLME_GetShortAddr = 0x%x\r\n", NLME_GetShortAddr());
+						vControl_get_OutVAC( OutVAC_Status );
+						vMessage_sendOutVAC_Status();
 					}
 				}
 				break;
@@ -187,6 +194,8 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 		
 		if(uSendCounter != 1)
 			macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_MESSAGE, macroTIME_EVENT_RESEND_DATA);
+		else
+			uSendCounter = 0;
 		
 		events ^= EVENT_SEND_MESSAGE;
 	}

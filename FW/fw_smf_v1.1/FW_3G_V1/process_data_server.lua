@@ -104,8 +104,9 @@ function process_data_server.ucCheckFieldPacket(sv_packet_t)
 	local ret = eFailed;
 	
   -- check TypeDevice
-  if(sv_packet_t[eTypeDevField_sv]== macroJSTYPE_DEVICE) then
+  if(sv_packet_t[eTypeDevField_sv]== macroJSTYPE_DEVICE) then 
     if((sv_packet_t[eTypeDevField_sv+1] == macroTYPE_DEVICE_NODESS) or
+	   (sv_packet_t[eTypeDevField_sv+1] == macroTYPE_DEVICE_NODECTRL) or
        (sv_packet_t[eTypeDevField_sv+1] == macroTYPE_DEVICE_GW)) then
         ret = eSuccessed;
     else

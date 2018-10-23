@@ -75,6 +75,8 @@
 #define macroID_CONF_AUTO_OUTVAC_2						"OutVAC_2"
 #define macroID_CONF_AUTO_OUTVAC_3						"OutVAC_3"
 #define macroID_CONF_AUTO_OUTVAC_4						"OutVAC_4"
+#define macroID_CONF_AUTO_OUTVAC_5						"OutVAC_5"
+#define macroID_CONF_AUTO_OUTVAC_6						"OutVAC_6"
 #define macroID_CONF_RTC								"RTC"
 #define macroID_CONF_IDGW								"IDGW"
 #define macroID_CONF_THRESHOLD_PH						"PH"

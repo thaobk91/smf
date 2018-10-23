@@ -219,26 +219,39 @@ void vUserFile_Write_Connectivity_Long_Addr( char *EndDevice_File, uint8_t *Long
 
 
 /*****************************************************************************
- * Function	: void vUserFile_Write_Data( uint8_t *Host, uint16_t Port, uint8_t *User, uint8_t *Pwd )
- * Desc		: write mqtt config
+ * Function	: vUserFile_Write_Data( char *pData )
+ * Desc		: write data
  * Param	: None
  * return	: None
  *****************************************************************************/
-void vUserFile_Write_Data( uint8_t *pData )
+void vUserFile_Write_Data( char *pData )
 {
-//	char cStr[256] = {0};
-//
-//	sprintf(cStr, "%d.%d.%d.%d\r\n%d\r\n%s\r\n%s\r\n", \
-//					Host[0], Host[1], Host[2], Host[3], \
-//					Port, \
-//					(char *)User, \
-//					(char *)Pwd \
-//			);
-//
-//	if(bFileAccess_Write_All(macroUSER_FILE_MQTT_CONFIG, cStr) == false)
+	if(bFileAccess_Write_All(macroUSER_FILE_MQTT_CONFIG, pData) == false)
+		APP_DEBUG("--- UserFile: Write data error\r\n");
+}
+
+
+
+
+/*****************************************************************************
+ * Function	: bool bUserFile_Read_Data( char *pData )
+ * Desc		: read data
+ * Param	: None
+ * return	: 
+ *			+ true - ok
+ *			+ false - nok
+ *****************************************************************************/
+bool bUserFile_Read_Data( char *pData )
+{
+	memset(pData, 0, strlen(pData));
+
+//	if(bFileAccess_Read_All(macroUSER_FILE_MQTT_CONFIG, Buffer) == false)
 //	{
-//		APP_DEBUG("--- UserFile: Write mqtt config error\r\n");
+//		APP_DEBUG("--- UserFile: Read mqtt config failture\r\n");
+//		return false;
 //	}
+
+	return true;
 }
 
 #endif

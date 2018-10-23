@@ -37,7 +37,6 @@ extern taskHandle_t xTask;
 //RTC
 extern rtc_datetime_t _RTC;
 
-bool bRTCisRead = false;
 
 
 /*******************************************************************************
@@ -184,15 +183,8 @@ void vSDCardTask_Run( void *pvParameters )
 			case eCARD_EVENT_READ_CONFIG:
 				APP_DEBUG("\r\n--- SDCardTask: eCARD_EVENT_READ_CONFIG\r\n");
 //				f_unlink(_T("12345678.txt"));
-//				f_unlink(_T("System Volume Information"));
-//				f_unlink(_T("4E4543801003001E.txt"));
-				if(bRTCisRead == false)
-				{
-					vMain_setEvent(EVENT_SET_RTC);
-					if(bUserFile_Read_RTC( &_RTC.hour, &_RTC.minute, &_RTC.second, &_RTC.day, &_RTC.month, &_RTC.year ) == false)
-						vUserFile_Write_RTC( _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year );
-					bRTCisRead = true;
-				}
+				if(bUserFile_Read_RTC( &_RTC.hour, &_RTC.minute, &_RTC.second, &_RTC.day, &_RTC.month, &_RTC.year ) == false)
+					vUserFile_Write_RTC( _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year );
 				Enum_CARD_EVENT = eCARD_EVENT_IDLE;
 				break;
 

@@ -70,7 +70,9 @@
 //nano timer done
 #define macroNANO_TIMER_DONE_HIGH()				GPIO_WritePinOutput(macroNANO_TIMER_DONE_GPIO, macroNANO_TIMER_DONE_PIN, 1)
 #define macroNANO_TIMER_DONE_LOW()				GPIO_WritePinOutput(macroNANO_TIMER_DONE_GPIO, macroNANO_TIMER_DONE_PIN, 0)
-#define macroNANO_TIME_DONE()					GPIO_TogglePinsOutput(macroNANO_TIMER_DONE_GPIO, 1 << macroNANO_TIMER_DONE_PIN)
+#define macroNANO_TIME_DONE()					macroNANO_TIMER_DONE_HIGH(); \
+												macroTASK_DELAY_MS(10); \
+												macroNANO_TIMER_DONE_LOW()
 
 
 

@@ -1048,6 +1048,18 @@
       <name>$PROJ_DIR$\Source\AppData.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\Source\Control.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\Control.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\FlashInternal.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Source\FlashInternal.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\Source\Main.c</name>
     </file>
     <file>

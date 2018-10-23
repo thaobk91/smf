@@ -23,12 +23,10 @@
 #define macroTIME_DELAY_LOOP				10
 #define macroTIME_LED_STATUS_OFF			3000 //3s
 #define macroTIME_LED_STATUS_ON				100 //0.1s
-
 #define macroTIME_TASK_RUN_TO_FINISH		90000//90s
 
 
 extern taskHandle_t xTask;
-//extern rtc_datetime_t _RTC;
 extern uint16_t Event_IO;
 
 //Uart to Connectivity
@@ -58,10 +56,9 @@ uint8_t uHourOld = 0;
 uint16_t uLedStatus = 0;
 
 uint16_t uiNWK_Send_Counter = 0;
-uint16_t uiMQTT_Send_Counter = 0;
 uint16_t uiWaitNWK_Connected_Counter = 0;
 uint16_t uMessageNWK_Send_Counter = 0;
-bool bSendState = false;
+bool bSend_D_State = false;
 
 
 /********************************* Function ***********************************/
@@ -97,6 +94,31 @@ void vProcessTask_Run( void *pvParameters )
 			macroLED_STATUS_OFF();
 		else
 			uLedStatus = 0;
+		
+		vRTC_GetDateTime(&_RTC);
+		if(uMinuteOld != _RTC.minute)
+		{
+			APP_DEBUG("--- ProcessTask: RTC = %d:%d:%d - %d/%d/%d\r\n", _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year);
+			uMinuteOld = _RTC.minute;
+			bSend_D_State = false;
+			macroNANO_TIME_DONE();
+			
+			if(bRTC_Sync == false)
+				vProcessMsg_Send_Request(macroID_REQS_RTC, false);
+
+			uMinuteCounter++;
+			if( uMinuteCounter > (60*24) )
+			{
+				bRTC_Sync = false;
+				uMinuteCounter = 0;
+			}
+			
+			if( (bSend_D_State == false) && ((uMinuteCounter % 15) == 0) )
+			{
+				vProcessMsg_Send_Data( NULL, macroID_DATA_DEVICE_STATE, macroRESP_OK );
+				bSend_D_State = true;
+			}
+		}
 
 		//process event
 		vProcessTask_Event();
@@ -123,7 +145,6 @@ void vProcessTask_Run( void *pvParameters )
 
 		//Refresh wdt
 		vMain_RefreshWDT();
-		macroNANO_TIME_DONE();
 		xTask.uiProcessTask_Finish = 0;
     }
 }
@@ -142,36 +163,11 @@ static void vProcessTask_Event( void )
 	//event
 	uint16_t uEvent = uiMain_getEvent();
 	
-	if(uEvent & EVENT_SET_RTC)		//uart conn received
+	if(uEvent & EVENT_RTC_CONFIG)		//uart conn received
 	{
-		APP_DEBUG("\r\n--- ProcessTask: EVENT_SET_RTC\r\n");
-		vRTC_SetDateTime(&_RTC);
-		macroTASK_DELAY_MS( 1000 );
-
-		uEvent ^= EVENT_SET_RTC;
-	}
-	else
-	{
-		vRTC_GetDateTime(&_RTC);
-		if(uMinuteOld != _RTC.minute)
-		{
-			if(bRTC_Sync == false)
-				vProcessMsg_Send_Request(macroID_REQS_RTC, false);
-
-			uMinuteOld = _RTC.minute;
-			uMinuteCounter++;
-			if( uMinuteCounter >= (60*24) )
-			{
-				bRTC_Sync = false;
-				uMinuteCounter = 0;
-			}
-			bSendState = false;
-		}
-		if( (bSendState == false) && ((uMinuteCounter % 15) == 0) )
-		{
-			vProcessMsg_Send_Data( NULL, macroID_DATA_DEVICE_STATE, macroRESP_OK );
-			bSendState = true;
-		}
+		APP_DEBUG("\r\n--- ProcessTask: RTC Config done\r\n");
+		bRTC_Sync = true;
+		uEvent ^= EVENT_RTC_CONFIG;
 	}
 
 	if(uEvent & EVENT_UART_CONN_RECEIVED)		//uart conn received

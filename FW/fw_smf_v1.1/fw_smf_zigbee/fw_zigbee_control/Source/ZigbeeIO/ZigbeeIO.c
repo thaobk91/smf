@@ -27,7 +27,7 @@ uint8 uZigbeeIO_SendMessage(afAddrType_t xAddrDst, uint16 uiClusterID, uint8 *pD
 							(byte)(strlen((char *)pData)) + 1,	//Lenght of Data
 							(byte *)pData,						//Data
 							&uPacketIDSent,						//TranID increased if Success
-							AF_SUPRESS_ROUTE_DISC_NETWORK,						//Default
+							AF_DISCV_ROUTE,						//Default
 							AF_DEFAULT_RADIUS					//Default
 						);
 	if(Status == afStatus_SUCCESS)

@@ -34,9 +34,6 @@ extern bool isResponse;
 
 extern rtc_datetime_t _RTC;
 
-//sync RTC
-extern bool bRTC_Sync;
-
 //ID Gw
 extern uint8_t uIDGw[17];
 
@@ -154,14 +151,14 @@ static void vProcessMsg_DATA(PacketIO *_PacketIO, bool isStringMessage, bool fro
 	if(fromConnectivity == true)
 	{
 		isResponse = false;
+		vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
+		
 		if( (_WhoAmI.Network.Wifi == true) || (_WhoAmI.Network._2G == true) || (_WhoAmI.Network._3G == true) )
 		{
-			vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
 			vMain_setEvent(EVENT_UART_NWK_SEND);
 		}
 		else
 		{
-			vParseMsg_Packing_StringMessage(_PacketIO, uUART_NWK_TX_Buffer, false);
 			APP_DEBUG("--- ProcessMsg: Lost all nwk connection. waiting nwk connected\r\n");
 			bWaitNWK_Connected = true;
 		}
@@ -226,7 +223,6 @@ static void vProcessMsg_CONF(PacketIO *_PacketIO, bool isStringMessage, bool fro
 				return;
 			}
 			
-			vMain_setEvent(EVENT_SET_RTC);
 			_RTC.hour 	= Hour;
 			_RTC.minute = Minute;
 			_RTC.second = Second;
@@ -234,12 +230,13 @@ static void vProcessMsg_CONF(PacketIO *_PacketIO, bool isStringMessage, bool fro
 			_RTC.month 	= Month;
 			_RTC.year 	= 2000 + Year;
 
-			bRTC_Sync = true;
 			APP_DEBUG("--- ProcessMsg: set Time = %d:%d:%d - %d/%d/%d\r\n", _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year);
+			vRTC_SetDateTime(&_RTC);
+			macroTASK_DELAY_MS( 100 );
 		#ifdef macroUSE_SDCARD
 			vUserFile_Write_RTC( _RTC.hour, _RTC.minute, _RTC.second, _RTC.day, _RTC.month, _RTC.year );
 		#endif
-			//macroTASK_DELAY_MS( 3000 );
+			vMain_setEvent(EVENT_RTC_CONFIG);
 		}
 
 		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_SMC_WIFI) == 0)
@@ -258,7 +255,8 @@ static void vProcessMsg_CONF(PacketIO *_PacketIO, bool isStringMessage, bool fro
 			vMain_setEvent(EVENT_UART_CONN_SEND);
 		}
 		else if( (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_1) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_2) == 0) || \
-				 (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_3) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_4) == 0) \
+				 (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_3) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_4) == 0) || \
+				 (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_5) == 0) || (strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_AUTO_OUTVAC_6) == 0) \
 				)
 		{
 			APP_DEBUG("--- ProcessMsg: CONF is auto VAC\r\n");
@@ -352,6 +350,12 @@ static void vProcessMsg_REQS(PacketIO *_PacketIO, bool isStringMessage, bool fro
 static void vProcessMsg_CTRL(PacketIO *_PacketIO, bool isStringMessage, bool fromConnectivity)
 {
 	APP_DEBUG("--- ProcessMsg: CTRL is none\r\n");
+	if( strcmp((char *)_PacketIO->Data[0].Name, macroCTRL_OUTPUT_VAC) == 0 )
+	{
+		APP_DEBUG("--- ProcessMsg: CTRL is Out VAC\r\n");
+		vParseMsg_Packing_StringMessage(_PacketIO, uUART_CONN_TX_Buffer, true);
+		vMain_setEvent(EVENT_UART_CONN_SEND);
+	}
 }
 
 
@@ -475,6 +479,9 @@ void vProcessMsg_Send_Data( char *IDEp, char *ID_Data, char *State )
 
 	if(State != NULL)
 		strcpy((char *)_PacketIO.Data[0].Info, State);
+	
+	sprintf((char *)_PacketIO.Data[1].Name, "%s", macroID_DATA_TIME);
+	sprintf((char *)_PacketIO.Data[1].Info, "%d-%d-%dT%d:%d:%d", _RTC.day, _RTC.month, _RTC.year, _RTC.hour, _RTC.minute, _RTC.second);
 
 	if( (_WhoAmI.Network.Wifi == true) || (_WhoAmI.Network._2G == true) || (_WhoAmI.Network._3G == true) )
 	{

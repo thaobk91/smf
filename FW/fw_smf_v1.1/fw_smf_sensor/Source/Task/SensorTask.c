@@ -129,7 +129,7 @@ void vSensorTask_Task( void *pvParameters)
 		vSS_EC_Read( xSS_Value.fTempG );
 		vSensorTask_Wait_SS_Feedback();
 		//check val vua doc dc
-		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh)&&(xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
+		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh) && (xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
 			xSS_Value.fEC = xSS_Value_Current.fEC;
 #endif
 
