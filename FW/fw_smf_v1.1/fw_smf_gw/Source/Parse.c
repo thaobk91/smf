@@ -134,6 +134,13 @@ PacketIO xParseMsg_MessageIsJson(uint8_t *pDataIn)
 
 	strcpy((char *)xPacketIO.TypePacket,	(char *)_Array.Array[uCounter + 1]);
 	strcpy((char *)xPacketIO.TypeDevice,	(char *)_Array.Array[uCounter + 3]);
+	
+	if( (strlen((char *)_Array.Array[uCounter + 5]) > 16) || (strlen((char *)_Array.Array[uCounter + 5]) > 16) )
+	{
+		APP_DEBUG("--- Parse: ID Ed or ID Gw max lenght 16 byte\r\n");
+		memset(&xPacketIO, 0, sizeof(xPacketIO));
+		return xPacketIO;
+	}
 	strcpy((char *)xPacketIO.IDEd, 			(char *)_Array.Array[uCounter + 5]);
 	strcpy((char *)xPacketIO.IDGw,	 		(char *)_Array.Array[uCounter + 7]);
 

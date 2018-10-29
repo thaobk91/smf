@@ -79,6 +79,8 @@ void vControl_get_OutVAC( uint8_t *pState )
 
 	uValue = macroREAD_OUTPUT_6();
 	pState[5] = (uValue != 0)? 0 : 1;
+	
+	APP_DEBUG("--- Control: Out VAC State = %d%d%d%d%d%d\r\n", pState[0], pState[1], pState[2], pState[3], pState[4], pState[5]);
 }
 
 

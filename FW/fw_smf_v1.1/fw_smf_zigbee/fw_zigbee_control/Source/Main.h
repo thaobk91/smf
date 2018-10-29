@@ -30,11 +30,13 @@
 #define EVENT_LED_STATUS					0x0001
 #define EVENT_ZIGBEE_RECV					0x0002
 #define EVENT_SEND_MESSAGE					0x0004
+#define EVENT_SEND_OUT_STATE				0x0008
 
 
 //event time
 #define macroTIME_EVENT_LED_STATUS			100
 #define macroTIME_EVENT_RESEND_DATA			500
+#define macroTIME_EVENT_RESEND_OUT_STATE	3000
 
 
 

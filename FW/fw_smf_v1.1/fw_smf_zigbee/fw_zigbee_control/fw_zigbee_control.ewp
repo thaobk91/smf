@@ -1568,12 +1568,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wEndev.cfg</name>
-      <excluded>
-        <configuration>fw_zigbee_control</configuration>
-      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wRouter.cfg</name>
+      <excluded>
+        <configuration>fw_zigbee_control</configuration>
+      </excluded>
     </file>
   </group>
   <group>

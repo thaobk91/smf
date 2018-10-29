@@ -22,6 +22,7 @@ char ZIGBEE_TX_Buffer[macroZIGBEE_TX_BUFF_SIZE] = {0};
 
 //output status
 uint8_t OutVAC_Status[macroMAX_OUTPUT_VAC] = {0};
+uint16_t OutVAC_SendCounter = 0;
 
 
 
@@ -155,8 +156,8 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 					{
 						uCounterNWK = 0;
 						APP_DEBUG("--- MAIN: NLME_GetShortAddr = 0x%x\r\n", NLME_GetShortAddr());
-						vControl_get_OutVAC( OutVAC_Status );
-						vMessage_sendOutVAC_Status();
+						
+						macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_OUT_STATE, macroTIME_EVENT_RESEND_OUT_STATE);
 					}
 				}
 				break;
@@ -217,6 +218,19 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 
 		macroLOOP_EVENT(uMain_TaskID, EVENT_LED_STATUS, macroTIME_EVENT_LED_STATUS);
 		events ^= EVENT_LED_STATUS;
+	}
+	
+	//send out state
+	if(events & EVENT_SEND_OUT_STATE)
+	{
+		OutVAC_SendCounter++;
+		
+		if(OutVAC_SendCounter <= 3)
+			vMessage_sendOutVAC_Status();
+		else if(OutVAC_SendCounter >= 3600)
+			OutVAC_SendCounter = 0;
+		macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_OUT_STATE, macroTIME_EVENT_RESEND_OUT_STATE);
+		events ^= EVENT_SEND_OUT_STATE;
 	}
 	
 	return 0;

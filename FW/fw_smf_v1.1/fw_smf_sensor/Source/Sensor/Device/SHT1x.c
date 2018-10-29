@@ -84,9 +84,11 @@ static int iSHT1x_ReadRaw( uint8_t cmd, SHT1x_IO *_SHT_IO )
 	_SHT1x_Func_Index.CLK_OUT_LOW( _SHT_IO );
 	_SHT1x_Func_Index.DATA_DIR_IN( _SHT_IO );
 	
-	while( (_SHT1x_Func_Index.DATA_IN( _SHT_IO )) && (cnt < 1000000))
+	while( _SHT1x_Func_Index.DATA_IN( _SHT_IO ) )
 	{
 		cnt++;
+		if(cnt > 1000000)
+			return 0;
 	};
 	cnt = 0;
 	

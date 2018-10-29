@@ -114,15 +114,6 @@ define for sensor user
 #define macroCONNECTIVITY_SSB					        "Zigb"
 /******************************************************************************/
 
-typedef enum
-{
-	eUART_None,
-	eUART_ZigB,
-	eUART_EC,
-	eUART_PH
-}Enum_UART_IO;
-
-
 typedef struct
 {
 	bool			bSentIsOK;

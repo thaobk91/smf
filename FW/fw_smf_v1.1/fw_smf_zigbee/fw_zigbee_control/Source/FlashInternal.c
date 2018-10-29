@@ -27,8 +27,7 @@ void vFlashInternal_ErasePage(uint32_t uiAddr32Page);
 int32_t iFlashInternal_Write(uint32_t uiAddr32BIT, uint8_t* pDataIn)
 {
 	int32_t i32Res = 0;	// 0 = pass, -1 = fail, -2 = wrong param
-	APP_DEBUG("sizeof = %d\r\n", strlen((char *)pDataIn));
-	i32Res = FlashMainPageProgram((uint32_t *)pDataIn, uiAddr32BIT, strlen((char *)pDataIn));
+	i32Res = FlashMainPageProgram((uint32_t *)pDataIn, uiAddr32BIT, sizeof(pDataIn));
 	return i32Res;
 }
 
@@ -109,20 +108,15 @@ void vFlashInternal_ErasePage(uint32_t uiAddr32Page)
 void vFlashInternal_Write_OutVAC_State( uint8_t *pOutState )
 {
 	int32_t result;
-	uint8_t uValue[macroMAX_OUTPUT_VAC + 1] = {0};
+	uint8_t uValue = 0;
 	
-	APP_DEBUG("data = ");
-	for(uint8_t ui = 0; ui < macroMAX_OUTPUT_VAC; ui++)
-	{
-		uValue[ui] = pOutState[ui] | 0x30;
-		APP_DEBUG("%c", uValue[ui]);
-	}
-	APP_DEBUG("\r\n");
+	uValue = ((pOutState[0] << 5) & 0x20) | ((pOutState[1] << 4) & 0x10) | ((pOutState[2] << 3) & 0x08) | \
+				((pOutState[3] << 2) & 0x04) | ((pOutState[4] << 1) & 0x02) | (pOutState[5] & 0x01);
 	
 	vFlashInternal_ErasePage(macroOUT_VAC_STATE_ADDR);
 	SysCtrlDelay(3200000);
 
-	if( result = iFlashInternal_Write( macroOUT_VAC_STATE_ADDR, uValue ) == 0)
+	if( result = iFlashInternal_Write( macroOUT_VAC_STATE_ADDR, (uint8_t *)&uValue ) == 0)
 		APP_DEBUG("--- FlashInternal: write outVAC state successfully\r\n");
 	else
 		APP_DEBUG("--- FlashInternal: write outVAC state failture. result = %d\r\n", result);
@@ -142,11 +136,17 @@ void vFlashInternal_Write_OutVAC_State( uint8_t *pOutState )
 ******************************************************************************/
 void vFlashInternal_Read_OutVAC_State( uint8_t *pOutState )
 {
-	vFlashInternal_Read( macroOUT_VAC_STATE_ADDR, pOutState, macroMAX_OUTPUT_VAC);
+	uint8_t uValue = 0;
+	vFlashInternal_Read( macroOUT_VAC_STATE_ADDR, (uint8_t *)&uValue, 1);
 	
-	APP_DEBUG("--- FlashInternal: outVAC state = ");
+	APP_DEBUG("--- FlashInternal: data read = %x\r\n", uValue);
+	
+	APP_DEBUG("--- FlashInternal: outVAC read = ");
 	for(uint8_t ui = 0; ui < macroMAX_OUTPUT_VAC; ui++)
-		APP_DEBUG("%x", pOutState[ui]);
+	{
+		pOutState[ui] = (uValue >> (5 - ui)) & 0x01;
+		APP_DEBUG("%d", pOutState[ui]);
+	}
 	APP_DEBUG("\r\n");
 }
 

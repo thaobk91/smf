@@ -269,6 +269,12 @@ static void vProcessMsg_CONF(PacketIO *_PacketIO, bool isStringMessage, bool fro
 			vParseMsg_Packing_StringMessage(_PacketIO, uUART_CONN_TX_Buffer, true);
 			vMain_setEvent(EVENT_UART_CONN_SEND);
 		}
+		else if( strcmp((char *)_PacketIO->Data[0].Name, macroID_CONF_RESET) == 0 )
+		{
+			APP_DEBUG("--- ProcessMsg: CONF is Reset. Reseting device...\r\n");
+			macroTASK_DELAY_MS( 1000 );
+			NVIC_SystemReset();
+		}
 		else
 		{
 			APP_DEBUG("--- ProcessMsg: CONF is none\r\n");

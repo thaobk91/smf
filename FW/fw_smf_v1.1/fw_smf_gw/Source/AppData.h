@@ -86,6 +86,7 @@
 #define macroID_CONF_THRESHOLD_TEMP_A					"TempA"
 #define macroID_CONF_THRESHOLD_HUMI_A					"HumiA"
 #define macroID_CONF_THRESHOLD_LIGHT					"Light"
+#define macroID_CONF_RESET								"Reset"
 
 //ID Request
 #define macroID_REQS_ALL								"ALL"

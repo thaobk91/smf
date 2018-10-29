@@ -60,6 +60,8 @@ void vMessage_isRequest( PacketIO *_PacketIO )
 	if( strcmp(_PacketIO->Data[0].Name, macroREQUEST_OUTVAC_STATUS) == 0 )
 	{
 		APP_DEBUG("--- Message: Request is ALL\r\n");
+		//get status
+		vControl_get_OutVAC( OutVAC_Status );
 		vMessage_sendOutVAC_Status();
 	}
 }
@@ -94,6 +96,8 @@ void vMessage_isControl( PacketIO *_PacketIO )
 void vMessage_sendOutVAC_Status( void )
 {
 	PacketIO _PacketIO = {0};
+	
+	vControl_get_OutVAC( OutVAC_Status );
 		
 	strcpy(_PacketIO.TypePacket, macroTYPE_PACKET_DATA);
 	strcpy(_PacketIO.TypeDevice, macroTYPE_DEVICE);
