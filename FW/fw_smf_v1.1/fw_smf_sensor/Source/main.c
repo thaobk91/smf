@@ -444,7 +444,7 @@ void BOARD_FTM_HANDLER(void)
 void vMain_GetUniqueID(char *pID)
 {
 	sim_uid_t xSim_UID;
-	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-";
+	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-";
 	
 	SIM_GetUniqueId(&xSim_UID);
 	pID[0] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
