@@ -37,18 +37,22 @@ end;
 function cGetcUSD(strCUSD)
     local strAcc = "";
     local l_toke = '%s*[,]%s*';
-    local str_token = "TK chinh";
+    --local str_token = "TK chinh";
     -- nhan biet do la ban tin check TK
-    if(string.find(strCUSD,str_token) == nil) then
-      print("CUSD is not CUSD check acc\r\n");
-      return strAcc;
-    end;
+    --if(string.find(strCUSD,str_token) == nil) then
+    --  print("CUSD is not CUSD check acc\r\n");
+    --  return strAcc;
+    --end;
     --delete space and \r,\n
     cMainAcc = string.gsub(strCUSD,"%s+","");
-    cMainAcc = string.gsub(strCUSD,"\"","");
+    cMainAcc = string.gsub(cMainAcc,"+CUSD: ","");
+	cMainAcc = string.gsub(cMainAcc," ","");
+	cMainAcc = string.gsub(cMainAcc,"\r","");
+	cMainAcc = string.gsub(cMainAcc,"\n","");
+	cMainAcc = string.gsub(cMainAcc,"\"","");
     
-    local struct_cUSD = user_board.Parser_msg(cMainAcc,l_toke);
-    print("---- cGetcUSD:",struct_cUSD[2],"\r\n");
+    --local struct_cUSD = cMainAcc;--user_board.Parser_msg(cMainAcc,l_toke);
+    print("---- cGetcUSD:", cMainAcc, "\r\n");
     
     -- dong goi de publish
     strAcc = string.format("{\"%s\":\"%s\",\"%s\":\"%s\",\"%s\":\"\",\"%s\":\"%s\",\"%s\":{\"%s\":\"%s\"}}"
@@ -61,7 +65,7 @@ function cGetcUSD(strCUSD)
                 ,cID_GateWay
                 ,macroJS_DATA
                 ,macroJS_CUSD
-                ,struct_cUSD[2]);
+                ,cMainAcc);
     return strAcc;
 end;
 ------------------------------------------------------------------------

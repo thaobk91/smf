@@ -32,8 +32,8 @@ typedef struct
 {
 	char	TypePacket[12];
 	char	TypeDevice[17];
-	char	IDEd[17];
-	char	IDZB[17];
+	char	IDEd[18];
+	char	IDZB[18];
 	char	Data[7][32];
 }PacketIO;
 

@@ -88,12 +88,14 @@ void vWhoAmITask_Run( void *pvParameters)
 			if(uNWK_UART_Fail_Counter >= (macroNWK_UART_FAIL_TIME / macroWAMI_LOOP_TIME))
 			{
 				APP_DEBUG("--- WhoAmITask: nwk uart fail. reseting...\r\n");
+				macroTASK_DELAY_MS(1000);
 				NVIC_SystemReset();
 			}
 			
 			if(uCONN_UART_Fail_Counter >= (macroCONN_UART_FAIL_TIME / macroWAMI_LOOP_TIME))
 			{
 				APP_DEBUG("--- WhoAmITask: conn uart fail. reseting...\r\n");
+				macroTASK_DELAY_MS(1000);
 				NVIC_SystemReset();
 			}
 			

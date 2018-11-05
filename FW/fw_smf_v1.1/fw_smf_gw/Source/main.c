@@ -62,7 +62,7 @@ taskHandle_t xTask =
 static WDOG_Type *xWdog_Base = WDOG;
 
 //ID Gw
-uint8_t uIDGw[17] = {0};
+uint8_t uIDGw[18] = {0};
 
 
 //Who am i
@@ -300,25 +300,26 @@ void vMain_InitWatchdog( void )
 void vMain_GetUniqueID(uint8_t *pID)
 {
 	sim_uid_t xSim_UID;
-	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-";
+	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-";
 	
 	SIM_GetUniqueId(&xSim_UID);
-	pID[0] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
-	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
-	pID[2] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
-	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
-	pID[4] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
-	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
-	pID[6] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
-	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
-	pID[8] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
-	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
-	pID[10] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
-	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
-	pID[12] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
-	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
-	pID[14] = uChar[(xSim_UID.L & 0xFFF) / 64];
-	pID[15] = uChar[(xSim_UID.L & 0xFFF) % 64];
+	pID[0] = '0';
+	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
+	pID[2] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
+	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
+	pID[4] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
+	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
+	pID[6] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
+	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
+	pID[8] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
+	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
+	pID[10] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
+	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
+	pID[12] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
+	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
+	pID[14] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
+	pID[15] = uChar[(xSim_UID.L & 0xFFF) / 64];
+	pID[16] = uChar[(xSim_UID.L & 0xFFF) % 64];
 }
 
 

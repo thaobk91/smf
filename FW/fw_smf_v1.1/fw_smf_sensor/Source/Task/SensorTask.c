@@ -45,7 +45,7 @@ extern taskHandle_t xTask;
 //Flags
 extern Flags xFlags;
 
-extern char cID_EndDevice[17];
+extern char cID_EndDevice[18];
 
 extern DataLocal xDataLocal;
 
@@ -119,7 +119,7 @@ void vSensorTask_Task( void *pvParameters)
 		vSS_PH_Read( xSS_Value.fTempG );
 		vSensorTask_Wait_SS_Feedback();
 		//check val pH vua doc dc
-		if((xSS_Value_Current.fpH > xDataLocal.xPH.ui16LowThresh) && (xSS_Value_Current.fpH < xDataLocal.xPH.ui16HighThresh))
+		if((xSS_Value_Current.fpH >= xDataLocal.xPH.ui16LowThresh) && (xSS_Value_Current.fpH <= xDataLocal.xPH.ui16HighThresh))
 			xSS_Value.fpH = xSS_Value_Current.fpH;
 #endif
 
@@ -129,7 +129,7 @@ void vSensorTask_Task( void *pvParameters)
 		vSS_EC_Read( xSS_Value.fTempG );
 		vSensorTask_Wait_SS_Feedback();
 		//check val vua doc dc
-		if((xSS_Value_Current.fEC > xDataLocal.xEC.ui16LowThresh) && (xSS_Value_Current.fEC < xDataLocal.xEC.ui16HighThresh))
+		if((xSS_Value_Current.fEC >= xDataLocal.xEC.ui16LowThresh) && (xSS_Value_Current.fEC <= xDataLocal.xEC.ui16HighThresh))
 			xSS_Value.fEC = xSS_Value_Current.fEC;
 #endif
 
@@ -139,7 +139,7 @@ void vSensorTask_Task( void *pvParameters)
 		vSS_Light_getLux( &xSS_Value_Current.fLight );
 
 		//check val vua doc dc
-		if((xSS_Value_Current.fLight > xDataLocal.xLight.ui16LowThresh) && (xSS_Value_Current.fLight < xDataLocal.xLight.ui16HighThresh))
+		if((xSS_Value_Current.fLight >= xDataLocal.xLight.ui16LowThresh) && (xSS_Value_Current.fLight <= xDataLocal.xLight.ui16HighThresh))
 			xSS_Value.fLight = xSS_Value_Current.fLight;
 #endif
 

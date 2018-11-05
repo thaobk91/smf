@@ -35,7 +35,7 @@ extern bool isResponse;
 extern rtc_datetime_t _RTC;
 
 //ID Gw
-extern uint8_t uIDGw[17];
+extern uint8_t uIDGw[18];
 
 extern uint8_t uSmartConfig_Counter;
 

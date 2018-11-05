@@ -18,7 +18,7 @@ afAddrType_t xAddrCoordinator;
 
 bool bNetworkIsOK = false;
 
-char ED_IEEEAddr[17] = {0};
+char ED_IEEEAddr[18] = {0};
 
 uint8_t uNWK_Counter = 0;
 

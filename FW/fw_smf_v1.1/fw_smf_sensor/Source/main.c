@@ -20,6 +20,12 @@
 #include "I2C.h"
 #include "UART.h"
 
+#if defined(LIGHT_SENSOR) | defined(TEMP_HUMI_AIR_SENSOR)
+#define macroTYPE_ID			'2'
+#else
+#define macroTYPE_ID			'1'
+#endif
+
 
 #ifdef PH_SENSOR
 	#include "SS_PH.h"
@@ -111,7 +117,7 @@ uint16_t ui16WAMICounter = 0;
 uint16_t ui16SendCounter=0;
 uint8_t uLedStatus =0;
 
-char cID_EndDevice[17] = {0};
+char cID_EndDevice[18] = {0};
 
 //event system
 uint16_t _EVENT_SYS = EVENT_SYS_IDLE;
@@ -143,7 +149,7 @@ int main(void)
     APP_DEBUG("*************->> SmartFarm Project v1.1 is Welcome <<-*************\r\n");
     APP_DEBUG("*******************************************************************\r\n");
     APP_DEBUG("\r\n");
-	
+
 //	vDeviceControl_Init();
 	
 	vMain_GetUniqueID(cID_EndDevice);
@@ -447,22 +453,23 @@ void vMain_GetUniqueID(char *pID)
 	char uChar[65] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-";
 	
 	SIM_GetUniqueId(&xSim_UID);
-	pID[0] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
-	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
-	pID[2] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
-	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
-	pID[4] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
-	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
-	pID[6] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
-	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
-	pID[8] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
-	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
-	pID[10] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
-	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
-	pID[12] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
-	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
-	pID[14] = uChar[(xSim_UID.L & 0xFFF) / 64];
-	pID[15] = uChar[(xSim_UID.L & 0xFFF) % 64];
+	pID[0] = macroTYPE_ID;
+	pID[1] = uChar[((xSim_UID.H >> 20) & 0xFFF) / 64]; 
+	pID[2] = uChar[((xSim_UID.H >> 20) & 0xFFF) % 64];
+	pID[3] = uChar[((xSim_UID.H >> 8) & 0xFFF) / 64];
+	pID[4] = uChar[((xSim_UID.H >> 8) & 0xFFF) % 64];
+	pID[5] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) / 64];
+	pID[6] = uChar[(((xSim_UID.H & 0xFF) << 4) | (xSim_UID.ML >> 28)) % 64];
+	pID[7] = uChar[((xSim_UID.ML >> 16) & 0xFFF) / 64];
+	pID[8] = uChar[((xSim_UID.ML >> 16) & 0xFFF) % 64];
+	pID[9] = uChar[((xSim_UID.ML >> 4) & 0xFFF) / 64];
+	pID[10] = uChar[((xSim_UID.ML >> 4) & 0xFFF) % 64];
+	pID[11] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) / 64];
+	pID[12] = uChar[((xSim_UID.ML & 0xF) | (xSim_UID.L >> 24)) % 64];
+	pID[13] = uChar[((xSim_UID.L >> 12) & 0xFFF) / 64];
+	pID[14] = uChar[((xSim_UID.L >> 12) & 0xFFF) % 64];
+	pID[15] = uChar[(xSim_UID.L & 0xFFF) / 64];
+	pID[16] = uChar[(xSim_UID.L & 0xFFF) % 64];
 }
 
 

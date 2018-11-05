@@ -15,7 +15,7 @@ extern SS_Value xSS_Value;
 
 extern DataLocal xDataLocal;
 
-extern char cID_EndDevice[17];
+extern char cID_EndDevice[18];
 
 
 /******************************************************************************

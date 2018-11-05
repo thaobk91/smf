@@ -12,7 +12,7 @@
 #include "main.h"
 
 
-extern uint8_t uIDGw[17];
+extern uint8_t uIDGw[18];
 
 
 

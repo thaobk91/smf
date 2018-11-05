@@ -109,9 +109,9 @@ typedef struct
 
 	uint8_t			TypePacket[8];
 	uint8_t			TypeDevice[16];
-	uint8_t			IDEd[17];
-	uint8_t			IDGw[17];
-	uint8_t			IDZb[17];
+	uint8_t			IDEd[18];
+	uint8_t			IDGw[18];
+	uint8_t			IDZb[18];
 	struct
 	{
 		uint8_t		Name[macroPACKET_JSON_MAX_FIELD_LENGHT / 2];
