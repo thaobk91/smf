@@ -155,7 +155,7 @@ static void vProcessTask_CheckEvent( void )
 //			if((uUART_EC_RX_Buffer[ui] >= '0') && (uUART_EC_RX_Buffer[ui] <= '9'))
 //			   cStr[uk++] = uUART_EC_RX_Buffer[ui];		   
 //		}
-		xSS_Value_Current.fEC = atof((char*)uUART_EC_RX_Buffer) / 1000; //uS/m to dS/m
+		xSS_Value_Current.fEC = atof((char*)uUART_EC_RX_Buffer) / 1000; //uS/cm to dS/m
 		APP_DEBUG("--- ProcessTask: EC data current = %f\r\n", xSS_Value_Current.fEC);
 		bSensor_Feedback = true;
 		memset((void *)uUART_EC_RX_Buffer, 0, strlen((char *)uUART_EC_RX_Buffer));
