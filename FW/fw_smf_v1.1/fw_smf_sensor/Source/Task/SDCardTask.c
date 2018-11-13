@@ -19,6 +19,7 @@
 
 extern DataLocal xDataLocal;
 
+extern uint16_t ui16SendCounter;
 
 enum Card_Event
 {
@@ -189,6 +190,8 @@ void vSDCardTask_Run( void *pvParameters )
 				}
 				else
 				{
+					if(xDataLocal.uiTimeUpdate >= 90)
+						ui16SendCounter = xDataLocal.uiTimeUpdate - 60;
 					Enum_CARD_EVENT = eCARD_EVENT_IDLE;
 				}
 				
