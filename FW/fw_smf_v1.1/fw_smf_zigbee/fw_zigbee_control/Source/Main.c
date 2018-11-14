@@ -77,6 +77,10 @@ void vMain_Init( byte task_id )
 	GPIOPinTypeGPIOOutput(macroLED_STATUS_PORT, macroLED_STATUS_PIN);
 	IOCPadConfigSet(macroLED_STATUS_PORT, macroLED_STATUS_PIN, IOC_OVERRIDE_PUE);//Pull up resistor
 	
+	//nano timer done
+	GPIOPinTypeGPIOOutput(macroNANO_TIMER_DONE_PORT, macroNANO_TIMER_DONE_PIN);
+	IOCPadConfigSet(macroNANO_TIMER_DONE_PORT, macroNANO_TIMER_DONE_PIN, IOC_OVERRIDE_PUE);//Pull up resistor
+	
 	vUART_Init(macroUART_DEBUG_BASE, 115200);
 	APP_DEBUG("\r\n------------------------------ MAIN TASK ------------------------------\r\n");
 	
@@ -209,11 +213,13 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 		if(uLedCounter < (3000 / macroTIME_EVENT_LED_STATUS))
 		{
 			macroLED_STATUS_OFF();
+			macroNANO_TIMER_DONE_OFF();
 		}
 		else
 		{
 			uLedCounter = 0;
 			macroLED_STATUS_ON();
+			macroNANO_TIMER_DONE_ON();
 		}
 
 		macroLOOP_EVENT(uMain_TaskID, EVENT_LED_STATUS, macroTIME_EVENT_LED_STATUS);
@@ -227,7 +233,7 @@ UINT16 uiMain_ProcessEvent( byte task_id, UINT16 events )
 		
 		if(OutVAC_SendCounter <= 3)
 			vMessage_sendOutVAC_Status();
-		else if(OutVAC_SendCounter >= 3600)
+		else if(OutVAC_SendCounter >= (3600 / macroTIME_EVENT_RESEND_OUT_STATE) )
 			OutVAC_SendCounter = 0;
 		macroLOOP_EVENT(uMain_TaskID, EVENT_SEND_OUT_STATE, macroTIME_EVENT_RESEND_OUT_STATE);
 		events ^= EVENT_SEND_OUT_STATE;

@@ -17,7 +17,7 @@ define for sensor user
 #define macroTIME_SEND_INTERVAL							300				//5mins
 
 //Dinh nghia do dai cua ban tin String
-#define macroPACKET_STRING_MAX_FIELD					15
+#define macroPACKET_STRING_MAX_FIELD					17
 #define macroPACKET_STRING_MIN_FIELD					3
 #define macroPACKET_STRING_MAX_FIELD_LENGHT				20
 #define macroPACKET_STRING_ENDCHAR						'!'

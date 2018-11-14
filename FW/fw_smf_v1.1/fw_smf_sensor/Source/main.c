@@ -21,7 +21,7 @@
 #include "UART.h"
 
 #if defined(LIGHT_SENSOR) | defined(TEMP_HUMI_AIR_SENSOR)
-#define macroTYPE_ID			'2'
+#define macroTYPE_ID			'1'
 #else
 #define macroTYPE_ID			'1'
 #endif

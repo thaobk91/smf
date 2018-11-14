@@ -191,15 +191,12 @@
           <state>OSC32K_CRYSTAL_INSTALLED=FALSE</state>
           <state>xNWK_AUTO_POLL</state>
           <state>xPOWER_SAVING</state>
-          <state>ZTOOL_P1</state>
-          <state>xMT_TASK</state>
-          <state>xMT_SYS_FUNC</state>
-          <state>xMT_ZDO_FUNC</state>
+          <state>HAL_UART=FALSE</state>
           <state>CC2538_USE_ALTERNATE_INTERRUPT_MAP=1</state>
-          <state>LCD_SUPPORTED=FALSE</state>
           <state>HAL_LED=FALSE</state>
           <state>HAL_KEY=FALSE</state>
           <state>HAL_LCD=FALSE</state>
+          <state>HAL_ADC=FALSE</state>
           <state>HAL_PA_LNA_CC2592</state>
           <state>HAL_MAC_USE_REGISTER_POWER_VALUES</state>
         </option>
@@ -283,7 +280,7 @@
         <option>
           <name>IExtraOptions</name>
           <state>-f $PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wConfig.cfg</state>
-          <state>-f $PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wRouter.cfg</state>
+          <state>-f $PROJ_DIR$\..\zstack\Tools\CC2538DB\f8wEndev.cfg</state>
         </option>
         <option>
           <name>CCLangConformance</name>
@@ -817,7 +814,7 @@
         </option>
         <option>
           <name>IlinkAdditionalLibs</name>
-          <state>$PROJ_DIR$\..\zstack\Libraries\CC2538\bin\Router.a</state>
+          <state>$PROJ_DIR$\..\zstack\Libraries\CC2538\bin\EndDevice.a</state>
           <state>$PROJ_DIR$\..\zstack\Libraries\TIMAC\bin\TIMAC-CC2538.a</state>
           <state>$PROJ_DIR$\..\Components\driverlib\cc2538\bin\iar\sdriverlib.lib</state>
           <state>$PROJ_DIR$\..\Components\bsp\srf06eb_cc2538\drivers\bin\iar\bsp.lib</state>
@@ -1212,78 +1209,39 @@
         <name>$PROJ_DIR$\..\Components\mac\high_level\mac_cfg.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\high_level\mac_high_level.h</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$\..\Components\mac\high_level\mac_pib.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\high_level\mac_pib.h</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\high_level\mac_spec.h</name>
       </file>
     </group>
     <group>
       <name>Include</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\include\mac_api.h</name>
-      </file>
     </group>
     <group>
       <name>Low Level</name>
       <group>
         <name>Common</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_assert.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_autopend.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_autopend.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_backoff_timer.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_backoff_timer.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_low_level.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_low_level.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_radio.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_radio.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_rx.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_rx.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_rx_onoff.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_rx_onoff.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_sleep.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_sleep.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\mac_tx.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\mac_tx.h</name>
         </file>
       </group>
       <group>
@@ -1292,28 +1250,13 @@
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\single_chip\mac_csp_tx.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\single_chip\mac_csp_tx.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\single_chip\mac_mcu.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\single_chip\mac_mcu.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\single_chip\mac_mem.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\single_chip\mac_mem.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\single_chip\mac_radio_defs.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\single_chip\mac_radio_defs.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf05\single_chip\mac_radio_reg_defs.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Components\mac\low_level\srf05\single_chip\mac_rffrontend.c</name>
@@ -1355,9 +1298,6 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\Components\mt\MT_NWK.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_RPC.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Components\mt\MT_SYS.c</name>
@@ -1421,9 +1361,6 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\Components\stack\nwk\BindingTable.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\Components\stack\nwk\BindingTable.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Components\stack\nwk\NLMEDE.h</name>

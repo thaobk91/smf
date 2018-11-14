@@ -190,9 +190,9 @@
           <state>PRINTF_ADVANCED_ENABLE</state>
           <state>PH_SENSOR</state>
           <state>EC_SENSOR</state>
-          <state>xTEMP_HUMI_AIR_SENSOR</state>
+          <state>TEMP_HUMI_AIR_SENSOR</state>
           <state>TEMP_HUMI_SOIL_SENSOR</state>
-          <state>xLIGHT_SENSOR</state>
+          <state>LIGHT_SENSOR</state>
           <state>macroUSE_SDCARD</state>
           <state>SIM_UIDH</state>
         </option>

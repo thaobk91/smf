@@ -130,7 +130,7 @@ int main(void)
 	APP_DEBUG("--- Main: Init Peripheral successfully\r\n");
 	
 	//Process task
-	if(xTaskCreate(vProcessTask_Run	, "vProcessTask_Run"	, configMINIMAL_STACK_SIZE + 1024	, NULL, macroPRIORITY_TASK_PROCESS	, &xTask.xTaskHandle_Process) != pdPASS)
+	if(xTaskCreate(vProcessTask_Run	, "vProcessTask_Run"	, configMINIMAL_STACK_SIZE + 1300	, NULL, macroPRIORITY_TASK_PROCESS	, &xTask.xTaskHandle_Process) != pdPASS)
 		APP_DEBUG("--- Main: Failed to create process task\r\n");
 
 	//Who am i task

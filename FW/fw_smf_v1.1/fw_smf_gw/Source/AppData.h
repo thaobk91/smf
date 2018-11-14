@@ -19,7 +19,7 @@
 
 
 //Dinh nghia do dai cua ban tin String
-#define macroPACKET_STRING_MAX_FIELD					17
+#define macroPACKET_STRING_MAX_FIELD					21
 #define macroPACKET_STRING_MIN_FIELD					4
 #define macroPACKET_STRING_MAX_FIELD_LENGHT				32
 #define macroPACKET_STRING_ENDCHAR						'!'
@@ -27,7 +27,7 @@
 
 
 //Dinh nghia do dai cua ban tin Json
-#define macroPACKET_JSON_MAX_FIELD						23
+#define macroPACKET_JSON_MAX_FIELD						27
 #define macroPACKET_JSON_MIN_FIELD						10
 #define macroPACKET_JSON_MAX_FIELD_LENGHT				32
 #define macroPACKET_JSON_MAX_LENGHT						(macroPACKET_JSON_MAX_FIELD * macroPACKET_JSON_MAX_FIELD_LENGHT + macroPACKET_JSON_MAX_FIELD * 3 + 4)

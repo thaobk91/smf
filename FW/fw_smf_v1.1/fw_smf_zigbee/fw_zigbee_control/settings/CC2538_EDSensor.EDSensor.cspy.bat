@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\OneDrive\outsource\smartfarm_hosco\FW\fw_smf_zigbee\fw_zigbee_router\settings\fw_zigbee_router.fw_zigbee_router.general.xcl" --backend -f "D:\OneDrive\outsource\smartfarm_hosco\FW\fw_smf_zigbee\fw_zigbee_router\settings\fw_zigbee_router.fw_zigbee_router.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "E:\05.Project\02.HomeKit\HomeKit_Firmware\HomeKit_v0.9.1\CC2538_EDSensor\settings\CC2538_EDSensor.EDSensor.general.xcl" --backend -f "E:\05.Project\02.HomeKit\HomeKit_Firmware\HomeKit_v0.9.1\CC2538_EDSensor\settings\CC2538_EDSensor.EDSensor.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\OneDrive\outsource\smartfarm_hosco\FW\fw_smf_zigbee\fw_zigbee_router\settings\fw_zigbee_router.fw_zigbee_router.general.xcl" "--debug_file=%~1" --backend -f "D:\OneDrive\outsource\smartfarm_hosco\FW\fw_smf_zigbee\fw_zigbee_router\settings\fw_zigbee_router.fw_zigbee_router.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "E:\05.Project\02.HomeKit\HomeKit_Firmware\HomeKit_v0.9.1\CC2538_EDSensor\settings\CC2538_EDSensor.EDSensor.general.xcl" "--debug_file=%~1" --backend -f "E:\05.Project\02.HomeKit\HomeKit_Firmware\HomeKit_v0.9.1\CC2538_EDSensor\settings\CC2538_EDSensor.EDSensor.driver.xcl" 
 
 @echo off 
 :end

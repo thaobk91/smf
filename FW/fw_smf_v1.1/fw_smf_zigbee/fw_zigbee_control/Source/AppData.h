@@ -65,6 +65,12 @@
 #define macroLED_STATUS_PIN					GPIO_PIN_3
 #define macroLED_STATUS_ON()				GPIOPinWrite( macroLED_STATUS_PORT, macroLED_STATUS_PIN, 0)
 #define macroLED_STATUS_OFF()				GPIOPinWrite( macroLED_STATUS_PORT, macroLED_STATUS_PIN, macroLED_STATUS_PIN)
+
+//Nano timer done
+#define macroNANO_TIMER_DONE_PORT			GPIO_D_BASE
+#define macroNANO_TIMER_DONE_PIN			GPIO_PIN_0
+#define macroNANO_TIMER_DONE_ON()			GPIOPinWrite( macroNANO_TIMER_DONE_PORT, macroNANO_TIMER_DONE_PIN, macroNANO_TIMER_DONE_PIN)
+#define macroNANO_TIMER_DONE_OFF()			GPIOPinWrite( macroNANO_TIMER_DONE_PORT, macroNANO_TIMER_DONE_PIN, 0)
 												
 
 /*********************************** DATA *************************************/
