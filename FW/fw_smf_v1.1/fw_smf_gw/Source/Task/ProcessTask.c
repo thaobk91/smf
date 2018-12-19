@@ -55,7 +55,7 @@ uint8_t uHourOld = 0;
 
 uint16_t uLedStatus = 0;
 
-uint16_t uiNWK_Send_Counter = 0;
+uint32_t uiNWK_Send_Counter = 0;
 uint16_t uiWaitNWK_Connected_Counter = 0;
 uint16_t uMessageNWK_Send_Counter = 0;
 bool bSend_D_State = false;
@@ -188,6 +188,13 @@ static void vProcessTask_Event( void )
 			{
 				isResponse = false;
 				UART_NWK_WRITE_DATA(uUART_NWK_TX_Buffer);
+			}
+			if(uiNWK_Send_Counter >= (120 * 1000 / macroTIME_DELAY_LOOP))
+			{
+				APP_DEBUG("--- ProcessTask: send data to nwk failture. Reseting...\r\n");
+				uiNWK_Send_Counter = 0;
+				macroTASK_DELAY_MS( 1000 );
+				NVIC_SystemReset();
 			}
 			uiNWK_Send_Counter++;
 			vMain_setEvent(EVENT_UART_NWK_SEND);

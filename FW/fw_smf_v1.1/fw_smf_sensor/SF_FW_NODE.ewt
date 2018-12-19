@@ -1312,6 +1312,12 @@
           <name>$PROJ_DIR$\Source\Sensor\Device\SS_EC_Murata.h</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_Humi_Soil.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\Source\Sensor\Device\SS_Humi_Soil.h</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\Source\Sensor\Device\SS_PH_Atlas.c</name>
         </file>
         <file>
